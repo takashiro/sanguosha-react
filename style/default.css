@@ -52,6 +52,12 @@ body{
 	position: absolute;
 }
 
+.dashboard .button-area i.kingdom{
+	position: absolute;
+	top: 3px;
+	left: 70px;
+}
+
 .dashboard button.confirm{
 	background: url(button/confirm/normal.png) no-repeat;
 	width: 70px;
@@ -127,6 +133,32 @@ body{
 	background: url(dashboard/hpbase.png) no-repeat;
 	width: 24px;
 	height: 145px;
+}
+
+/* Kingdom Icon */
+i.kingdom{
+	display: block;
+	width: 31px;
+	height: 31px;
+	background: url(kingdom/unknown.png) no-repeat;
+	background-position: center center;
+	background-size: 100%;
+}
+
+i.kingdom.shu{
+	background-image: url(kingdom/shu.png);
+}
+
+i.kingdom.wu{
+	background-image: url(kingdom/wu.png);
+}
+
+i.kingdom.wei{
+	background-image: url(kingdom/wei.png);
+}
+
+i.kingdom.qun{
+	background-image: url(kingdom/qun.png);
 }
 
 /* Main Area */
