@@ -14,6 +14,14 @@ class Dashboard{
 		this.headGeneralName = name;
 	}
 
+	get general(){
+		return this.headGeneral;
+	}
+
+	set general(general){
+		this.headGeneral = general;
+	}
+
 	get kingdom(){
 		return this.headKingdom;
 	}
@@ -32,6 +40,17 @@ class Dashboard{
 		avatar.children('.name').text(name);
 	}
 
+	get headGeneral(){
+		return this.object.data('head-general');
+	}
+
+	set headGeneral(general){
+		this.object.data('head-general', general);
+
+		var avatar = this.getAvatar('head');
+		avatar.children('img').attr('src', 'style/general/fullphoto/' + general + '.png');
+	}
+
 	get deputyGeneralName(){
 		var avatar = this.getAvatar('deputy');
 		return avatar.children('.name').text();
@@ -40,6 +59,17 @@ class Dashboard{
 	set deputyGeneralName(name){
 		var avatar = this.getAvatar('deputy');
 		avatar.children('.name').text(name);
+	}
+
+	get deputyGeneral(){
+		return this.object.data('deputy-general');
+	}
+
+	set deputyGeneral(general){
+		this.object.data('deputy-general', general);
+
+		var avatar = this.getAvatar('deputy');
+		avatar.children('img').attr('src', 'style/general/fullphoto/' + general + '.png');
 	}
 
 	getAvatar(type){
