@@ -17,6 +17,16 @@ $(function(){
 		});
 	});
 
+	require('hp-bar', function(){
+		require('photo', function(){
+			var photo1 = new Photo(1);
+			photo1.maxHp = 3;
+			photo1.hp = 1;
+		});
+
+		require('dashboard');
+	});
+
 	$('#connection-form').submit(function(e){
 		e.preventDefault();
 		if(server){
