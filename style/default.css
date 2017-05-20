@@ -213,6 +213,27 @@ i.seatnum.n10{
 	background: url(dashboard/seatnum/10.png) no-repeat;
 }
 
+/* HP Bar & Magatama */
+.hp-bar{
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+i.magatama{
+	width: 26px;
+	height: 26px;
+	background: url(magatama/hegemony/3.png) no-repeat;
+	display: block;
+}
+
+.hp-bar.medium i.magatama{
+	background: url(magatama/hegemony/2.png) no-repeat;
+}
+
+.hp-bar.low i.magatama{
+	background: url(magatama/hegemony/1.png) no-repeat;
+}
+
 /* Main Area */
 
 .main-area{
