@@ -58,6 +58,12 @@ body{
 	left: 70px;
 }
 
+.dashboard .button-area i.seatnum{
+	position: absolute;
+	left: 71px;
+	top: 117px;
+}
+
 .dashboard button.confirm{
 	background: url(button/confirm/normal.png) no-repeat;
 	width: 70px;
@@ -159,6 +165,52 @@ i.kingdom.wei{
 
 i.kingdom.qun{
 	background-image: url(kingdom/qun.png);
+}
+
+/* Seat Number */
+i.seatnum{
+	width: 29px;
+	height: 29px;
+}
+
+i.seatnum.n1{
+	background: url(dashboard/seatnum/1.png) no-repeat;
+}
+
+i.seatnum.n2{
+	background: url(dashboard/seatnum/2.png) no-repeat;
+}
+
+i.seatnum.n3{
+	background: url(dashboard/seatnum/3.png) no-repeat;
+}
+
+i.seatnum.n4{
+	background: url(dashboard/seatnum/4.png) no-repeat;
+}
+
+i.seatnum.n5{
+	background: url(dashboard/seatnum/5.png) no-repeat;
+}
+
+i.seatnum.n6{
+	background: url(dashboard/seatnum/6.png) no-repeat;
+}
+
+i.seatnum.n7{
+	background: url(dashboard/seatnum/7.png) no-repeat;
+}
+
+i.seatnum.n8{
+	background: url(dashboard/seatnum/8.png) no-repeat;
+}
+
+i.seatnum.n9{
+	background: url(dashboard/seatnum/9.png) no-repeat;
+}
+
+i.seatnum.n10{
+	background: url(dashboard/seatnum/10.png) no-repeat;
 }
 
 /* Main Area */
