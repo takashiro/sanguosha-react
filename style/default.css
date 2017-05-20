@@ -135,6 +135,53 @@ body{
 	left: 0;
 }
 
+.dashboard .general-avatar .name{
+	width: 87px;
+	height: 18px;
+	line-height: 18px;
+	background: url(dashboard/title/god.png) no-repeat;
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	font-family: 'LiSu', 'Arial';
+	font-size: 18px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.dashboard .general-avatar.shu .name{
+	background-image: url(dashboard/title/shu.png);
+}
+
+.dashboard .general-avatar.wu .name{
+	background-image: url(dashboard/title/wu.png);
+}
+
+.dashboard .general-avatar.wei .name{
+	background-image: url(dashboard/title/wei.png);
+}
+
+.dashboard .general-avatar.qun .name{
+	background-image: url(dashboard/title/qun.png);
+}
+
+.dashboard .general-avatar.head .name::first-letter{
+	background: url(dashboard/head.png) no-repeat;
+	background-size: 21px 18px;
+	width: 21px;
+	height: 18px;
+	padding-left: 21px;
+}
+
+.dashboard .general-avatar.deputy .name::first-letter{
+	background: url(dashboard/deputy.png) no-repeat;
+	background-size: 21px 18px;
+	width: 21px;
+	height: 18px;
+	padding-left: 21px;
+}
+
 .dashboard .hp-bar{
 	background: url(dashboard/hpbase.png) no-repeat;
 	width: 24px;
