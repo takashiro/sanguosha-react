@@ -1,0 +1,154 @@
+
+html, body{
+	height: 100%;
+}
+
+body{
+	background: url(table.jpg) no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Dashboard */
+
+.dashboard{
+	background: rgba(0, 0, 0, 0.65);
+	height: 150px;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: row;
+}
+
+.dashboard ul.equip-area{
+	margin: 0;
+	padding: 0;
+	width: 145px;
+	height: 100%;
+}
+
+.dashboard ul.equip-area li{
+	width: 145px;
+	height: 22px;
+	margin: 6px;
+	background: linear-gradient(to right, #252525, #1B1B1A 25%);
+}
+
+.dashboard .handcard-area{
+	flex: 1 1 auto;
+}
+
+.dashboard .button-area{
+	background: url(dashboard/button-area.png) no-repeat;
+	width: 102px;
+	height: 149px;
+	position: relative;
+}
+
+.dashboard .button-area button{
+	position: absolute;
+}
+
+.dashboard button.confirm{
+	background: url(button/confirm/normal.png) no-repeat;
+	width: 70px;
+	height: 70px;
+	border: 0 solid;
+	left: 6px;
+	top: 3px;
+}
+
+.dashboard button.confirm:hover{
+	background: url(button/confirm/hover.png) no-repeat;
+}
+
+.dashboard button.cancel{
+	background: url(button/cancel/normal.png) no-repeat;
+	width: 70px;
+	height: 69px;
+	border: 0 solid;
+	left: 6px;
+	top: 79px;
+}
+
+.dashboard button.cancel:hover{
+	background: url(button/cancel/hover.png) no-repeat;
+}
+
+.dashboard button.finish{
+	background:  url(button/finish/normal.png) no-repeat;
+	width: 35px;
+	height: 75px;
+	border: 0 solid;
+	left: 67px;
+	top: 37px;
+}
+
+.dashboard button.finish:hover{
+	background: url(button/finish/hover.png) no-repeat;
+}
+
+.dashboard .avatar-area{
+	display: flex;
+	flex-direction: row;
+	width: 283px;
+    height: 149px;
+	background: url(dashboard/base.png) no-repeat;
+}
+
+.dashboard .general-avatar{
+	position: relative;
+	flex: 1 1 auto;
+	width: 128px;
+	height: 149px;
+}
+
+.dashboard .general-avatar img.avatar{
+	width: 128px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.dashboard .general-avatar .frame{
+	background: url(dashboard/avatar.png) no-repeat;
+	background-size: 100%;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.dashboard .hp-bar{
+	background: url(dashboard/hpbase.png) no-repeat;
+	width: 24px;
+	height: 145px;
+}
+
+/* Main Area */
+
+.main-area{
+	flex: 1 1 auto;
+	height: 100%;
+}
+
+.chat-box{
+	min-height: 200px;
+	position: relative;
+}
+
+.chat-box > ul.log{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.chat-box > .input{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
