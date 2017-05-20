@@ -39,6 +39,13 @@ body{
 
 .dashboard .handcard-area{
 	flex: 1 1 auto;
+	position: relative;
+}
+
+.dashboard .handcard-area .handcard-num{
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 .dashboard .button-area{
@@ -281,6 +288,39 @@ i.magatama{
 	background: url(magatama/hegemony/1.png) no-repeat;
 }
 
+/* Hand Card Number */
+.handcard-num{
+	width: 28px;
+	height: 15px;
+	background: url(handcard/unknown.png) no-repeat;
+	background-size: 26px 15px;
+	background-position: center left;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	text-align: center;
+	font-size: 12px;
+}
+
+.handcard-num.god{
+	background-image: url(handcard/god.png);
+}
+
+.handcard-num.shu{
+	background-image: url(handcard/shu.png);
+}
+
+.handcard-num.wu{
+	background-image: url(handcard/wu.png);
+}
+
+.handcard-num.wei{
+	background-image: url(handcard/wei.png);
+}
+
+.handcard-num.qun{
+	background-image: url(handcard/qun.png);
+}
+
 /* Main Area */
 
 .main-area{
@@ -364,6 +404,12 @@ i.magatama{
 	width: 19px;
 	height: 19px;
 	background-size: 100%;
+}
+
+.photo .handcard-num{
+	position: absolute;
+	left: -10px;
+	top: 102px;
 }
 
 .photo .kingdom{
