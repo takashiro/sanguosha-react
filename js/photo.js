@@ -44,6 +44,14 @@ class Photo{
 		return this.headGeneralName;
 	}
 
+	set general(general){
+		this.headGeneral = general;
+	}
+
+	get general(){
+		return this.headGeneral;
+	}
+
 	set headGeneralName(name){
 		var div = this.getAvatar('head').children('.name');
 		div.text(name);
@@ -54,6 +62,17 @@ class Photo{
 		return div.text();
 	}
 
+	set headGeneral(general){
+		this.object.data('head-general', general);
+
+		var avatar = this.getAvatar('head');
+		avatar.children('img').attr('src', 'style/general/fullphoto/' + general + '.png');
+	}
+
+	get headGeneral(){
+		return this.object.data('head-general');
+	}
+
 	set deputyGeneralName(name){
 		var div = this.getAvatar('deputy').children('.name');
 		div.text(name);
@@ -62,6 +81,13 @@ class Photo{
 	get deputyGeneralName(){
 		var div = this.getAvatar('deputy').children('.name');
 		return div.text();
+	}
+
+	set deputyGeneral(general){
+		this.object.data('general', general);
+
+		var avatar = this.getAvatar('deputy');
+		avatar.children('img').attr('src', 'style/general/fullphoto/' + general + '.png');
 	}
 
 	getAvatar(type){
