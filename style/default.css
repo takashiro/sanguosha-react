@@ -133,6 +133,7 @@ body{
 	position: absolute;
 	top: 0;
 	left: 0;
+	border-radius: 4px;
 }
 
 .dashboard .general-avatar .frame{
