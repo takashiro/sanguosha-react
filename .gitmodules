@@ -1,0 +1,3 @@
+[submodule "karuta-web"]
+	path = js/lib
+	url = https://github.com/takashiro/karuta-web.git
