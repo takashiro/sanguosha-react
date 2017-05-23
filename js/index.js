@@ -27,6 +27,21 @@ $(function(){
 		require('dashboard');
 	});
 
+	require('card-list', function(){
+		require('card', function(){
+			var handcard_area = new CardList($('#handcard-list'));
+			var body = $('body');
+			for(var i = 1; i <= 5; i++){
+				var card = new Card('savage_assault');
+				card.color = 'black';
+				card.suit = 'club';
+				card.number = i;
+				body.append(card.object);
+				handcard_area.append(card);
+			}
+		});
+	});
+
 	$('#connection-form').submit(function(e){
 		e.preventDefault();
 		if(server){
