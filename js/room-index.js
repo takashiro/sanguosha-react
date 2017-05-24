@@ -14,21 +14,25 @@ $(function(){
 
 		require('protocol', function(){
 			server.onmessage = BasicActions();
+			var param = httpGet();
+			if(param['server']){
+				server.connect(param['server']);
+			}
 		});
 	});
 
-	require('hp-bar', function(){
-		require('photo', function(){
+	require('gui/hp-bar', function(){
+		require('gui/photo', function(){
 			var photo1 = new Photo(1);
 			photo1.maxHp = 3;
 			photo1.hp = 1;
 		});
 
-		require('dashboard');
+		require('gui/dashboard');
 	});
 
-	require('card-list', function(){
-		require('card', function(){
+	require('gui/card-list', function(){
+		require('gui/card', function(){
 			var handcard_area = new CardList($('#handcard-list'));
 			var body = $('body');
 			for(var i = 1; i <= 5; i++){
@@ -40,14 +44,6 @@ $(function(){
 				handcard_area.append(card);
 			}
 		});
-	});
-
-	$('#connection-form').submit(function(e){
-		e.preventDefault();
-		if(server){
-			var server_url = $(this).find('input[name="server_url"]').val();
-			server.connect(server_url);
-		}
 	});
 
 	$('#chat-send').click(function(){
