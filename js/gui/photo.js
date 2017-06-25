@@ -12,7 +12,13 @@ class Photo{
 	create(id){
 		var obj = Photo.template.clone();
 		obj.prop('id', 'photo-' + id);
-		$('#photo-area').append(obj);
+
+		var area = $('#photo-area');
+		var photo_num = area.children().length;
+		area.removeClass('n' + photo_num);
+		area.append(obj);
+		area.addClass('n' + (photo_num + 1));
+
 		this.object = obj;
 	}
 

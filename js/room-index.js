@@ -23,9 +23,13 @@ $(function(){
 
 	require('gui/hp-bar', function(){
 		require('gui/photo', function(){
-			var photo1 = new Photo(1);
-			photo1.maxHp = 3;
-			photo1.hp = 1;
+			var photos = [];
+			for (let i = 1; i <= 7; i++) {
+				let photo = new Photo(i);
+				photo.maxHp = i % 5;
+				photo.hp = i % 5;
+				photos.push(photo);
+			}
 		});
 
 		require('gui/dashboard');
