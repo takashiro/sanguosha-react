@@ -24,6 +24,10 @@ class Photo{
 
 	remove(){
 		this.object.remove();
+		var area = $('#photo-area');
+		var photo_num = area.children().length;
+		area.removeClass('n' + (photo_num + 1));
+		area.addClass('n' + (photo_num + 1));
 	}
 
 	get kingdom(){
