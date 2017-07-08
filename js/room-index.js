@@ -1,46 +1,37 @@
 
 var server = null;
+var room = {
+	'users' : {}
+};
 
 $(function(){
 	require('lib/server', function(){
 		server = new Server;
 
 		server.on('open', function(){
-			server.request(net.CreateRoom, {
-				'id' : 1,
-				'game' : 'sanguosha'
-			});
+			if($_GET['uid']){
+				let uid = parseInt($_GET['uid'], 10);
+				if(!isNaN(uid) && uid > 0){
+					server.request(net.Login, {
+						'uid' : uid
+					});
+				}
+			}
 		});
 
 		require('protocol', function(){
 			server.onmessage = BasicActions();
-			var param = httpGet();
-			if(param['server']){
-				server.connect(param['server']);
+			if($_GET['server']){
+				server.connect($_GET['server']);
 			}
 		});
 	});
 
-	require('gui/hp-bar', function(){
-		require('gui/photo');
-		require('gui/dashboard');
-	});
-
-	require('gui/card-list', function(){
-		require('gui/card', function(){
-			var handcard_area = new CardList($('#handcard-list'));
-			var body = $('body');
-			for(var i = 1; i <= 5; i++){
-				var card = new Card('savage_assault');
-				card.color = 'black';
-				card.suit = 'club';
-				card.number = i;
-				body.append(card.object);
-				handcard_area.append(card);
-			}
-		});
-	});
-
+	require('gui/hp-bar');
+	require('gui/photo');
+	require('gui/dashboard');
+	require('gui/card-list');
+	require('gui/card');
 	require('gui/animation');
 
 	$('#chat-send').click(function(){

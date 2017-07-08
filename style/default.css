@@ -861,3 +861,12 @@ i.seatnum.n10{
 .animation img.current{
 	display: block;
 }
+
+/* Room Info */
+.room-info{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: white;
+	font-size: 9pt;
+}
