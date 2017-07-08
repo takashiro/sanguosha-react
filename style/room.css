@@ -1,0 +1,35 @@
+@import url('global.css');
+@import url('dashboard.css');
+@import url('kingdom.css');
+@import url('seatnumber.css');
+@import url('hp-bar.css');
+@import url('handcard-num.css');
+@import url('photo.css');
+@import url('photo-area.css');
+@import url('chat-box.css');
+@import url('card.css');
+@import url('card-list.css');
+
+body{
+	background: url(table.jpg) no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Main Area */
+
+.main-area{
+	flex: 1 1 auto;
+	margin: 10px;
+}
+
+/* Room Info */
+.room-info{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: white;
+	font-size: 9pt;
+}

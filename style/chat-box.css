@@ -1,0 +1,17 @@
+.chat-box{
+	min-height: 200px;
+	position: relative;
+	display: none;
+}
+
+.chat-box > ul.log{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.chat-box > .input{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}

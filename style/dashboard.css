@@ -1,0 +1,214 @@
+/* Dashboard */
+
+.dashboard{
+	background: rgba(0, 0, 0, 0.65);
+	height: 150px;
+	display: flex;
+	flex-direction: row;
+}
+
+.dashboard ul.equip-area{
+	margin: 0;
+	padding: 0;
+	width: 145px;
+	height: 100%;
+}
+
+.dashboard ul.equip-area li{
+	width: 145px;
+	height: 22px;
+	margin: 6px;
+	background: linear-gradient(to right, #252525, #1B1B1A 25%);
+}
+
+.dashboard .handcard-area{
+	flex: 1 1 auto;
+	position: relative;
+}
+
+.dashboard .handcard-area .handcard-num{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.dashboard .button-area{
+	background: url(dashboard/button-area.png) no-repeat;
+	width: 102px;
+	height: 149px;
+	position: relative;
+}
+
+.dashboard .button-area button{
+	position: absolute;
+}
+
+.dashboard .button-area i.kingdom{
+	position: absolute;
+	top: 3px;
+	left: 70px;
+}
+
+.dashboard .button-area i.seatnum{
+	position: absolute;
+	left: 71px;
+	top: 117px;
+}
+
+.dashboard button.confirm{
+	background: url(button/confirm/normal.png) no-repeat;
+	width: 70px;
+	height: 70px;
+	border: 0 solid;
+	left: 6px;
+	top: 3px;
+}
+
+.dashboard button.confirm:hover{
+	background: url(button/confirm/hover.png) no-repeat;
+}
+
+.dashboard button.cancel{
+	background: url(button/cancel/normal.png) no-repeat;
+	width: 70px;
+	height: 69px;
+	border: 0 solid;
+	left: 6px;
+	top: 79px;
+}
+
+.dashboard button.cancel:hover{
+	background: url(button/cancel/hover.png) no-repeat;
+}
+
+.dashboard button.finish{
+	background:  url(button/finish/normal.png) no-repeat;
+	width: 35px;
+	height: 75px;
+	border: 0 solid;
+	left: 67px;
+	top: 37px;
+}
+
+.dashboard button.finish:hover{
+	background: url(button/finish/hover.png) no-repeat;
+}
+
+.dashboard .avatar-area{
+	display: flex;
+	flex-direction: row;
+	width: 283px;
+    height: 149px;
+	background: url(dashboard/base.png) no-repeat;
+}
+
+.dashboard .general-avatar{
+	position: relative;
+	width: 128px;
+	height: 149px;
+}
+
+.dashboard .general-avatar img.avatar{
+	width: 128px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 4px;
+}
+
+.dashboard .general-avatar .frame{
+	background: url(dashboard/avatar.png) no-repeat;
+	background-size: 100%;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.dashboard .general-avatar .name{
+	width: 87px;
+	height: 18px;
+	line-height: 18px;
+	background: url(dashboard/title/god.png) no-repeat;
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	font-family: 'LiSu', 'Arial';
+	font-size: 18px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.dashboard .general-avatar.shu .name{
+	background-image: url(dashboard/title/shu.png);
+}
+
+.dashboard .general-avatar.wu .name{
+	background-image: url(dashboard/title/wu.png);
+}
+
+.dashboard .general-avatar.wei .name{
+	background-image: url(dashboard/title/wei.png);
+}
+
+.dashboard .general-avatar.qun .name{
+	background-image: url(dashboard/title/qun.png);
+}
+
+.dashboard .general-avatar.head .name::first-letter{
+	background: url(dashboard/head.png) no-repeat;
+	background-size: 21px 18px;
+	width: 21px;
+	height: 18px;
+	padding-left: 21px;
+}
+
+.dashboard .general-avatar.deputy .name::first-letter{
+	background: url(dashboard/deputy.png) no-repeat;
+	background-size: 21px 18px;
+	width: 21px;
+	height: 18px;
+	padding-left: 21px;
+}
+
+.dashboard .hp-bar-wrapper{
+	flex: 1 1 auto;
+	background: url(dashboard/hpbase.png) no-repeat;
+	background-size: 100% auto;
+	background-position: bottom center;
+	width: 24px;
+	height: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.dashboard .hp-bar{
+	width: 100%;
+}
+
+.dashboard .hp-bar.n5, .dashboard .hp.n5{
+	height: 121px;
+}
+
+.dashboard .hp-bar.n4, .dashboard .hp.n4{
+	height: 97px;
+}
+
+.dashboard .hp-bar.n3, .dashboard .hp.n3{
+	height: 73px;
+}
+
+.dashboard .hp-bar.n2, .dashboard .hp.n2{
+	height: 50px;
+}
+
+.dashboard .hp-bar.n1, .dashboard .hp.n1{
+	height: 24px;
+}
+
+.dashboard .hp{
+	width: 100%;
+	height: 18px;
+}

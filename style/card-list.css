@@ -1,0 +1,12 @@
+/* Card List */
+
+.card-list{
+	position: relative;
+	margin: 10px 10px 10px 15px;
+	height: 100%; /* Fallback */
+	height: calc(100% - 20px);
+}
+
+.card-list .card:hover{
+	box-shadow: 0 0 5px rgba(255, 255, 255, 34.5%);
+}
