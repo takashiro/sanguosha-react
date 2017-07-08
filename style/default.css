@@ -22,7 +22,6 @@ body{
 .dashboard{
 	background: rgba(0, 0, 0, 0.65);
 	height: 150px;
-	flex: 1 1 auto;
 	display: flex;
 	flex-direction: row;
 }
@@ -372,7 +371,6 @@ i.seatnum.n10{
 
 .main-area{
 	flex: 1 1 auto;
-	height: 100%;
 	margin: 10px;
 }
 
