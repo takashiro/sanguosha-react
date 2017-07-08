@@ -842,3 +842,22 @@ i.seatnum.n10{
 .card-list .card:hover{
 	box-shadow: 0 0 5px rgba(255, 255, 255, 34.5%);
 }
+
+/* Animation */
+.animation{
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+}
+
+.animation img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.animation img.current{
+	display: block;
+}

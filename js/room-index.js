@@ -22,16 +22,7 @@ $(function(){
 	});
 
 	require('gui/hp-bar', function(){
-		require('gui/photo', function(){
-			var photos = [];
-			for (let i = 1; i <= 7; i++) {
-				let photo = new Photo(i);
-				photo.maxHp = i % 5;
-				photo.hp = i % 5;
-				photos.push(photo);
-			}
-		});
-
+		require('gui/photo');
 		require('gui/dashboard');
 	});
 
@@ -49,6 +40,8 @@ $(function(){
 			}
 		});
 	});
+
+	require('gui/animation');
 
 	$('#chat-send').click(function(){
 		var input = $('#chat-input');
