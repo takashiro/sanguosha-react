@@ -33,6 +33,7 @@ $(function(){
 	require('gui/card-list');
 	require('gui/card');
 	require('gui/animation');
+	require('gui/dialog');
 
 	$('#chat-send').click(function(){
 		var input = $('#chat-input');

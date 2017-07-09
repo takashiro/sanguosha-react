@@ -9,6 +9,7 @@
 @import url('chat-box.css');
 @import url('card.css');
 @import url('card-list.css');
+@import url('dialog.css');
 
 body{
 	background: url(table.jpg) no-repeat;
