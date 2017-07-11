@@ -9,6 +9,7 @@ const net = enums([
 
 	"CreateRoom",
 	"EnterRoom",
+	"UpdateRoom",
 
 	"SetUserList",
 	"AddUser",
@@ -28,6 +29,8 @@ function BasicActions(){
 			alert('Login failed');
 			return;
 		}
+
+		room.uid = uid;
 
 		if($_GET['room_id']){
 			var room_id = parseInt($_GET['room_id'], 10);
@@ -68,10 +71,29 @@ function BasicActions(){
 		$('#chat-log').append(log);
 	};
 
+	var update_owner_panel = function(){
+		if(room.owner_id == room.uid){
+			$('#owner-panel').show();
+		}
+	};
+
 	actions[net.EnterRoom] = function(args){
-		var room_id = parseInt(args, 10);
+		var room_id = parseInt(args.room_id, 10);
+		var owner_id = parseInt(args.owner_id, 10);
 		if(!isNaN(room_id)){
 			$('#room-id').text(room_id);
+		}
+
+		room.id = room_id;
+		room.owner_id = owner_id;
+		update_owner_panel();
+	}
+
+	actions[net.UpdateRoom] = function(args){
+		var owner_id = parseInt(args.owner_id, 10);
+		if(!isNaN(owner_id) && owner_id > 0){
+			room.owner_id = owner_id;
+			update_owner_panel();
 		}
 	}
 

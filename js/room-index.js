@@ -1,6 +1,9 @@
 
 var server = null;
 var room = {
+	'id' : 0,
+	'uid' : 0,
+	'owner_id' : 0,
 	'users' : {}
 };
 
