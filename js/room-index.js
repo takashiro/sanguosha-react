@@ -7,11 +7,11 @@ var room = {
 	'users' : {}
 };
 
-$(function(){
-	require('lib/server', function(){
+$(()=>{
+	require('lib/server', ()=>{
 		server = new Server;
 
-		server.on('open', function(){
+		server.on('open', ()=>{
 			if($_GET['uid']){
 				let uid = parseInt($_GET['uid'], 10);
 				if(!isNaN(uid) && uid > 0){
@@ -22,7 +22,14 @@ $(function(){
 			}
 		});
 
-		require('protocol', function(){
+		server.on('close', (e)=>{
+			switch(e.code){
+			case 1006:
+				alert('Failed to connect the server ' + server.url);
+			}
+		});
+
+		require('protocol', ()=>{
 			server.onmessage = BasicActions();
 			if($_GET['server']){
 				server.connect($_GET['server']);
@@ -38,7 +45,7 @@ $(function(){
 	require('gui/animation');
 	require('gui/dialog');
 
-	$('#chat-send').click(function(){
+	$('#chat-send').click(()=>{
 		var input = $('#chat-input');
 		var message = input.val();
 		input.val('');
