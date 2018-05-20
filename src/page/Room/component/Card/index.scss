@@ -1,0 +1,44 @@
+
+.card {
+	width: 93px;
+	height: 130px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: absolute;
+
+	.suit{
+		width: 21px;
+		height: 17px;
+		left: 3px;
+		top: 19px;
+		position: absolute;
+
+		&.spade{
+			background-image: url(../style/card/suit/spade.png);
+		}
+
+		&.heart{
+			background-image: url(../style/card/suit/heart.png);
+		}
+
+		&.club{
+			background-image: url(../style/card/suit/club.png);
+		}
+
+		&.diamond{
+			background-image: url(../style/card/suit/diamond.png);
+		}
+	}
+
+	.number{
+		position: absolute;
+		left: 0;
+		top: 2px;
+		width: 27px;
+		height: 28px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 100%;
+	}
+}
