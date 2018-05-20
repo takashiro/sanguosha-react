@@ -1,0 +1,30 @@
+
+.dashboard {
+	background: rgba(0, 0, 0, 0.65);
+	height: 150px;
+	display: flex;
+	flex-direction: row;
+
+	.equip-area {
+		margin: 0;
+		padding: 0;
+		width: 145px;
+		height: 100%;
+	}
+
+	.handcard-area {
+		flex: 1 1 auto;
+		position: relative;
+	}
+
+	.button-area {
+		width: 102px;
+		height: 149px;
+		position: relative;
+	}
+
+	.avatar-area {
+		width: 280px;
+		height: 149px;
+	}
+}
