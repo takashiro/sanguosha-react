@@ -1,0 +1,27 @@
+
+/* HP Bar & Magatama */
+.hp-bar {
+	display: flex;
+	flex-direction: column-reverse;
+	border-top-left-radius: 8px;
+	background: url(../style/magatama/hegemony/0.png) repeat-y;
+	background-position: bottom center;
+	background-size: 100%;
+
+	> .hp {
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-image: url(../style/magatama/hegemony/3.png);
+	}
+
+	&.medium {
+		> .hp {
+			background-image: url(../style/magatama/hegemony/2.png);
+		}
+	}
+	&.low {
+		> .hp {
+			background-image: url(../style/magatama/hegemony/1.png);
+		}
+	}
+}
