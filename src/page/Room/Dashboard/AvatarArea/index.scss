@@ -1,0 +1,24 @@
+
+.dashboard {
+	.avatar-area {
+		display: flex;
+		flex-direction: row;
+		background: url('../style/dashboard/base.png') no-repeat;
+
+		.hp-bar-wrapper {
+			background: url('../style/dashboard/hpbase.png') no-repeat;
+			background-size: 100% auto;
+			background-position: bottom center;
+			width: 24px;
+			height: 100%;
+			position: relative;
+
+			.hp-bar {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+		}
+	}
+
+}
