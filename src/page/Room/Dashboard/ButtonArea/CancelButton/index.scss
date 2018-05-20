@@ -1,0 +1,16 @@
+
+
+.dashboard {
+	button.cancel {
+		background: url('../style/button/cancel/normal.png') no-repeat;
+		width: 70px;
+		height: 69px;
+		border: 0 solid;
+		left: 6px;
+		top: 79px;
+
+		&:hover{
+			background: url('../style/button/cancel/hover.png') no-repeat;
+		}
+	}
+}

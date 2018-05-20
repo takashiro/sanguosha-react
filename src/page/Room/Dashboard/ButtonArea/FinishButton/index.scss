@@ -1,0 +1,15 @@
+
+.dashboard {
+	button.finish {
+		background:  url('../style/button/finish/normal.png') no-repeat;
+		width: 35px;
+		height: 75px;
+		border: 0 solid;
+		left: 67px;
+		top: 37px;
+
+		&:hover{
+			background: url('../style/button/finish/hover.png') no-repeat;
+		}
+	}
+}

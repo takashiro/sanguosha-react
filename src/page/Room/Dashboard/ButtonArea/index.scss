@@ -1,0 +1,24 @@
+.dashboard {
+	.button-area {
+		background: url('../style/dashboard/button-area.png') no-repeat;
+		width: 102px;
+		height: 149px;
+		position: relative;
+
+		button {
+			position: absolute;
+		}
+
+		i.kingdom {
+			position: absolute;
+			top: 3px;
+			left: 70px;
+		}
+
+		i.seat-number {
+			position: absolute;
+			left: 71px;
+			top: 117px;
+		}
+	}
+}
