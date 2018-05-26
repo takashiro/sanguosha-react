@@ -8,3 +8,17 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+body,
+input,
+textarea,
+button {
+	font-family: 'Microsoft Yahei', 'SimHei', 'Arial';
+}
+
+i.logo {
+	display: inline-block;
+	width: 258px;
+	height: 256px;
+	background: url(../style/logo.png) no-repeat;
+}
