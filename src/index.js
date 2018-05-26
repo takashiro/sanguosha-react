@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 
 import './global.scss';
 
-import Room from './page/Room';
+import StartScene from './page/StartScene';
 
 ReactDOM.render(
-	<Room />,
+	<StartScene />,
 	document.getElementById('app-container'),
 );
