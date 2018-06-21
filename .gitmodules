@@ -1,0 +1,3 @@
+[submodule "karuta-node-client"]
+	path = src/net
+	url = https://github.com/takashiro/karuta-node-client
