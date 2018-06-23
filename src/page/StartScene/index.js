@@ -54,9 +54,16 @@ class StartScene extends React.Component {
 		super(props);
 	}
 
+	componentDidMount() {
+		let screen_name = localStorage.getItem('screenName');
+		if (screen_name) {
+			let screen_name_input = document.getElementById('screen-name-input');
+			screen_name_input.value = screen_name;
+		}
+	}
+
 
 	render() {
-		let screen_name = localStorage.getItem('screenName');
 		return <div className="start-scene">
 			<div className="info-panel">
 				<i className="logo" />
@@ -68,7 +75,6 @@ class StartScene extends React.Component {
 					type="text"
 					className="screen-name"
 					placeholder="昵称"
-					value={screen_name}
 					maxLength="8"
 				/>
 				<button type="submit" onClick={handleLogin}>登录</button>
