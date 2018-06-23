@@ -5,33 +5,20 @@ import './index.scss';
 
 import KingdomIcon from '../../component/KingdomIcon';
 import HpBar from '../../component/HpBar';
-
-function copyGeneral(props) {
-	return {
-		avatar: props.avatar,
-		name: props.name,
-	};
-}
-
-function PhotoAvatar(props) {
-	const general = props.general;
-	const className = 'avatar ' + props.position;
-	const avatar = `style/general/fullphoto/${general.avatar}.png`;
-	return <div className={className}>
-		<img src={avatar} />
-		<div className="name">{general.name}</div>
-	</div>;
-}
+import PhotoAvatar from './Avatar';
 
 class Photo extends React.Component {
 
 	constructor(props) {
 		super(props);
 
+		const player = this.props.player;
+
 		this.state = {
-			headGeneral: copyGeneral(props.headGeneral),
-			deputyGeneral: copyGeneral(props.deputyGeneral),
-			screenName: props.screenName,
+			seat: player.seat,
+			headGeneral: props.headGeneral,
+			deputyGeneral: props.deputyGeneral,
+			screenName: player.name,
 			hp: props.hp,
 			maxHp: props.maxHp,
 			kingdom: props.kingdom,

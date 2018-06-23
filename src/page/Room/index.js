@@ -6,31 +6,24 @@ import './index.scss';
 import MainArea from './MainArea';
 import Dashboard from './Dashboard';
 
-import cmd from '../../protocol';
-
-function startGame() {
-	const client = this.props.client;
-	if (!client) {
-		return;
-	}
-
-	client.send(cmd.StartGame);
-}
+import GameRoom from '../../game/Room';
 
 class Room extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		this.room = new GameRoom(props.client);
 	}
 
 	componentDidMount() {
-		startGame.call(this);
+		this.room.start();
 	}
 
 	render() {
 		return <div className="room">
-			<MainArea />
-			<Dashboard />
+			<MainArea room={this.room} />
+			<Dashboard room={this.room} />
 		</div>;
 	}
 

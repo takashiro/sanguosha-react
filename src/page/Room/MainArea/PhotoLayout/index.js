@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import Photo from '../Photo';
+
 import './index.scss';
 
 class PhotoLayout extends React.Component {
@@ -8,14 +10,21 @@ class PhotoLayout extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const room = this.props.room;
+
 		this.state = {
-			num: props.num,
+			players: room.otherPlayers(),
 		}
+
+		room.on('playerChanged', () => {
+			this.setState({players: room.otherPlayers()});
+		});
 	}
 
 	render() {
-		return <div className={'photo-layout n' + this.state.num}>
-			{this.props.children}
+		let players = this.state.players;
+		return <div className={'photo-layout n' + players.length}>
+			{players.map((player, i) => <Photo key={i} player={player} />)}
 		</div>;
 	}
 
