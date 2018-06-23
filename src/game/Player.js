@@ -12,18 +12,46 @@ class Player extends EventEmitter {
 
 		this._headGeneral = null;
 		this._deputyGeneral = null;
+		this._kingdom = 'unknown';
+
+		this._hp = 0;
+		this._maxHp = 0;
 	}
 
 	uid() {
 		return this._uid;
 	}
 
+	property(prop) {
+		let getter = this[prop];
+		if (getter) {
+			return getter.call(this);
+		}
+	}
+
+	setProperty(prop, value) {
+		let setter = this['set' + prop.substr(0, 1).toUpperCase() + prop.substr(1)];
+		if (setter) {
+			return setter.call(this, value);
+		}
+	}
+
 	seat() {
 		return this._seat;
 	}
 
+	setSeat(seat) {
+		this._seat = seat;
+		this.emit('seatChanged', seat);
+	}
+
 	name() {
 		return this._name;
+	}
+
+	setName(name) {
+		this._name = name;
+		this.emit('nameChanged', name);
 	}
 
 	headGeneral() {
@@ -42,6 +70,33 @@ class Player extends EventEmitter {
 	setDeputyGeneral(general) {
 		this._deputyGeneral = general;
 		this.emit('deputyGeneralChanged', general);
+	}
+
+	kingdom() {
+		return this._kingdom;
+	}
+
+	setKingdom(kingdom) {
+		this._kingdom = kingdom;
+		this.emit('kingdomChanged', kingdom);
+	}
+
+	hp() {
+		return this._hp;
+	}
+
+	setHp(hp) {
+		this._hp = hp;
+		this.emit('hpChanged', hp);
+	}
+
+	maxHp() {
+		return this._maxHp;
+	}
+
+	setMaxHp(maxHp) {
+		this._maxHp = maxHp;
+		this.emit('maxHpChanged', maxHp);
 	}
 
 }

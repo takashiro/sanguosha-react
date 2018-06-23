@@ -15,14 +15,22 @@ class Photo extends React.Component {
 		const player = this.props.player;
 
 		this.state = {
-			seat: player.seat,
-			headGeneral: props.headGeneral,
-			deputyGeneral: props.deputyGeneral,
-			screenName: player.name,
-			hp: props.hp,
-			maxHp: props.maxHp,
-			kingdom: props.kingdom,
+			seat: player.seat(),
+			headGeneral: player.headGeneral(),
+			deputyGeneral: player.deputyGeneral(),
+			screenName: player.name(),
+			hp: player.hp(),
+			maxHp: player.maxHp(),
+			kingdom: player.kingdom(),
 		};
+
+		player.on('seatChanged', seat => this.setState({seat: seat}));
+		player.on('headGeneralChanged', general => this.setState({headGeneral: general}));
+		player.on('deputyGeneralChanged', general => this.setState({deputyGeneral: general}));
+		player.on('nameChanged', name => this.setState({screenName: name}));
+		player.on('hpChanged', hp => this.setState({hp: hp}));
+		player.on('maxHpChanged', maxHp => this.setState({maxHp: maxHp}));
+		player.on('kingdomChanged', kingdom => this.setState({kingdom: kingdom}));
 	}
 
 	render() {
