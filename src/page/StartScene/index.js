@@ -18,6 +18,8 @@ function handleLogin(e) {
 		return Toast.makeToast('请输入您的昵称。');
 	}
 
+	localStorage.setItem('screenName', screen_name);
+
 	let login_status = document.getElementById('login-status');
 	function log(message) {
 		login_status.innerHTML = message;
@@ -54,6 +56,7 @@ class StartScene extends React.Component {
 
 
 	render() {
+		let screen_name = localStorage.getItem('screenName');
 		return <div className="start-scene">
 			<div className="info-panel">
 				<i className="logo" />
@@ -65,6 +68,7 @@ class StartScene extends React.Component {
 					type="text"
 					className="screen-name"
 					placeholder="昵称"
+					value={screen_name}
 					maxLength="8"
 				/>
 				<button type="submit" onClick={handleLogin}>登录</button>
