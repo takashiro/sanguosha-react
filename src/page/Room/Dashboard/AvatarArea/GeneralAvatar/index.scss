@@ -51,6 +51,12 @@
 			}
 		}
 
+		&.unknown {
+			.name {
+				background-image: none;
+			}
+		}
+
 		img.avatar {
 			width: 128px;
 			position: absolute;

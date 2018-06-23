@@ -8,19 +8,30 @@ import HpBar from '../../component/HpBar';
 
 class AvatarArea extends React.Component {
 
+	constructor(props) {
+		super(props);
+
+		const player = props.player;
+		this.state ={
+			headGeneral: player.headGeneral(),
+			deputyGeneral: player.deputyGeneral(),
+		};
+
+		player.on('headGeneralChanged', general => this.setState({headGeneral: general}));
+		player.on('deputyGeneralChanged', general => this.setState({deputyGeneral: general}));
+	}
+
 	render() {
+
+
 		return <div className="avatar-area">
 			<GeneralAvatar
 				position="head"
-				kingdom="shu"
-				name="黄月英"
-				avatar="huangyueying"
+				general={this.state.headGeneral}
 			/>
 			<GeneralAvatar
 				position="deputy"
-				kingdom="shu"
-				name="诸葛亮"
-				avatar="zhugeliang"
+				genreal={this.state.deputyGeneral}
 			/>
 			<div className="hp-bar-wrapper">
 				<HpBar

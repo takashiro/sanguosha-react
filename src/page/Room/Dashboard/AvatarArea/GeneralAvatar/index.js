@@ -8,11 +8,13 @@ class GeneralAvatar extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const general = props.general;
+
 		this.state = {
-			position: props.position ? props.position : 'head',
-			name: props.name ? props.name : '',
-			kingdom: props.kingdom ? props.kingdom : 'god',
-			avatar: props.avatar ? props.avatar : 'unknown',
+			position: props.position || 'head',
+			name: general && general.name || '',
+			kingdom: general && general.kingdom || 'unknown',
+			avatar: general && general.avatar || 'unknown',
 		};
 	}
 

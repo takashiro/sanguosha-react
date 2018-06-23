@@ -10,12 +10,29 @@ import AvatarArea from './AvatarArea';
 
 class Dashboard extends React.Component {
 
+	constructor(props) {
+		super(props);
+
+		const room = this.props.room;
+		this.state = {
+			player: room.dashboardPlayer()
+		};
+		room.on('playerChanged', () => {
+			this.setState({player: room.dashboardPlayer()});
+		});
+	}
+
 	render() {
+		const player = this.state.player;
+		if (!player) {
+			return null;
+		}
+
 		return <div className="dashboard">
 			<EquipArea />
 			<HandcardArea />
 			<ButtonArea />
-			<AvatarArea />
+			<AvatarArea player={player} />
 		</div>;
 	}
 
