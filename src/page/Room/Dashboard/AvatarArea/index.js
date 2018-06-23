@@ -4,7 +4,6 @@ import React from 'react';
 import './index.scss';
 
 import GeneralAvatar from './GeneralAvatar';
-import HpBar from '../../component/HpBar';
 
 class AvatarArea extends React.Component {
 
@@ -22,8 +21,6 @@ class AvatarArea extends React.Component {
 	}
 
 	render() {
-
-
 		return <div className="avatar-area">
 			<GeneralAvatar
 				position="head"
@@ -33,13 +30,6 @@ class AvatarArea extends React.Component {
 				position="deputy"
 				general={this.state.deputyGeneral}
 			/>
-			<div className="hp-bar-wrapper">
-				<HpBar
-					size="24"
-					maxHp="4"
-					hp="3"
-				/>
-			</div>
 		</div>;
 	}
 

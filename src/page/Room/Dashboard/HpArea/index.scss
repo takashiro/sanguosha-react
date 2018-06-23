@@ -1,0 +1,19 @@
+
+.dashboard {
+	.hp-area {
+		background: url('../style/dashboard/hpbase.png') no-repeat;
+		background-size: 100% auto;
+		background-position: bottom center;
+		width: 24px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		.hp-bar {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+	}
+}

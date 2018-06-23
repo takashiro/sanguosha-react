@@ -7,6 +7,7 @@ import EquipArea from './EquipArea';
 import HandcardArea from './HandcardArea';
 import ButtonArea from './ButtonArea';
 import AvatarArea from './AvatarArea';
+import HpArea from './HpArea';
 
 class Dashboard extends React.Component {
 
@@ -33,6 +34,7 @@ class Dashboard extends React.Component {
 			<HandcardArea />
 			<ButtonArea />
 			<AvatarArea player={player} />
+			<HpArea player={player} />
 		</div>;
 	}
 
