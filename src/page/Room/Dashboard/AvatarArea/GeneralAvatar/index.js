@@ -12,9 +12,9 @@ class GeneralAvatar extends React.Component {
 
 		this.state = {
 			position: props.position || 'head',
-			name: general && general.name || '',
+			name: '', //TODO: translate
 			kingdom: general && general.kingdom || 'unknown',
-			avatar: general && general.avatar || 'unknown',
+			avatar: general && general.name || 'unknown',
 		};
 	}
 

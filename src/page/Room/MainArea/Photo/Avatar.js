@@ -8,17 +8,14 @@ class Avatar extends React.Component {
 	}
 
 	render() {
-		const general = this.props.general || {
-			avatar: 'unknown',
-			name: '',
-		};
+		const general = this.props.general;
+		const avatar = (general && general.name) || 'unknown';
+		const name = ''; //TODO: translate
 
 		const className = 'avatar ' + this.props.position;
-		const avatar = `style/general/fullphoto/${general.avatar}.png`;
-
 		return <div className={className}>
-			<img src={avatar} />
-			<div className="name">{general.name}</div>
+			<img src={`style/general/fullphoto/${avatar}.png`} />
+			<div className="name">{name}</div>
 		</div>;
 	}
 

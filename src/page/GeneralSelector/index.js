@@ -1,9 +1,11 @@
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import cmd from '../../protocol';
 import GameRoom from '../../game/Room';
 
+import Room from '../Room';
 import GeneralCard from './GeneralCard';
 
 import './index.scss';
@@ -32,6 +34,12 @@ class GeneralSelector extends React.Component {
 				sameKingdom: !!option.sameKingdom,
 				generals: option.generals,
 			});
+		});
+		client.bind(cmd.ToBattle, () => {
+			ReactDOM.render(
+				<Room room={this.room} />,
+				document.getElementById('app-container')
+			);
 		});
 	}
 

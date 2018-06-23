@@ -31,7 +31,7 @@ class AvatarArea extends React.Component {
 			/>
 			<GeneralAvatar
 				position="deputy"
-				genreal={this.state.deputyGeneral}
+				general={this.state.deputyGeneral}
 			/>
 			<div className="hp-bar-wrapper">
 				<HpBar
