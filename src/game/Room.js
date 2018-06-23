@@ -16,6 +16,13 @@ function bindCommand() {
 
 		this.emit('playerChanged', this.players);
 	});
+
+	client.bind(cmd.UpdatePlayer, update => {
+		let player = this.players.find(player => player.uid() === update.uid);
+		if (player) {
+			player.setProperty(update.prop, update.value);
+		}
+	});
 }
 
 class Room extends EventEmitter {

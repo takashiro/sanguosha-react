@@ -7,6 +7,8 @@ const cmd = new Enum(
 	'StartGame',
 	'ArrangeSeats',
 	'ChooseGeneral',
+	'UpdatePlayer',
+	'ToBattle',
 );
 
 export default cmd;
