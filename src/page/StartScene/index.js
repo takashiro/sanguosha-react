@@ -29,26 +29,26 @@ function handleLogin(e) {
 	log('连接中……');
 
 	const client = new Client;
-	client.once('open', () => {
+	client.connect('ws://localhost:2517')
+	.then(() => {
 		log('检查版本……');
-		client.request(cmd.CheckVersion)
-		.then(version => {
-			log(`服务器版本：${version.name} (${version.build})`);
-			return client.request(cmd.Login, {name: screen_name});
-		})
-		.then(uid => {
-			client.uid = uid;
-			ReactDOM.render(
-				<Lobby client={client} />,
-				document.getElementById('app-container')
-			);
-		});
-	});
-	client.once('close', () => {
+		return client.request(cmd.CheckVersion)
+	})
+	.then(version => {
+		log(`服务器版本：${version.name} (${version.build})`);
+		return client.request(cmd.Login, {name: screen_name});
+	})
+	.then(uid => {
+		client.uid = uid;
+		ReactDOM.render(
+			<Lobby client={client} />,
+			document.getElementById('app-container')
+		);
+	})
+	.catch(error => {
+		console.error(error);
 		log('连接失败。');
 	});
-	client.on('error', message => log(message));
-	client.connect('ws://localhost:2517');
 }
 
 class StartScene extends React.Component {

@@ -12,18 +12,13 @@ class Robot {
 	}
 
 	connect() {
-		return new Promise((resolve, reject) => {
-			this.client.on('open', () => {
-				this.client.request(cmd.Login, {name: this.name})
-				.then(uid => {
-					this.client.uid = uid;
-					return this.client.request(cmd.EnterRoom, this.roomId);
-				})
-				.then(resolve)
-				.catch(reject);
-			});
-			this.client.on('close', reject);
-			this.client.connect();
+		return this.client.connect()
+		.then(() => {
+			return this.client.request(cmd.Login, {name: this.name});
+		})
+		.then(uid => {
+			this.client.uid = uid;
+			return this.client.request(cmd.EnterRoom, this.roomId);
 		});
 	}
 
