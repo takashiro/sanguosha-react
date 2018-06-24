@@ -34,7 +34,10 @@ function handleLogin(e) {
 		client.request(cmd.CheckVersion)
 		.then(version => {
 			log(`服务器版本：${version.name} (${version.build})`);
-
+			return client.request(cmd.Login, {name: screen_name});
+		})
+		.then(uid => {
+			client.uid = uid;
 			ReactDOM.render(
 				<Lobby client={client} />,
 				document.getElementById('app-container')

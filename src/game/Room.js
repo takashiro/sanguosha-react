@@ -31,7 +31,7 @@ class Room extends EventEmitter {
 		super();
 
 		this.client = client;
-		this.dashboardUid = 0;
+		this.dashboardUid = client.uid;
 		this.players = [];
 
 		bindCommand.call(this);
@@ -39,11 +39,7 @@ class Room extends EventEmitter {
 	}
 
 	start() {
-		this.client.request(cmd.Login)
-		.then(user_id => {
-			this.dashboardUid = user_id;
-			this.client.send(cmd.StartGame);
-		});
+		this.client.send(cmd.StartGame);
 	}
 
 	dashboardPlayer() {
