@@ -35,7 +35,7 @@ class Lobby extends React.Component {
 			// Add 7 robots here
 			let robots = new Array(7);
 			for (let i = 0; i < robots.length; i++) {
-				robots[i] = new Robot(client.url, room_id);
+				robots[i] = new Robot(client.url, room_id, 'Robot ' + String.fromCharCode(0x41 + i));
 			}
 
 			return Promise.all(robots.map(robot => robot.connect()));
