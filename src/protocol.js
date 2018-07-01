@@ -9,6 +9,7 @@ const cmd = new Enum(
 	'ChooseGeneral',
 	'UpdatePlayer',
 	'ToBattle',
+	'MoveCards',
 );
 
 export default cmd;

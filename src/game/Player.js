@@ -1,6 +1,8 @@
 
 import EventEmitter from 'events';
 
+import CardArea from './CardArea';
+
 class Player extends EventEmitter {
 
 	constructor(uid, seat, name) {
@@ -16,6 +18,11 @@ class Player extends EventEmitter {
 
 		this._hp = 0;
 		this._maxHp = 0;
+
+		this.handArea = new CardArea(CardArea.Type.Hand);
+		this.equipArea = new CardArea(CardArea.Type.Equip);
+		this.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
+		this.judgeArea = new CardArea(CardArea.Type.Judge);
 	}
 
 	uid() {
