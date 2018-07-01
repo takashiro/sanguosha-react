@@ -1,7 +1,7 @@
 
 import EventEmitter from 'events';
 
-import CardArea from './CardArea';
+import CardArea from '../CardArea';
 
 class Player extends EventEmitter {
 
@@ -23,6 +23,8 @@ class Player extends EventEmitter {
 		this.equipArea = new CardArea(CardArea.Type.Equip);
 		this.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
 		this.judgeArea = new CardArea(CardArea.Type.Judge);
+
+		this._phase = 0;
 	}
 
 	uid() {
@@ -104,6 +106,15 @@ class Player extends EventEmitter {
 	setMaxHp(maxHp) {
 		this._maxHp = maxHp;
 		this.emit('maxHpChanged', maxHp);
+	}
+
+	phase() {
+		return this._phase;
+	}
+
+	setPhase(phase) {
+		this._phase = phase;
+		this.emit('phaseChanged', phase);
 	}
 
 }
