@@ -9,5 +9,6 @@
 	.card {
 		display: inline-block;
 		margin: 8px 1px;
+		transition: top 300ms ease, left 300ms ease, opacity 300ms ease;
 	}
 }
