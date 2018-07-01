@@ -26,7 +26,7 @@ class Card extends React.Component {
 			backgroundImage: `url(style/card/number/${this.state.color}/${this.state.number}.png)`,
 		};
 
-		return <div className="card" style={style}>
+		return <div className={className} style={style}>
 			<div className={suit} />
 			<div className="number" style={number} />
 		</div>;

@@ -22,6 +22,23 @@ class Card {
 		return this._suit;
 	}
 
+	suitString() {
+		return Suit.fromNum(this._suit);
+	}
+
+	color() {
+		switch(this._suit) {
+		case Suit.Spade:
+		case Suit.Club:
+			return 'black';
+		case Suit.Heart:
+		case Suit.Diamond:
+			return 'red';
+		}
+
+		return '';
+	}
+
 	number() {
 		return this._number;
 	}
