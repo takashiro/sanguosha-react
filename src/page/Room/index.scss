@@ -45,24 +45,34 @@
 		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 		text-align: center;
 		font-size: 12px;
+	}
 
-		&.god {
+	.god {
+		.handcard-num {
 			background-image: url(../style/handcard/god.png);
 		}
+	}
 
-		&.shu {
+	&.shu {
+		.handcard-num {
 			background-image: url(../style/handcard/shu.png);
 		}
+	}
 
-		&.wu {
+	&.wu {
+		.handcard-num {
 			background-image: url(../style/handcard/wu.png);
 		}
+	}
 
-		&.wei {
+	&.wei {
+		.handcard-num {
 			background-image: url(../style/handcard/wei.png);
 		}
+	}
 
-		&.qun {
+	&.qun {
+		.handcard-num {
 			background-image: url(../style/handcard/qun.png);
 		}
 	}

@@ -6,6 +6,7 @@ import './index.scss';
 import KingdomIcon from '../../component/KingdomIcon';
 import HpBar from '../../component/HpBar';
 import PhotoAvatar from './Avatar';
+import HandArea from './HandArea';
 
 class Photo extends React.Component {
 
@@ -34,7 +35,9 @@ class Photo extends React.Component {
 	}
 
 	render() {
-		return <div className="photo">
+		const player = this.props.player;
+
+		return <div className={'photo' + ' ' + this.state.kingdom}>
 			<div className="avatar-area">
 				<PhotoAvatar position="head" general={this.state.headGeneral} />
 				<PhotoAvatar position="deputy" general={this.state.deputyGeneral} />
@@ -42,7 +45,7 @@ class Photo extends React.Component {
 			<div className="frame"></div>
 			<div className="screen-name">{this.state.screenName}</div>
 			<KingdomIcon kingdom={this.state.kingdom} />
-			<div className={'handcard-num ' + this.state.kingdom}>0</div>
+			<HandArea area={player.handArea} />
 			<HpBar size={18} hp={this.state.hp} maxHp={this.state.maxHp} />
 		</div>;
 	}
