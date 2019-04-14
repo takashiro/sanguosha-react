@@ -10,15 +10,29 @@ import Lobby from '../Lobby';
 import cmd from '../../protocol';
 import Client from '../../net/Client';
 
-function handleLogin(e) {
+async function connectToServer(screenName) {
+	const client = new Client;
+	await client.connect('ws://localhost:2517');
+	console.log('检查版本……');
+	const version = await client.request(cmd.CheckVersion);
+	console.log(`服务器版本：${version.name} (${version.build})`);
+	const uid = await client.request(cmd.Login, {name: screenName});
+	client.uid = uid;
+	ReactDOM.render(
+		<Lobby client={client} />,
+		document.getElementById('app-container')
+	);
+}
+
+async function handleLogin(e) {
 	e.preventDefault();
-	let screen_name_input = document.getElementById('screen-name-input');
-	let screen_name = screen_name_input.value.substr(0, 8);
-	if (screen_name.length <= 0) {
+	let screenNameInput = document.getElementById('screen-name-input');
+	let screenName = screenNameInput.value.substr(0, 8);
+	if (screenName.length <= 0) {
 		return Toast.makeToast('请输入您的昵称。');
 	}
 
-	localStorage.setItem('screenName', screen_name);
+	localStorage.setItem('screenName', screenName);
 
 	let login_status = document.getElementById('login-status');
 	function log(message) {
@@ -27,28 +41,12 @@ function handleLogin(e) {
 	}
 
 	log('连接中……');
-
-	const client = new Client;
-	client.connect('ws://localhost:2517')
-	.then(() => {
-		log('检查版本……');
-		return client.request(cmd.CheckVersion)
-	})
-	.then(version => {
-		log(`服务器版本：${version.name} (${version.build})`);
-		return client.request(cmd.Login, {name: screen_name});
-	})
-	.then(uid => {
-		client.uid = uid;
-		ReactDOM.render(
-			<Lobby client={client} />,
-			document.getElementById('app-container')
-		);
-	})
-	.catch(error => {
+	try {
+		await connectToServer(screenName);
+	} catch (error) {
 		console.error(error);
 		log('连接失败。');
-	});
+	}
 }
 
 class StartScene extends React.Component {

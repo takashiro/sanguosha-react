@@ -11,15 +11,11 @@ class Robot {
 		this.name = name;
 	}
 
-	connect() {
-		return this.client.connect()
-		.then(() => {
-			return this.client.request(cmd.Login, {name: this.name});
-		})
-		.then(uid => {
-			this.client.uid = uid;
-			return this.client.request(cmd.EnterRoom, this.roomId);
-		});
+	async connect() {
+		await this.client.connect();
+		const uid = await this.client.request(cmd.Login, {name: this.name});
+		this.client.uid = uid;
+		await this.client.request(cmd.EnterRoom, this.roomId);
 	}
 
 }
