@@ -14,7 +14,7 @@ class PhotoLayout extends React.Component {
 
 		this.state = {
 			players: room.otherPlayers(),
-		}
+		};
 
 		room.on('playerChanged', () => {
 			this.setState({players: room.otherPlayers()});

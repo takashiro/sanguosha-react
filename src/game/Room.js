@@ -83,16 +83,22 @@ class Room extends EventEmitter {
 			}
 
 			switch (info.type) {
-				case CardArea.Type.Hand: return player.handArea;
-				case CardArea.Type.Equip: return player.equipArea;
-				case CardArea.Type.DelayedTrick: return player.delayedTrickArea;
-				case CardArea.Type.Judge: return player.judgeArea;
+			case CardArea.Type.Hand:
+				return player.handArea;
+			case CardArea.Type.Equip:
+				return player.equipArea;
+			case CardArea.Type.DelayedTrick:
+				return player.delayedTrickArea;
+			case CardArea.Type.Judge:
+				return player.judgeArea;
 			}
 		}
 
 		switch (info.type) {
-			case CardArea.Type.DrawPile: return this.drawPile;
-			case CardArea.Type.DiscardPile: return this.discardPile;
+		case CardArea.Type.DrawPile:
+			return this.drawPile;
+		case CardArea.Type.DiscardPile:
+			return this.discardPile;
 		}
 		return null;
 	}
