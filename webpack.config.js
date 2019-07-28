@@ -39,6 +39,9 @@ module.exports = {
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-react']
+					}
 				},
 			},
 			{
@@ -50,7 +53,6 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							url: false,
-							minimize: mode === 'production',
 							sourceMap: mode === 'development',
 						}
 					},
