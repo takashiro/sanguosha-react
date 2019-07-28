@@ -1,5 +1,5 @@
 
-import Enum from './Enum';
+import Enum from './game/Enum';
 
 const cmd = new Enum(
 	'Invalid',

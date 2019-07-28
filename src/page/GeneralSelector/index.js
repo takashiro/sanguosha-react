@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import cmd from '../../game/protocol';
+import cmd from '../../protocol';
 import GameRoom from '../../game/Room';
 
 import Room from '../Room';
