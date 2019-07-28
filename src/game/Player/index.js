@@ -2,6 +2,7 @@
 import EventEmitter from 'events';
 
 import CardArea from '../CardArea';
+import Kingdom from '../Kingdom';
 
 class Player extends EventEmitter {
 
@@ -14,7 +15,7 @@ class Player extends EventEmitter {
 
 		this._headGeneral = null;
 		this._deputyGeneral = null;
-		this._kingdom = 'unknown';
+		this._kingdom = 0;
 
 		this._hp = 0;
 		this._maxHp = 0;
@@ -63,6 +64,14 @@ class Player extends EventEmitter {
 		this.emit('nameChanged', name);
 	}
 
+	general() {
+		return this.headGeneral();
+	}
+
+	setGeneral(general) {
+		this.setHeadGeneral(general);
+	}
+
 	headGeneral() {
 		return this._headGeneral;
 	}
@@ -86,6 +95,9 @@ class Player extends EventEmitter {
 	}
 
 	setKingdom(kingdom) {
+		if (typeof kingdom === 'number') {
+			kingdom = Kingdom.fromNum(kingdom);
+		}
 		this._kingdom = kingdom;
 		this.emit('kingdomChanged', kingdom);
 	}

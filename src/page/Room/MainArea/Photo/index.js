@@ -17,6 +17,7 @@ class Photo extends React.Component {
 		const player = this.props.player;
 
 		this.state = {
+			generalNum: 1,
 			seat: player.seat(),
 			headGeneral: player.headGeneral(),
 			deputyGeneral: player.deputyGeneral(),
@@ -39,11 +40,17 @@ class Photo extends React.Component {
 		const player = this.props.player;
 
 		return <div className={'photo' + ' ' + this.state.kingdom}>
-			<div className="avatar-area">
-				<PhotoAvatar position="head" general={this.state.headGeneral} />
-				<PhotoAvatar position="deputy" general={this.state.deputyGeneral} />
+			<div className={'avatar-area g' + this.state.generalNum}>
+				<PhotoAvatar
+					position="head"
+					general={this.state.headGeneral}
+				/>
+				{this.state.generalNum > 1 ? <PhotoAvatar
+					position="deputy"
+					general={this.state.deputyGeneral}
+				/> : null}
 			</div>
-			<div className="frame"></div>
+			{this.state.generalNum === 2 ? <div className="frame"></div> : null}
 			<div className="screen-name">{this.state.screenName}</div>
 			<KingdomIcon kingdom={this.state.kingdom} />
 			<HandArea area={player.handArea} />
