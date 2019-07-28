@@ -2,13 +2,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Client from '@karuta/client';
+
 import './index.scss';
 
 import Toast from '../../component/Toast';
 import Lobby from '../Lobby';
 
-import cmd from '../../protocol';
-import Client from '../../net/Client';
+import cmd from '@karuta/client/cmd';
 
 async function connectToServer(screenName) {
 	const client = new Client;

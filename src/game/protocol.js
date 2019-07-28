@@ -1,9 +1,9 @@
 
-import Enum from './net/Enum';
-import net from './net/protocol';
+import Enum from './Enum';
 
 const cmd = new Enum(
-	...net.enums,
+	'Invalid',
+
 	'StartGame',
 	'ArrangeSeats',
 	'ChooseGeneral',

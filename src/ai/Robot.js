@@ -1,6 +1,6 @@
 
-import cmd from '../protocol';
-import Client from '../net/Client';
+import Client from '@karuta/client';
+import cmd from '@karuta/client/cmd';
 
 class Robot {
 

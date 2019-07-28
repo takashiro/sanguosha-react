@@ -5,7 +5,7 @@ import Player from './Player';
 import CardPool from './CardPool';
 import CardArea from './CardArea';
 
-import cmd from '../protocol';
+import cmd from './protocol';
 
 function bindCommand() {
 	const client = this.client;

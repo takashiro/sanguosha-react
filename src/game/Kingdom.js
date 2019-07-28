@@ -1,5 +1,5 @@
 
-import Enum from '../net/Enum';
+import Enum from './Enum';
 
 const Kingdom = new Enum(
 	'Unknown',

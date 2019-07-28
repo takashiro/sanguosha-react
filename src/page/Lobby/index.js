@@ -2,7 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import cmd from '../../protocol';
+import cmd from '@karuta/client/cmd';
+
 import Robot from '../../ai/Robot';
 
 import StartScene from '../StartScene';

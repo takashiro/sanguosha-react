@@ -1,5 +1,5 @@
 
-import Enum from '../../net/Enum';
+import Enum from '../Enum';
 
 const Suit = new Enum(
 	'Invalid',
