@@ -26,7 +26,6 @@ class GeneralSelector extends React.Component {
 		this.handleConfirm = this.handleConfirm.bind(this);
 
 		const client = props.client;
-
 		this.room = new GameRoom(client);
 		client.bind(cmd.ChooseGeneral, option => {
 			this.setState({
@@ -111,7 +110,7 @@ class GeneralSelector extends React.Component {
 			});
 		}
 
-		let feasible = selectedGenerals.length === this.state.num;
+		let feasible = true;//selectedGenerals.length === this.state.num;
 
 		return <div className="general-selector">
 			<ul className="general">
