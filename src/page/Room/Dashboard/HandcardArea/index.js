@@ -10,8 +10,9 @@ class HandcardArea extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const area = props.area;
 		this.state = {
-			cards: [],
+			cards: area.cards(),
 		};
 	}
 

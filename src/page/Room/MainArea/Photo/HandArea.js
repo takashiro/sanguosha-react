@@ -6,11 +6,11 @@ class HandArea extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			num: 0
-		};
-
 		const area = props.area;
+
+		this.state = {
+			num: area.size()
+		};
 		area.on('numChanged', num => this.setState({num}));
 	}
 

@@ -24,6 +24,10 @@ class CardArea extends EventEmitter {
 		return this._cards;
 	}
 
+	size() {
+		return this._cards.length;
+	}
+
 	/**
 	 * Add cards into this area
 	 * @param {Card[]} cards
