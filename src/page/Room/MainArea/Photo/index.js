@@ -7,6 +7,7 @@ import KingdomIcon from '../../component/KingdomIcon';
 import HpBar from '../../component/HpBar';
 import PhotoAvatar from './Avatar';
 import HandArea from './HandArea';
+import SeatNumber from './SeatNumber';
 import PhaseBar from '../../component/PhaseBar';
 
 class Photo extends React.Component {
@@ -55,6 +56,7 @@ class Photo extends React.Component {
 			<KingdomIcon kingdom={this.state.kingdom} />
 			<HandArea area={player.handArea} />
 			<HpBar size={18} hp={this.state.hp} maxHp={this.state.maxHp} />
+			<SeatNumber number={this.state.seat} />
 			<PhaseBar player={player} />
 		</div>;
 	}

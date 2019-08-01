@@ -12,12 +12,14 @@ import FinishButton from './FinishButton';
 class ButtonArea extends React.Component {
 
 	render() {
+		const player = this.props.player;
+
 		return <div className="button-area">
 			<KingdomIcon />
 			<ConfirmButton />
 			<CancelButton />
 			<FinishButton />
-			<SeatNumber />
+			<SeatNumber number={player.seat()} />
 		</div>;
 	}
 

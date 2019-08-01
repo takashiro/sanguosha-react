@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
 			<PhaseBar player={player} />
 			<EquipArea />
 			<HandcardArea area={player.handArea} />
-			<ButtonArea />
+			<ButtonArea player={player} />
 			<AvatarArea player={player} />
 			<HpArea player={player} />
 		</div>;
