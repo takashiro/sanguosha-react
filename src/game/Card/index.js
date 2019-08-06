@@ -1,17 +1,27 @@
 
 import Suit from './Suit';
 
+let cardKey = 0;
+
 class Card {
 
 	constructor(props) {
-		this._id = props.id;
-		this._name = props.name;
-		this._suit = props.suit;
-		this._number = props.number;
+		if (props) {
+			this._id = props.id;
+			this._name = props.name;
+			this._suit = props.suit;
+			this._number = props.number;
+		} else {
+			this._key = cardKey++;
+		}
 	}
 
 	id() {
 		return this._id;
+	}
+
+	key() {
+		return this._id || 'u' + this._key;
 	}
 
 	name() {

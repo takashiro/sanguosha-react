@@ -41,4 +41,8 @@
 		background-position: center center;
 		background-size: 100%;
 	}
+
+	&.back {
+		background-image: url(../style/card/back/standard.png);
+	}
 }
