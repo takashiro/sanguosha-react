@@ -41,6 +41,7 @@ class CardArea extends EventEmitter {
 	/**
 	 * Remove cards into this area
 	 * @param {Card[]} cards
+	 * @return {Card[]}
 	 */
 	remove(cards) {
 		for (let card of cards) {
@@ -51,6 +52,7 @@ class CardArea extends EventEmitter {
 		}
 		this.emit('cardRemoved', cards);
 		this.emit('numChanged', this._cards.length);
+		return cards;
 	}
 
 }

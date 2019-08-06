@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import Card from '../../component/Card';
+
 class HandArea extends React.Component {
 
 	constructor(props) {
@@ -11,6 +13,7 @@ class HandArea extends React.Component {
 		this.state = {
 			num: area.size()
 		};
+
 		area.on('numChanged', num => this.setState({num}));
 	}
 

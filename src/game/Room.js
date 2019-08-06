@@ -2,8 +2,8 @@
 import EventEmitter from 'events';
 
 import Player from './Player';
-import CardPool from './CardPool';
 import CardArea from './CardArea';
+import DrawPile from './DrawPile';
 
 import cmd from '../protocol';
 
@@ -49,16 +49,9 @@ function bindCommand() {
 	});
 
 	client.bind(cmd.MoveCards, move => {
-		let cards = null;
-		if (move.cards) {
-			cards = move.cards.map(card => this.cardPool.create(card));
-		} else if (move.cardNum && !isNaN(move.cardNum)) {
-			cards = new Array(move.cardNum);
-		}
-
-		let from = this.findArea(move.from);
-		let to = this.findArea(move.to);
-		from.remove(cards);
+		const from = this.findArea(move.from);
+		const to = this.findArea(move.to);
+		const cards = from.remove(move.cards || new Array(move.cardNum).fill(null));
 		to.add(cards);
 	});
 }
@@ -73,11 +66,8 @@ class Room extends EventEmitter {
 		this.players = [];
 
 		bindCommand.call(this);
-		window.$room = this;
 
-		this.cardPool = new CardPool;
-
-		this.drawPile = new CardArea(CardArea.Type.DrawPile);
+		this.drawPile = new DrawPile;
 		this.discardPile = new CardArea(CardArea.Type.DiscardPile);
 	}
 

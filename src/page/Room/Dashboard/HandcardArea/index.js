@@ -5,45 +5,44 @@ import Card from '../../component/Card';
 
 import './index.scss';
 
+function onCardAdded(cards) {
+	this.setState(function (prev) {
+		const cardNum = prev.cardNum + cards.length;
+		return {cardNum};
+	});
+}
+
+function onCardRemoved(cards) {
+	this.setState(function (prev) {
+		const cardNum = prev.cardNum - cards.length;
+		return {cardNum};
+	});
+}
+
 class HandcardArea extends React.Component {
 
 	constructor(props) {
 		super(props);
 
 		const area = props.area;
+		const cards = area.cards();
 		this.state = {
-			cards: area.cards(),
+			cards,
+			cardNum: cards.length,
 		};
 	}
 
 	componentDidMount() {
 		const area = this.props.area;
-
-		this._onCardAdded = cards => {
-			this.setState(prev => {
-				prev.cards.push(...cards);
-				return {cards: prev.cards};
-			});
-		};
-		area.on('cardAdded', this._onCardAdded);
-	}
-
-	componentWillUnmount() {
-		const area = this.props.area;
-		area.removeListener('cardAdded', this._onCardAdded);
+		area.on('cardAdded', onCardAdded.bind(this));
+		area.on('cardRemoved', onCardRemoved.bind(this));
 	}
 
 	render() {
 		let cards = this.state.cards;
 
 		return <div className="handcard-area">
-			{cards.map(card => <Card
-				key={card.id()}
-				name={card.name()}
-				suit={card.suitString().toLowerCase()}
-				color={card.color()}
-				number={card.number()}
-			/>)}
+			{cards.map(card => <Card key={card.key()} card={card} />)}
 		</div>;
 	}
 
