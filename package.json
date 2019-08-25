@@ -1,5 +1,5 @@
 {
-  "name": "@karuta/sanguosha-gui",
+  "name": "@karuta/sanguosha-react",
   "version": "0.1.0",
   "description": "Sanguosha GUI",
   "main": "src/index.js",
