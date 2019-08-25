@@ -3,6 +3,7 @@ import EventEmitter from 'events';
 
 import Player from './Player';
 import CardArea from './CardArea';
+import CardPath from './CardPath';
 import DrawPile from './DrawPile';
 
 import cmd from '../protocol';
@@ -53,6 +54,12 @@ function bindCommand() {
 		const to = this.findArea(move.to);
 		const cards = from.remove(move.cards || new Array(move.cardNum).fill(null));
 		to.add(cards);
+
+		const path = new CardPath(cards);
+		from.emit('cardleave', path);
+		to.emit('cardenter', path);
+		this.emit('cardmove', path);
+		path.on('end', () => to.show(cards));
 	});
 }
 
