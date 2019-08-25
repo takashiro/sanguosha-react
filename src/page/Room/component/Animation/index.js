@@ -44,7 +44,7 @@ class Animation extends React.Component {
 		}
 
 		Promise.all(Array.prototype.map.call(div.children, img => {
-			return new Promise((resolve, reject) => {
+			return new Promise(resolve => {
 				if (img.tagName !== 'IMG' || img.loaded) {
 					setTimeout(resolve, 0);
 				} else {
