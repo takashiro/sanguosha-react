@@ -1,7 +1,12 @@
 
 import React from 'react';
 
-import Card from '../../component/Card';
+function onCardEnter(path) {
+	const rect = this.node.current.parentElement.getBoundingClientRect();
+	const centerTop = (rect.top + rect.bottom) / 2;
+	const centerLeft = (rect.left + rect.right) / 2;
+	path.setEnd(centerTop, centerLeft);
+}
 
 class HandArea extends React.Component {
 
@@ -10,15 +15,18 @@ class HandArea extends React.Component {
 
 		const area = props.area;
 
+		this.node = React.createRef();
+
 		this.state = {
 			num: area.size()
 		};
 
-		area.on('numChanged', num => this.setState({num}));
+		area.on('cardenter', onCardEnter.bind(this));
+		area.on('numchanged', num => this.setState({num}));
 	}
 
 	render() {
-		return <div className="handcard-num">{this.state.num}</div>;
+		return <div ref={this.node} className="handcard-num">{this.state.num}</div>;
 	}
 
 }

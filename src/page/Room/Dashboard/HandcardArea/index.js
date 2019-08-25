@@ -5,6 +5,13 @@ import Card from '../../component/Card';
 
 import './index.scss';
 
+function onCardEnter(path) {
+	const rect = this.node.current.parentElement.getBoundingClientRect();
+	const centerTop = (rect.top + rect.bottom) / 2;
+	const centerLeft = (rect.left + rect.right) / 2;
+	path.setEnd(centerTop, centerLeft);
+}
+
 function onCardAdded(cards) {
 	this.setState(function (prev) {
 		const cardNum = prev.cardNum + cards.length;
@@ -30,6 +37,9 @@ class HandcardArea extends React.Component {
 			cards,
 			cardNum: cards.length,
 		};
+		this.node = React.createRef();
+
+		area.on('cardenter', onCardEnter.bind(this));
 	}
 
 	componentDidMount() {
@@ -41,7 +51,7 @@ class HandcardArea extends React.Component {
 	render() {
 		let cards = this.state.cards;
 
-		return <div className="handcard-area">
+		return <div className="handcard-area" ref={this.node}>
 			{cards.map(card => <Card key={card.key()} card={card} />)}
 		</div>;
 	}

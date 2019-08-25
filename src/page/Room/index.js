@@ -5,6 +5,7 @@ import './index.scss';
 
 import MainArea from './MainArea';
 import Dashboard from './Dashboard';
+import AnimationCanvas from './AnimationCanvas';
 
 class Room extends React.Component {
 
@@ -13,9 +14,11 @@ class Room extends React.Component {
 	}
 
 	render() {
+		const room = this.props.room;
 		return <div className="room">
-			<MainArea room={this.props.room} />
-			<Dashboard room={this.props.room} />
+			<MainArea room={room} />
+			<Dashboard room={room} />
+			<AnimationCanvas room={room} />
 		</div>;
 	}
 

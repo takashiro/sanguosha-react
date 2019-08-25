@@ -1,0 +1,13 @@
+
+.animation-canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	.animated-card {
+		position: absolute;
+		opacity: 0;
+		transform: translate(-50%, -50%);
+		transform-origin: 0 0;
+	}
+}
