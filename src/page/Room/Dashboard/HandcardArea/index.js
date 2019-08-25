@@ -34,8 +34,8 @@ class HandcardArea extends React.Component {
 
 	componentDidMount() {
 		const area = this.props.area;
-		area.on('cardAdded', onCardAdded.bind(this));
-		area.on('cardRemoved', onCardRemoved.bind(this));
+		area.on('cardadded', onCardAdded.bind(this));
+		area.on('cardremoved', onCardRemoved.bind(this));
 	}
 
 	render() {

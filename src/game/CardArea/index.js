@@ -34,8 +34,8 @@ class CardArea extends EventEmitter {
 	 */
 	add(cards) {
 		this._cards.push(...cards);
-		this.emit('cardAdded', cards);
-		this.emit('numChanged', this._cards.length);
+		this.emit('cardadded', cards);
+		this.emit('numchanged', this._cards.length);
 	}
 
 	/**
@@ -50,8 +50,8 @@ class CardArea extends EventEmitter {
 				this._cards.splice(pos, 1);
 			}
 		}
-		this.emit('cardRemoved', cards);
-		this.emit('numChanged', this._cards.length);
+		this.emit('cardremoved', cards);
+		this.emit('numchanged', this._cards.length);
 		return cards;
 	}
 

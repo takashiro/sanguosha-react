@@ -14,7 +14,7 @@ class DrawPile extends CardArea {
 	 * @param {Card[]} cards
 	 */
 	add(cards) {
-		this.emit('cardAdded', cards);
+		this.emit('cardadded', cards);
 	}
 
 	/**
@@ -24,7 +24,7 @@ class DrawPile extends CardArea {
 	 */
 	remove(metas) {
 		const cards = metas.map(meta => new Card(meta));
-		this.emit('cardRemoved', cards);
+		this.emit('cardremoved', cards);
 		return cards;
 	}
 
