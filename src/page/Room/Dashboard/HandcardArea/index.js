@@ -5,11 +5,36 @@ import Card from '../../component/Card';
 
 import './index.scss';
 
+function calcCenterPos(node) {
+	const rect = node.getBoundingClientRect();
+	return {
+		top: (rect.top + rect.bottom) / 2,
+		left: (rect.left + rect.right) / 2,
+	};
+}
+
 function onCardEnter(path) {
-	const rect = this.node.current.parentElement.getBoundingClientRect();
-	const centerTop = (rect.top + rect.bottom) / 2;
-	const centerLeft = (rect.left + rect.right) / 2;
-	path.setEnd(centerTop, centerLeft);
+	const cards = path.cards();
+	const area = this.node.current;
+	const cardNodes = area.children;
+
+	if (cardNodes.length < cards.length) {
+		console.error('Error: Card nodes are fewer than card paths');
+		const pos = calcCenterPos(area);
+		path.setEnd(pos.top, pos.left);
+	} else if (cards.length > 1) {
+		const cardNum = cards.length;
+		cards.forEach(function (card, index) {
+			const p = path.createSubpath(card);
+			const node = cardNodes[cardNodes.length - cardNum + index];
+			const pos = calcCenterPos(node);
+			p.setEnd(pos.top, pos.left);
+		});
+	} else {
+		const finalCardNode = cardNodes[cardNodes.length - 1];
+		const pos = calcCenterPos(finalCardNode);
+		path.setEnd(pos.top, pos.left);
+	}
 }
 
 function onCardAdded(cards) {

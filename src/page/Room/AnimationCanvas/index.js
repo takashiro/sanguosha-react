@@ -11,7 +11,8 @@ function onCardMove(path) {
 	const cardNum = cards.length;
 	const midIndex = Math.floor(cardNum / 2);
 
-	const cardPaths = cards.map(function (card, index) {
+	const subpaths = path.subpaths();
+	const cardPaths = !subpaths ? cards.map(function (card, index) {
 		const p = {
 			from: {...path.start()},
 			to: {...path.end()},
@@ -24,6 +25,12 @@ function onCardMove(path) {
 		}
 
 		return p;
+	}) : subpaths.map(function (subpath) {
+		return {
+			from: {...subpath.start()},
+			to: {...subpath.end()},
+			card: subpath.cards()[0],
+		};
 	});
 
 	this.setState(function (prev) {

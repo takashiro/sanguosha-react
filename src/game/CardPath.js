@@ -57,6 +57,33 @@ class CardPath extends EventEmitter {
 		return this._cards;
 	}
 
+	/**
+	 * Clone current path as a subpath.
+	 * @param {Card} card
+	 * @return {CardPath}
+	 */
+	createSubpath(card) {
+		const path = new CardPath([card]);
+		const start = this.start();
+		if (start) {
+			path.setStart(start.top, start.left);
+		}
+		if (!this._subpaths) {
+			this._subpaths = [path];
+		} else {
+			this._subpaths.push(path);
+		}
+		return path;
+	}
+
+	/**
+	 * Returns paths for each card
+	 * @return {CardPath[]}
+	 */
+	subpaths() {
+		return this._subpaths;
+	}
+
 }
 
 export default CardPath;
