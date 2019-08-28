@@ -6,15 +6,25 @@ import AnimatedCard from './AnimatedCard';
 import './index.scss';
 
 function onCardMove(path) {
-	const cardPaths = [];
 	const cards = path.cards();
-	for (const card of cards) {
-		cardPaths.push({
-			from: path.start(),
-			to: path.end(),
+
+	const cardNum = cards.length;
+	const midIndex = Math.floor(cardNum / 2);
+
+	const cardPaths = cards.map(function (card, index) {
+		const p = {
+			from: {...path.start()},
+			to: {...path.end()},
 			card,
-		});
-	}
+		};
+
+		if (index !== midIndex) {
+			p.from.left += 30 * (index - midIndex);
+			p.to.left += 30 * (index - midIndex);
+		}
+
+		return p;
+	});
 
 	this.setState(function (prev) {
 		prev.cardPaths.push(...cardPaths);
