@@ -55,6 +55,14 @@ class CardArea extends EventEmitter {
 		return cards;
 	}
 
+	postStartPos(path) {
+		this.emit('cardleave', path);
+	}
+
+	postEndPos(path) {
+		this.emit('cardenter', path);
+	}
+
 }
 
 CardArea.Type = Type;

@@ -11,7 +11,7 @@ class CardPath extends EventEmitter {
 		super();
 
 		this._cards = cards;
-		this._start = null;
+		this._startPos = null;
 		this._end = null;
 	}
 
@@ -19,8 +19,8 @@ class CardPath extends EventEmitter {
 	 * The start point
 	 * @return {{top: number, left: number}}
 	 */
-	start() {
-		return this._start;
+	startPos() {
+		return this._startPos;
 	}
 
 	/**
@@ -28,15 +28,15 @@ class CardPath extends EventEmitter {
 	 * @param {number} top
 	 * @param {number} left
 	 */
-	setStart(top, left) {
-		this._start = {top, left};
+	setStartPos(top, left) {
+		this._startPos = {top, left};
 	}
 
 	/**
 	 * The end point
 	 * @return {{top: number, left: number}}
 	 */
-	end() {
+	endPos() {
 		return this._end;
 	}
 
@@ -45,12 +45,12 @@ class CardPath extends EventEmitter {
 	 * @param {number} top
 	 * @param {number} left
 	 */
-	setEnd(top, left) {
+	setEndPos(top, left) {
 		this._end = {top, left};
 	}
 
 	/**
-	 * Cards
+	 * Returns cards.
 	 * @return {Card[]}
 	 */
 	cards() {
@@ -58,30 +58,53 @@ class CardPath extends EventEmitter {
 	}
 
 	/**
-	 * Clone current path as a subpath.
+	 * Returns the first card.
+	 * @return {Card}
+	 */
+	card() {
+		return this._cards[0];
+	}
+
+	/**
+	 * Customize path for a card.
 	 * @param {Card} card
 	 * @return {CardPath}
 	 */
-	createSubpath(card) {
+	customize(card) {
 		const path = new CardPath([card]);
-		const start = this.start();
-		if (start) {
-			path.setStart(start.top, start.left);
-		}
-		if (!this._subpaths) {
-			this._subpaths = [path];
+		if (!this._children) {
+			this._children = [path];
 		} else {
-			this._subpaths.push(path);
+			this._children.push(path);
 		}
 		return path;
+	}
+
+	/**
+	 * Check if this path contains multiple subpaths.
+	 * @return {boolean}
+	 */
+	isCustomized() {
+		return !!this._children;
 	}
 
 	/**
 	 * Returns paths for each card
 	 * @return {CardPath[]}
 	 */
-	subpaths() {
-		return this._subpaths;
+	children() {
+		return this._children;
+	}
+
+	/**
+	 * Destroy the path to indicate animation is done.
+	 */
+	destroy() {
+		this._startPos = null;
+		this._end = null;
+		this._cards = null;
+		this._children = null;
+		this.emit('destroyed');
 	}
 
 }

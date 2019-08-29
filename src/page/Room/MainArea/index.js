@@ -9,7 +9,7 @@ function onCardLeaveDrawPile(path) {
 	const rect = this.node.current.getBoundingClientRect();
 	const left = (rect.left + rect.right) / 2;
 	const top = (rect.top + rect.bottom) / 2;
-	path.setStart(top, left);
+	path.setStartPos(top, left);
 }
 
 class MainArea extends React.Component {

@@ -5,7 +5,7 @@ function onCardEnter(path) {
 	const rect = this.node.current.parentElement.getBoundingClientRect();
 	const centerTop = (rect.top + rect.bottom) / 2;
 	const centerLeft = (rect.left + rect.right) / 2;
-	path.setEnd(centerTop, centerLeft);
+	path.setEndPos(centerTop, centerLeft);
 }
 
 class HandArea extends React.Component {

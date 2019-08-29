@@ -11,11 +11,10 @@ function onCardMove(path) {
 	const cardNum = cards.length;
 	const midIndex = Math.floor(cardNum / 2);
 
-	const subpaths = path.subpaths();
-	const cardPaths = !subpaths ? cards.map(function (card, index) {
+	const cardPaths = !path.isCustomized() ? cards.map(function (card, index) {
 		const p = {
-			from: {...path.start()},
-			to: {...path.end()},
+			from: {...path.startPos()},
+			to: {...path.endPos()},
 			card,
 		};
 
@@ -25,11 +24,11 @@ function onCardMove(path) {
 		}
 
 		return p;
-	}) : subpaths.map(function (subpath) {
+	}) : path.children().map(function (subpath) {
 		return {
-			from: {...subpath.start()},
-			to: {...subpath.end()},
-			card: subpath.cards()[0],
+			from: {...subpath.startPos()},
+			to: {...subpath.endPos()},
+			card: subpath.card(),
 		};
 	});
 

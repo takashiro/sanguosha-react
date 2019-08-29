@@ -21,19 +21,21 @@ function onCardEnter(path) {
 	if (cardNodes.length < cards.length) {
 		console.error('Error: Card nodes are fewer than card paths');
 		const pos = calcCenterPos(area);
-		path.setEnd(pos.top, pos.left);
+		path.setEndPos(pos.top, pos.left);
 	} else if (cards.length > 1) {
 		const cardNum = cards.length;
+		const startPos = path.startPos();
 		cards.forEach(function (card, index) {
-			const p = path.createSubpath(card);
+			const p = path.customize(card);
+			p.setStartPos(startPos.top, startPos.left);
 			const node = cardNodes[cardNodes.length - cardNum + index];
-			const pos = calcCenterPos(node);
-			p.setEnd(pos.top, pos.left);
+			const endPos = calcCenterPos(node);
+			p.setEndPos(endPos.top, endPos.left);
 		});
 	} else {
 		const finalCardNode = cardNodes[cardNodes.length - 1];
 		const pos = calcCenterPos(finalCardNode);
-		path.setEnd(pos.top, pos.left);
+		path.setEndPos(pos.top, pos.left);
 	}
 }
 
