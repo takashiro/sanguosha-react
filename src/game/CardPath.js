@@ -100,6 +100,10 @@ class CardPath extends EventEmitter {
 	 * Destroy the path to indicate animation is done.
 	 */
 	destroy() {
+		if (!this._cards) {
+			return;
+		}
+
 		this._startPos = null;
 		this._end = null;
 		this._cards = null;

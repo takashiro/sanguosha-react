@@ -13,6 +13,7 @@ function onCardMove(path) {
 
 	const cardPaths = !path.isCustomized() ? cards.map(function (card, index) {
 		const p = {
+			parent: path,
 			from: {...path.startPos()},
 			to: {...path.endPos()},
 			card,
@@ -26,6 +27,7 @@ function onCardMove(path) {
 		return p;
 	}) : path.children().map(function (subpath) {
 		return {
+			parent: path,
 			from: {...subpath.startPos()},
 			to: {...subpath.endPos()},
 			card: subpath.card(),
@@ -38,12 +40,14 @@ function onCardMove(path) {
 	});
 }
 
-function onAnimationEnd(card) {
+function onCardExited(card) {
 	this.setState(function (prev) {
 		const paths = prev.cardPaths;
 		for (let i = 0; i < paths.length; i++) {
-			if (card === paths[i].card) {
+			const path = paths[i];
+			if (card === path.card) {
 				paths.splice(i, 1);
+				path.parent.destroy();
 				break;
 			}
 		}
@@ -62,13 +66,20 @@ class AnimationCanvas extends React.Component {
 
 		const room = props.room;
 		room.on('cardmove', onCardMove.bind(this));
+
+		this.onCardExited = onCardExited.bind(this);
 	}
 
 	render() {
 		const cardPaths = this.state.cardPaths;
 		return <div className="animation-canvas">
 			{cardPaths.map(path => (
-				<AnimatedCard key={`card-${path.card.key()}`} card={path.card} path={path} out={onAnimationEnd.bind(this)} />
+				<AnimatedCard
+					key={`card-${path.card.key()}`}
+					card={path.card}
+					path={path}
+					onExited={this.onCardExited}
+				/>
 			))}
 		</div>;
 	}

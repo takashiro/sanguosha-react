@@ -11,6 +11,12 @@ function transitionText(timeout) {
 	}).join(', ');
 }
 
+function onExited() {
+	if (this.props.onExited) {
+		setTimeout(this.props.onExited, 0, this.props.card);
+	}
+}
+
 class AnimatedCard extends React.Component {
 
 	constructor(props) {
@@ -52,6 +58,8 @@ class AnimatedCard extends React.Component {
 		this.state = {
 			visible: false
 		};
+
+		this.onExited = onExited.bind(this);
 	}
 
 	componentDidMount() {
@@ -60,9 +68,6 @@ class AnimatedCard extends React.Component {
 		}, 0);
 		setTimeout(() => {
 			this.setState({ visible: false });
-			if (this.props.out) {
-				setTimeout(this.props.out, this.timeout, this.props.card);
-			}
 		}, this.timeout * 2);
 	}
 
@@ -71,7 +76,7 @@ class AnimatedCard extends React.Component {
 		const frames = this.frames;
 		const onEnd = (node, done) => node.addEventListener('transitionend', done, false);
 
-		return <Transition in={this.state.visible} addEndListener={onEnd}>
+		return <Transition in={this.state.visible} onExited={this.onExited} addEndListener={onEnd}>
 			{state => (<div className="animated-card" style={frames[state]}>
 				<Card card={card} />
 			</div>)}

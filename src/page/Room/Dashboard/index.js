@@ -4,7 +4,7 @@ import React from 'react';
 import './index.scss';
 
 import EquipArea from './EquipArea';
-import HandcardArea from './HandcardArea';
+import HandArea from './HandArea';
 import ButtonArea from './ButtonArea';
 import AvatarArea from './AvatarArea';
 import HpArea from './HpArea';
@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
 		return <div className="dashboard">
 			<PhaseBar player={player} />
 			<EquipArea />
-			<HandcardArea area={player.handArea} />
+			<HandArea area={player.handArea} />
 			<ButtonArea player={player} />
 			<AvatarArea player={player} />
 			<HpArea player={player} />

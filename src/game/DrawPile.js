@@ -8,6 +8,13 @@ class DrawPile extends CardArea {
 		super(CardArea.Type.DrawPile);
 	}
 
+	/**
+	 * Add ownership of cards going into this area
+	 * @param {Card[]} cards
+	 */
+	own(cards) {
+		this.emit('cardowned', cards);
+	}
 
 	/**
 	 * Add cards into this area
@@ -15,6 +22,7 @@ class DrawPile extends CardArea {
 	 */
 	add(cards) {
 		this.emit('cardadded', cards);
+		this.emit('numchanged', this._cards.length);
 	}
 
 	/**

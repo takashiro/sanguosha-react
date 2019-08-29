@@ -55,12 +55,15 @@ function bindCommand() {
 
 		// Move cards at back-end
 		const cards = from.remove(move.cards || new Array(move.cardNum).fill(null));
-		to.add(cards);
+		to.own(cards);
 
 		// Play card move animation
 		const path = new CardPath(cards);
 		from.postStartPos(path);
 		to.postEndPos(path);
+		path.on('destroyed', function () {
+			to.add(cards);
+		});
 		this.emit('cardmove', path);
 	});
 }

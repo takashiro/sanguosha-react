@@ -39,21 +39,23 @@ function onCardEnter(path) {
 	}
 }
 
-function onCardAdded(cards) {
+function onCardOwned(cards) {
 	this.setState(function (prev) {
-		const cardNum = prev.cardNum + cards.length;
-		return {cardNum};
+		const incomingCards = prev.incomingCards;
+		incomingCards.push(...cards);
+		return {incomingCards};
 	});
 }
 
-function onCardRemoved(cards) {
-	this.setState(function (prev) {
-		const cardNum = prev.cardNum - cards.length;
-		return {cardNum};
+function onCardUpdated() {
+	const cards = this.props.area.cards();
+	this.setState({
+		cards: [...cards],
+		incomingCards: [],
 	});
 }
 
-class HandcardArea extends React.Component {
+class HandArea extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -61,28 +63,32 @@ class HandcardArea extends React.Component {
 		const area = props.area;
 		const cards = area.cards();
 		this.state = {
-			cards,
+			cards: [...cards],
+			incomingCards: [],
 			cardNum: cards.length,
 		};
 		this.node = React.createRef();
-
-		area.on('cardenter', onCardEnter.bind(this));
 	}
 
 	componentDidMount() {
 		const area = this.props.area;
-		area.on('cardadded', onCardAdded.bind(this));
-		area.on('cardremoved', onCardRemoved.bind(this));
+		area.on('cardenter', onCardEnter.bind(this));
+		area.on('cardowned', onCardOwned.bind(this));
+
+		const updateCard = onCardUpdated.bind(this);
+		area.on('cardadded', updateCard);
+		area.on('cardremoved', updateCard);
 	}
 
 	render() {
-		let cards = this.state.cards;
-
-		return <div className="handcard-area" ref={this.node}>
+		const cards = this.state.cards;
+		const incomingCards = this.state.incomingCards;
+		return <div className="hand-area" ref={this.node}>
 			{cards.map(card => <Card key={card.key()} card={card} />)}
+			{incomingCards.map(card => <Card key={card.key()} card={card} visibility="hidden" />)}
 		</div>;
 	}
 
 }
 
-export default HandcardArea;
+export default HandArea;
