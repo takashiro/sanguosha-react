@@ -11,12 +11,6 @@ function transitionText(timeout) {
 	}).join(', ');
 }
 
-function onExited() {
-	if (this.props.onExited) {
-		setTimeout(this.props.onExited, 0, this.props.card);
-	}
-}
-
 class AnimatedCard extends React.Component {
 
 	constructor(props) {
@@ -29,10 +23,22 @@ class AnimatedCard extends React.Component {
 		this.timeout = props.timeout || 800;
 
 		this.frames = {
-			entering: {
+			exiting: {
 				top: from.top,
 				left: from.left,
 				opacity: 0,
+				transition: transitionText(this.timeout),
+			},
+			exited: {
+				top: from.top,
+				left: from.left,
+				opacity: 0,
+				transition: transitionText(this.timeout),
+			},
+			entering: {
+				top: to.top,
+				left: to.left,
+				opacity: 1,
 				transition: transitionText(this.timeout),
 			},
 			entered: {
@@ -41,42 +47,28 @@ class AnimatedCard extends React.Component {
 				opacity: 1,
 				transition: transitionText(this.timeout),
 			},
-			exiting: {
-				top: to.top,
-				left: to.left,
-				opacity: 1,
-				transition: transitionText(this.timeout),
-			},
-			exited: {
-				top: to.top,
-				left: to.left,
-				opacity: 0,
-				transition: transitionText(this.timeout / 8),
-			}
 		};
 
 		this.state = {
 			visible: false
 		};
-
-		this.onExited = onExited.bind(this);
 	}
 
 	componentDidMount() {
 		setTimeout(() => {
-			this.setState({ visible: true });
-		}, 0);
-		setTimeout(() => {
-			this.setState({ visible: false });
-		}, this.timeout * 2);
+			this.setState({visible: true});
+		}, 100);
+		if (this.props.onEnd) {
+			setTimeout(this.props.onEnd, 100 + this.timeout, this.props.path);
+		}
 	}
 
 	render() {
-		const card = this.props.card;
+		const card = this.props.path.card;
 		const frames = this.frames;
 		const onEnd = (node, done) => node.addEventListener('transitionend', done, false);
 
-		return <Transition in={this.state.visible} onExited={this.onExited} addEndListener={onEnd}>
+		return <Transition in={this.state.visible} addEndListener={onEnd}>
 			{state => (<div className="animated-card" style={frames[state]}>
 				<Card card={card} />
 			</div>)}

@@ -40,18 +40,16 @@ function onCardMove(path) {
 	});
 }
 
-function onCardExited(card) {
+function onCardEntered(path) {
+	path.parent.destroy();
+
 	this.setState(function (prev) {
 		const paths = prev.cardPaths;
-		for (let i = 0; i < paths.length; i++) {
-			const path = paths[i];
-			if (card === path.card) {
-				paths.splice(i, 1);
-				path.parent.destroy();
-				break;
-			}
+		const i = paths.indexOf(path);
+		if (i >= 0) {
+			paths.splice(i, 1);
 		}
-		return {cardPaths:  paths};
+		return {cardPaths: paths};
 	});
 }
 
@@ -67,7 +65,7 @@ class AnimationCanvas extends React.Component {
 		const room = props.room;
 		room.on('cardmove', onCardMove.bind(this));
 
-		this.onCardExited = onCardExited.bind(this);
+		this.onCardEntered = onCardEntered.bind(this);
 	}
 
 	render() {
@@ -76,9 +74,8 @@ class AnimationCanvas extends React.Component {
 			{cardPaths.map(path => (
 				<AnimatedCard
 					key={`card-${path.card.key()}`}
-					card={path.card}
 					path={path}
-					onExited={this.onCardExited}
+					onEnd={this.onCardEntered}
 				/>
 			))}
 		</div>;
