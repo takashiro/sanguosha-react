@@ -1,5 +1,11 @@
 
 .hand-area {
+	&.selectable {
+		.card {
+			opacity: 0.6;
+		}
+	}
+
 	.card-num {
 		position: absolute;
 		bottom: 0;
@@ -10,5 +16,12 @@
 		display: inline-block;
 		margin: 8px 1px;
 		transition: top 300ms ease, left 300ms ease, opacity 300ms ease;
+		top: 0;
+		left: 0;
+
+		&.selected {
+			opacity: 1;
+			top: -20px;
+		}
 	}
 }

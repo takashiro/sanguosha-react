@@ -58,6 +58,17 @@ function onCardUpdated() {
 	});
 }
 
+function onCardSelected(card) {
+	this.selectedCards.push(card);
+}
+
+function onCardUnselected(card) {
+	const index = this.selectedCards.indexOf(card);
+	if (index >= 0) {
+		this.selectedCards.splice(index, 1);
+	}
+}
+
 class HandArea extends React.Component {
 
 	constructor(props) {
@@ -69,8 +80,13 @@ class HandArea extends React.Component {
 			cards: [...cards],
 			incomingCards: [],
 			cardNum: cards.length,
+			selectable: false,
 		};
 		this.node = React.createRef();
+		this.selectedCards = [];
+
+		this.onCardSelected = onCardSelected.bind(this);
+		this.onCardUnselected = onCardUnselected.bind(this);
 	}
 
 	componentDidMount() {
@@ -86,9 +102,29 @@ class HandArea extends React.Component {
 	render() {
 		const cards = this.state.cards;
 		const incomingCards = this.state.incomingCards;
-		return <div className="hand-area" ref={this.node}>
-			{cards.map(card => <Card key={card.key()} card={card} />)}
-			{incomingCards.map(card => <Card key={card.key()} card={card} visibility="hidden" />)}
+
+		const classNames = ['hand-area'];
+		if (this.state.selectable) {
+			classNames.push('selectable');
+		}
+
+		return <div className={classNames.join(' ')} ref={this.node}>
+			{cards.map(
+				card => <Card
+					key={card.key()}
+					card={card}
+					selectable={this.state.selectable}
+					onSelected={this.onCardSelected}
+					onUnselected={this.onCardUnselected}
+				/>
+			)}
+			{incomingCards.map(
+				card => <Card
+					key={card.key()}
+					card={card}
+					visibility="hidden"
+				/>
+			)}
 		</div>;
 	}
 
