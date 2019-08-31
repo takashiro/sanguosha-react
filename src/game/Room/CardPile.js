@@ -2,11 +2,7 @@
 import CardArea from '../CardArea';
 import Card from '../Card';
 
-class DrawPile extends CardArea {
-
-	constructor() {
-		super(CardArea.Type.DrawPile);
-	}
+class CardPile extends CardArea {
 
 	/**
 	 * Add ownership of cards going into this area
@@ -38,4 +34,9 @@ class DrawPile extends CardArea {
 
 }
 
-export default DrawPile;
+CardPile.Type = {
+	Draw: CardArea.Type.DrawPile,
+	Discard: CardArea.Type.DiscardPile,
+};
+
+export default CardPile;

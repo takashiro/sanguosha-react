@@ -2,7 +2,7 @@
 import EventEmitter from 'events';
 
 import CardArea from '../CardArea';
-import DrawPile from './DrawPile';
+import CardPile from './CardPile';
 
 import cmd from '../../protocol';
 import CommandMap from './cmd';
@@ -22,8 +22,8 @@ class Room extends EventEmitter {
 		this.client = client;
 		this.dashboardUid = client.uid;
 		this.players = [];
-		this.drawPile = new DrawPile;
-		this.discardPile = new CardArea(CardArea.Type.DiscardPile);
+		this.drawPile = new CardPile(CardPile.Type.Draw);
+		this.discardPile = new CardPile(CardPile.Type.Discard);
 
 		bindCommand.call(this);
 	}

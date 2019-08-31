@@ -1,19 +1,17 @@
 
-import Enum from '../Enum';
+const Type = {
+	Unknown: 0,
 
-const Type = new Enum(
-	'Unknown',
+	Hand: 1,
+	Equip: 2,
+	DelayedTrick: 3,
+	Judge: 4,
 
-	'Hand',
-	'Equip',
-	'DelayedTrick',
-	'Judge',
-
-	'DrawPile',
-	'DiscardPile',
-	'Special',
-	'Table',
-	'Wugu',
-);
+	DrawPile: 5,
+	DiscardPile: 6,
+	Special: 7,
+	Table: 8,
+	Wugu: 9,
+};
 
 export default Type;
