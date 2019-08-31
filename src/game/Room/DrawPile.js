@@ -1,6 +1,6 @@
 
-import CardArea from './CardArea';
-import Card from './Card';
+import CardArea from '../CardArea';
+import Card from '../Card';
 
 class DrawPile extends CardArea {
 
