@@ -16,9 +16,9 @@ class AnimatedCard extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const path = props.path;
-		const from = path.from;
-		const to = path.to;
+		const motion = props.motion;
+		const from = motion.startPos();
+		const to = motion.endPos();
 
 		this.timeout = props.timeout || 800;
 
@@ -55,16 +55,30 @@ class AnimatedCard extends React.Component {
 	}
 
 	componentDidMount() {
-		setTimeout(() => {
+		this.enteringTimer = setTimeout(() => {
 			this.setState({visible: true});
 		}, 100);
-		if (this.props.onEnd) {
-			setTimeout(this.props.onEnd, 100 + this.timeout, this.props.path);
+
+		const motion = this.props.motion;
+		this.exitingTimer = setTimeout(function () {
+			motion.setFinished(true);
+		}, 100 + this.timeout);
+	}
+
+	componentWillUnmount() {
+		if (this.enteringTimer) {
+			clearTimeout(this.enteringTimer);
+			this.enteringTimer = null;
+		}
+
+		if (this.exitingTimer) {
+			clearTimeout(this.exitingTimer);
+			this.exitingTimer;
 		}
 	}
 
 	render() {
-		const card = this.props.path.card;
+		const card = this.props.motion.card();
 		const frames = this.frames;
 		const onEnd = (node, done) => node.addEventListener('transitionend', done, false);
 

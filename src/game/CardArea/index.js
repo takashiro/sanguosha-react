@@ -63,12 +63,25 @@ class CardArea extends EventEmitter {
 		return cards;
 	}
 
-	postStartPos(path) {
-		this.emit('cardleave', path);
+	/**
+	 * Sets the start point of a card motion group
+	 * @param {CardMotionGroup} motion
+	 */
+	sendOff(motion) {
+		this.emit('cardleave', motion);
 	}
 
-	postEndPos(path) {
-		this.emit('cardenter', path);
+	/**
+	 * Sets the end point of a card motion group
+	 * @param {CardMotionGroup} motion
+	 */
+	pickUp(motion) {
+		this.emit('cardenter', motion);
+		motion.prepare();
+		motion.finished().then(() => {
+			this.add(motion.cards());
+			motion.destroy();
+		});
 	}
 
 }

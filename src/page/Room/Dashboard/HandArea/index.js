@@ -13,29 +13,32 @@ function calcCenterPos(node) {
 	};
 }
 
-function onCardEnter(path) {
-	const cards = path.cards();
+function onCardEnter(motion) {
+	const cards = motion.cards();
 	const area = this.node.current;
 	const cardNodes = area.children;
 
 	if (cardNodes.length < cards.length) {
 		console.error('Error: Card nodes are fewer than card paths');
 		const pos = calcCenterPos(area);
-		path.setEndPos(pos.top, pos.left);
+		motion.setEndPos(pos.top, pos.left);
+
 	} else if (cards.length > 1) {
 		const cardNum = cards.length;
-		const startPos = path.startPos();
-		cards.forEach(function (card, index) {
-			const p = path.customize(card);
-			p.setStartPos(startPos.top, startPos.left);
-			const node = cardNodes[cardNodes.length - cardNum + index];
+
+		motion.prepare();
+		const motions = motion.children();
+		for (let i = 0; i < motions.length; i++) {
+			const m = motions[i];
+			const node = cardNodes[cardNodes.length - cardNum + i];
 			const endPos = calcCenterPos(node);
-			p.setEndPos(endPos.top, endPos.left);
-		});
+			m.setEndPos(endPos.top, endPos.left);
+		}
+
 	} else {
 		const finalCardNode = cardNodes[cardNodes.length - 1];
 		const pos = calcCenterPos(finalCardNode);
-		path.setEndPos(pos.top, pos.left);
+		motion.setEndPos(pos.top, pos.left);
 	}
 }
 

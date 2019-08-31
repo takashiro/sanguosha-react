@@ -3,7 +3,7 @@ import EventEmitter from 'events';
 
 import Player from './Player';
 import CardArea from './CardArea';
-import CardPath from './CardPath';
+import CardMotionGroup from './CardMotionGroup';
 import DrawPile from './DrawPile';
 
 import cmd from '../protocol';
@@ -58,13 +58,10 @@ function bindCommand() {
 		to.own(cards);
 
 		// Play card move animation
-		const path = new CardPath(cards);
-		from.postStartPos(path);
-		to.postEndPos(path);
-		path.on('destroyed', function () {
-			to.add(cards);
-		});
-		this.emit('cardmove', path);
+		const motion = new CardMotionGroup(cards);
+		from.sendOff(motion);
+		to.pickUp(motion);
+		this.emit('cardmove', motion);
 	});
 }
 
