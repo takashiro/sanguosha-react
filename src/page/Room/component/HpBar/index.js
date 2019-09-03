@@ -43,16 +43,11 @@ class HpBar extends React.Component {
 	render() {
 		let className = `hp-bar ${this.getLevel()}`;
 
-		let hpStyle = {
-			width: this.props.size + 'px',
-			height: this.props.size + 'px',
-		};
 		let hp = new Array(this.state.hp);
 		for (let i = 0; i < this.state.hp; i++) {
 			hp[i] = <div
 				key={i}
 				className="hp"
-				style={hpStyle}
 			/>;
 		}
 

@@ -4,24 +4,27 @@
 	display: flex;
 	flex-direction: column-reverse;
 	border-top-left-radius: 8px;
-	background: url(../style/magatama/hegemony/0.png) repeat-y;
+	background: url(../style/magatama/standard/0.png) repeat-y;
 	background-position: bottom center;
-	background-size: 100%;
+	background-size: auto 18px;
 
 	> .hp {
+		width: 18px;
+		height: 18px;
 		background-repeat: no-repeat;
-		background-size: 100%;
-		background-image: url(../style/magatama/hegemony/3.png);
+		background-size: auto 100%;
+		background-image: url(../style/magatama/standard/3.png);
+		background-position: bottom center;
 	}
 
 	&.medium {
 		> .hp {
-			background-image: url(../style/magatama/hegemony/2.png);
+			background-image: url(../style/magatama/standard/2.png);
 		}
 	}
 	&.low {
 		> .hp {
-			background-image: url(../style/magatama/hegemony/1.png);
+			background-image: url(../style/magatama/standard/1.png);
 		}
 	}
 }
