@@ -1,5 +1,7 @@
 
 import Player from '../../Player';
+import CardArea from '../../CardArea';
+import CardPile from '../../CardPile';
 
 function sortPlayerSeat() {
 	const dashboardPlayer = this.players.find(player => player.uid() === this.dashboardUid);
@@ -21,11 +23,20 @@ function sortPlayerSeat() {
 	});
 }
 
-export default function ArrangeSeats(players) {
-	this.players = [];
-	for (let props of players) {
-		let player = new Player(props.uid, props.seat, props.name);
-		this.players.push(player);
+export default function ArrangeSeats(metas) {
+	this.players = new Array(metas.length);
+	for (let i = 0; i < metas.length; i++) {
+		const meta = metas[i];
+		const player = new Player(meta.uid, meta.seat, meta.name);
+		if (player.uid() === this.dashboardUid) {
+			player.handArea = new CardArea(CardArea.Type.Hand);
+		} else {
+			player.handArea = new CardPile(CardPile.Type.Hand);
+		}
+		player.equipArea = new CardArea(CardArea.Type.Equip);
+		player.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
+		player.judgeArea = new CardArea(CardArea.Type.Judge);
+		this.players[i] = player;
 	}
 
 	sortPlayerSeat.call(this);

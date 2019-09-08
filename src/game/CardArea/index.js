@@ -49,7 +49,6 @@ class CardArea extends EventEmitter {
 	/**
 	 * Remove cards into this area
 	 * @param {Card[]} cards
-	 * @return {Card[]}
 	 */
 	remove(cards) {
 		for (let card of cards) {
@@ -60,7 +59,21 @@ class CardArea extends EventEmitter {
 		}
 		this.emit('cardremoved', cards);
 		this.emit('numchanged', this._cards.length);
-		return cards;
+	}
+
+	/**
+	 * Map meta objects from server to cards in this area
+	 * @param {object[]} meta
+	 * @return {Card[]} cards
+	 */
+	map(metas) {
+		return metas.map(meta => {
+			if (typeof meta === 'number') {
+				return this._cards.find(card => card.id() === meta);
+			} else {
+				return this._cards.find(card => card.id() === meta.id);
+			}
+		});
 	}
 
 	/**
@@ -82,6 +95,14 @@ class CardArea extends EventEmitter {
 			this.add(motion.cards());
 			motion.destroy();
 		});
+	}
+
+	/**
+	 * Enable cards that matches the regular expression
+	 * @param {RegExp} regexp
+	 */
+	enableCards(regexp) {
+		this.emit('cardenabled', regexp);
 	}
 
 }

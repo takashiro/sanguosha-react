@@ -2,7 +2,7 @@
 import EventEmitter from 'events';
 
 import CardArea from '../CardArea';
-import CardPile from './CardPile';
+import CardPile from '../CardPile';
 
 import cmd from '../../protocol';
 import CommandMap from './cmd';

@@ -1,8 +1,13 @@
 
-import CardArea from '../CardArea';
-import Card from '../Card';
+import CardArea from './CardArea';
+import Card from './Card';
 
 class CardPile extends CardArea {
+
+	constructor(type) {
+		super(type);
+		this._cardNum = 0;
+	}
 
 	/**
 	 * Add ownership of cards going into this area
@@ -17,19 +22,29 @@ class CardPile extends CardArea {
 	 * @param {Card[]} cards
 	 */
 	add(cards) {
+		this._cardNum += cards.length;
 		this.emit('cardadded', cards);
-		this.emit('numchanged', this._cards.length);
+		this.emit('numchanged', this._cardNum);
 	}
 
 	/**
 	 * Remove cards into this area
-	 * @param {object[]} cards
+	 * @param {Card[]} cards
 	 * @return {Card[]}
 	 */
-	remove(metas) {
-		const cards = metas.map(meta => new Card(meta));
+	remove(cards) {
+		this._cardNum -= cards.length;
 		this.emit('cardremoved', cards);
-		return cards;
+		this.emit('numchanged', this._cardNum);
+	}
+
+	/**
+	 * Map meta objects to cards in this pile.
+	 * @param {object[]} metas
+	 * @return {Card[]}
+	 */
+	map(metas) {
+		return metas.map(meta => new Card(meta));
 	}
 
 }
@@ -37,6 +52,7 @@ class CardPile extends CardArea {
 CardPile.Type = {
 	Draw: CardArea.Type.DrawPile,
 	Discard: CardArea.Type.DiscardPile,
+	Hand: CardArea.Type.Hand,
 };
 
 export default CardPile;

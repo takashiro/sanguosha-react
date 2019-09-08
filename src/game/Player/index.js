@@ -1,7 +1,6 @@
 
 import EventEmitter from 'events';
 
-import CardArea from '../CardArea';
 import Kingdom from '../Kingdom';
 
 class Player extends EventEmitter {
@@ -19,11 +18,6 @@ class Player extends EventEmitter {
 
 		this._hp = 0;
 		this._maxHp = 0;
-
-		this.handArea = new CardArea(CardArea.Type.Hand);
-		this.equipArea = new CardArea(CardArea.Type.Equip);
-		this.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
-		this.judgeArea = new CardArea(CardArea.Type.Judge);
 
 		this._phase = 0;
 	}
