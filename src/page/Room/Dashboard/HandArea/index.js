@@ -2,16 +2,9 @@
 import React from 'react';
 
 import Card from '../../component/Card';
+import locateCenterPos from '../../../util/locateCenterPos';
 
 import './index.scss';
-
-function calcCenterPos(node) {
-	const rect = node.getBoundingClientRect();
-	return {
-		top: (rect.top + rect.bottom) / 2,
-		left: (rect.left + rect.right) / 2,
-	};
-}
 
 function onCardEnter(motion) {
 	const cards = motion.cards();
@@ -20,7 +13,7 @@ function onCardEnter(motion) {
 
 	if (cardNodes.length < cards.length) {
 		console.error('Error: Card nodes are fewer than card paths');
-		const pos = calcCenterPos(area);
+		const pos = locateCenterPos(area);
 		motion.setEndPos(pos.top, pos.left);
 
 	} else if (cards.length > 1) {
@@ -31,13 +24,13 @@ function onCardEnter(motion) {
 		for (let i = 0; i < motions.length; i++) {
 			const m = motions[i];
 			const node = cardNodes[cardNodes.length - cardNum + i];
-			const endPos = calcCenterPos(node);
+			const endPos = locateCenterPos(node);
 			m.setEndPos(endPos.top, endPos.left);
 		}
 
 	} else {
 		const finalCardNode = cardNodes[cardNodes.length - 1];
-		const pos = calcCenterPos(finalCardNode);
+		const pos = locateCenterPos(finalCardNode);
 		motion.setEndPos(pos.top, pos.left);
 	}
 }
@@ -69,6 +62,13 @@ function onCardUnselected(card) {
 	}
 }
 
+function onCardEnabled(exp) {
+	this.setState({
+		selectable: Boolean(exp),
+		cardExp: exp,
+	});
+}
+
 class HandArea extends React.Component {
 
 	constructor(props) {
@@ -81,6 +81,7 @@ class HandArea extends React.Component {
 			incomingCards: [],
 			cardNum: cards.length,
 			selectable: false,
+			cardExp: null,
 		};
 		this.node = React.createRef();
 		this.selectedCards = [];
@@ -97,11 +98,14 @@ class HandArea extends React.Component {
 		const updateCard = onCardUpdated.bind(this);
 		area.on('cardadded', updateCard);
 		area.on('cardremoved', updateCard);
+
+		area.on('cardenabled', onCardEnabled.bind(this));
 	}
 
 	render() {
 		const cards = this.state.cards;
 		const incomingCards = this.state.incomingCards;
+		const cardExp = this.state.selectable && this.state.cardExp;
 
 		const classNames = ['hand-area'];
 		if (this.state.selectable) {
@@ -113,7 +117,7 @@ class HandArea extends React.Component {
 				card => <Card
 					key={card.key()}
 					card={card}
-					selectable={this.state.selectable}
+					selectable={cardExp && cardExp.match(card)}
 					onSelected={this.onCardSelected}
 					onUnselected={this.onCardUnselected}
 				/>

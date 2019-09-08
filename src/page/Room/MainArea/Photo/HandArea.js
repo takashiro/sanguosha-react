@@ -1,11 +1,16 @@
 
 import React from 'react';
 
+import locateCenterPos from '../../../util/locateCenterPos';
+
 function onCardEnter(motion) {
-	const rect = this.node.current.parentElement.getBoundingClientRect();
-	const centerTop = (rect.top + rect.bottom) / 2;
-	const centerLeft = (rect.left + rect.right) / 2;
-	motion.setEndPos(centerTop, centerLeft);
+	const {top, left} = locateCenterPos(this.node.current.parentElement);
+	motion.setEndPos(top, left);
+}
+
+function onCardLeave(motion) {
+	const {top, left} = locateCenterPos(this.node.current.parentElement);
+	motion.setStartPos(top, left);
 }
 
 class HandArea extends React.Component {
@@ -16,12 +21,15 @@ class HandArea extends React.Component {
 		const area = props.area;
 
 		this.node = React.createRef();
-
 		this.state = {
 			num: area.size()
 		};
+	}
 
+	componentDidMount() {
+		const area = this.props.area;
 		area.on('cardenter', onCardEnter.bind(this));
+		area.on('cardleave', onCardLeave.bind(this));
 		area.on('numchanged', num => this.setState({num}));
 	}
 

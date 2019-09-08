@@ -3,13 +3,18 @@ import React from 'react';
 
 import PhotoLayout from './PhotoLayout';
 
+import locateCenterPos from '../../util/locateCenterPos';
+
 import './index.scss';
 
 function onCardLeaveDrawPile(path) {
-	const rect = this.node.current.getBoundingClientRect();
-	const left = (rect.left + rect.right) / 2;
-	const top = (rect.top + rect.bottom) / 2;
+	const {top, left} = locateCenterPos(this.node.current);
 	path.setStartPos(top, left);
+}
+
+function onCardEnterDrawPile(path) {
+	const {top, left} = locateCenterPos(this.node.current);
+	path.setEndPos(top, left);
 }
 
 class MainArea extends React.Component {
@@ -22,8 +27,14 @@ class MainArea extends React.Component {
 
 	componentDidMount() {
 		const room = this.props.room;
+
 		const drawPile = room.drawPile;
 		drawPile.on('cardleave', onCardLeaveDrawPile.bind(this));
+		drawPile.on('cardenter', onCardEnterDrawPile.bind(this));
+
+		const discardPile = room.discardPile;
+		discardPile.on('cardleave', onCardLeaveDrawPile.bind(this));
+		discardPile.on('cardenter', onCardEnterDrawPile.bind(this));
 	}
 
 	render() {
