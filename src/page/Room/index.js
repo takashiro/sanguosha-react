@@ -5,6 +5,7 @@ import './index.scss';
 
 import MainArea from './MainArea';
 import Dashboard from './Dashboard';
+import DrawPile from './DrawPile';
 import DiscardPile from './DiscardPile';
 import AnimationCanvas from './AnimationCanvas';
 
@@ -19,6 +20,7 @@ class Room extends React.Component {
 		return <div className="room">
 			<MainArea room={room} />
 			<Dashboard room={room} />
+			<DrawPile area={room.drawPile} />
 			<DiscardPile area={room.discardPile} />
 			<AnimationCanvas room={room} />
 		</div>;

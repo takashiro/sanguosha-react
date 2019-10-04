@@ -1,7 +1,7 @@
 import React from 'react';
 import MovableCard from './component/MovableCard';
 
-import './DiscardPile.scss';
+import './DrawPile.scss';
 
 function onCardEnter(motion) {
 	const { top, left } = this.node.current.getBoundingClientRect();
@@ -46,7 +46,7 @@ function cleanCards() {
 	});
 }
 
-class DiscardPile extends React.Component {
+class DrawPile extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -78,11 +78,11 @@ class DiscardPile extends React.Component {
 
 	render() {
 		const { cards } = this.state;
-		return <div ref={this.node} className="discard-pile">
+		return <div ref={this.node} className="draw-pile">
 			{cards.map(card => <MovableCard key={card.id()} card={card} />)}
 		</div>;
 	}
 
 }
 
-export default DiscardPile;
+export default DrawPile;
