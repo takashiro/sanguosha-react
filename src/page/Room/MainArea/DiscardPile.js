@@ -3,19 +3,19 @@ import MovableCard from '../component/MovableCard';
 
 import './DiscardPile.scss';
 
-function onCardEnter(motions) {
+function onCardEnter(motion) {
 	const { top, left } = this.node.current.getBoundingClientRect();
-	motions.setEndState({
+	motion.setEndState({
 		top,
 		left,
 		opacity: 1,
 	});
-	motions.moveBy({
+	motion.moveBy({
 		top: -top,
 		left: -left,
 	});
 
-	for (const card of motions.children()) {
+	for (const card of motion.cards()) {
 		card.once('destroyed', this.cleanCards);
 	}
 
@@ -23,15 +23,15 @@ function onCardEnter(motions) {
 		return {
 			cards: [
 				...prev.cards,
-				...motions.children(),
+				...motion.cards(),
 			],
 		};
 	});
 }
 
-function onCardLeave(motions) {
+function onCardLeave(motion) {
 	const { top, left } = this.node.current.getBoundingClientRect();
-	motions.setStartPos({
+	motion.setStartPos({
 		top,
 		left,
 		opacity: 0,

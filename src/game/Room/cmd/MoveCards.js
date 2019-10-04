@@ -1,6 +1,5 @@
 
-import CardMotionGroup from '../CardMotionGroup';
-import Card from '../../Card';
+import CardMotion from '../CardMotion';
 
 export default function MoveCards(move) {
 	const from = this.findArea(move.from);
@@ -12,7 +11,7 @@ export default function MoveCards(move) {
 	to.add(cards);
 
 	// Play card move animation
-	const motion = new CardMotionGroup(cards);
+	const motion = new CardMotion(cards);
 	from.sendOff(motion);
 	to.pickUp(motion);
 }

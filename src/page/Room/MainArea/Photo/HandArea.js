@@ -3,9 +3,9 @@ import React from 'react';
 
 import MovableCard from '../../component/MovableCard';
 
-function onCardLeave(motions) {
+function onCardLeave(motion) {
 	const {top, left} = this.node.current.getBoundingClientRect();
-	motions.setStartState({
+	motion.setStartState({
 		top,
 		left,
 		opacity: 0,
@@ -29,27 +29,27 @@ function cleanCards() {
 	});
 }
 
-function onCardEnter(motions) {
+function onCardEnter(motion) {
 	const {top, left} = this.node.current.getBoundingClientRect();
-	motions.setEndState({
+	motion.setEndState({
 		top,
 		left,
 		opacity: 1,
 	});
-	motions.moveBy({
+	motion.moveBy({
 		top: -top,
 		left: -left,
 	});
 
-	for (const motion of motions.children()) {
-		motion.once('destroyed', this.cleanCards);
+	for (const card of motion.cards()) {
+		card.once('destroyed', this.cleanCards);
 	}
 
 	this.setState(function (prev) {
 		return {
 			cards: [
 				...prev.cards,
-				...motions.children(),
+				...motion.cards(),
 			],
 		};
 	});

@@ -23,7 +23,7 @@ class MovableCard extends EventEmitter {
 	}
 
 	width() {
-		return 93
+		return 93;
 	}
 
 	height() {

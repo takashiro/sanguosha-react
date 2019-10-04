@@ -10,7 +10,7 @@ import MovableCard from './MovableCard';
  * @property {number} opacity
  */
 
-class CardMotionGroup extends EventEmitter {
+class CardMotion extends EventEmitter {
 
 	/**
 	 * A card motion with start state and end state
@@ -20,7 +20,7 @@ class CardMotionGroup extends EventEmitter {
 		super();
 
 
-		this._children = cards ? cards.map(card => new MovableCard(card)) : [];
+		this._cards = cards ? cards.map(card => new MovableCard(card)) : [];
 	}
 
 	/**
@@ -28,12 +28,12 @@ class CardMotionGroup extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	setStartState(state) {
-		const cardNum = this._children.length;
+		const cardNum = this._cards.length;
 		const midIndex = (cardNum - 1) / 2;
 		const offset = cardNum <= 5 ? 30 : 150 / cardNum;
 
-		this._children.forEach((child, index) => {
-			child.setStartState({
+		this._cards.forEach((card, index) => {
+			card.setStartState({
 				top: state.top,
 				left: state.left + offset * (index - midIndex),
 				opacity: state.opacity,
@@ -46,12 +46,12 @@ class CardMotionGroup extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	setEndState(state) {
-		const cardNum = this._children.length;
+		const cardNum = this._cards.length;
 		const midIndex = (cardNum - 1) / 2;
 		const offset = cardNum <= 5 ? 30 : 150 / cardNum;
 
-		this._children.forEach((child, index) => {
-			child.setEndState({
+		this._cards.forEach((card, index) => {
+			card.setEndState({
 				top: state.top,
 				left: state.left + offset * (index - midIndex),
 				opacity: state.opacity,
@@ -64,20 +64,20 @@ class CardMotionGroup extends EventEmitter {
 	 * @param {{top: number, left: number}} offset
 	 */
 	moveBy(offset) {
-		for (const child of this._children) {
-			child.moveBy(offset);
+		for (const card of this._cards) {
+			card.moveBy(offset);
 		}
 	}
 
 	/**
-	 * Returns paths for each card
-	 * @return {CardPath[]}
+	 * Returns all movable cards
+	 * @return {MovableCard[]}
 	 */
-	children() {
-		return this._children;
+	cards() {
+		return this._cards;
 	}
 
 }
 
-export default CardMotionGroup;
+export default CardMotion;
 

@@ -8,9 +8,9 @@ import locateCenterPos from '../../util/locateCenterPos';
 
 import './index.scss';
 
-function onCardLeaveDrawPile(motions) {
+function onCardLeaveDrawPile(motion) {
 	const {top, left} = locateCenterPos(this.node.current);
-	motions.setStartState({
+	motion.setStartState({
 		top,
 		left,
 		opacity: 0,

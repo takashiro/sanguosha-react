@@ -70,7 +70,7 @@ class CardArea extends EventEmitter {
 
 	/**
 	 * Sets the start point of a card motion group
-	 * @param {CardMotionGroup} motion
+	 * @param {CardMotion} motion
 	 */
 	sendOff(motion) {
 		this.emit('cardleave', motion);
@@ -78,7 +78,7 @@ class CardArea extends EventEmitter {
 
 	/**
 	 * Sets the end point of a card motion group
-	 * @param {CardMotionGroup} motion
+	 * @param {CardMotion} motion
 	 */
 	pickUp(motion) {
 		this.emit('cardenter', motion);

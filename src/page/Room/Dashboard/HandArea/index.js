@@ -5,7 +5,7 @@ import MovableCard from '../../component/MovableCard';
 
 import './index.scss';
 
-function onCardEnter(motions) {
+function onCardEnter(motion) {
 	const origin = this.node.current.getBoundingClientRect();
 	const offset = {
 		top: -origin.top,
@@ -15,7 +15,7 @@ function onCardEnter(motions) {
 	this.setState(function (prev) {
 		const cards = [
 			...prev.cards,
-			...motions.children(),
+			...motion.cards(),
 		];
 
 		for (let i = prev.cards.length; i < cards.length; i++) {
@@ -40,11 +40,11 @@ function onCardEnter(motions) {
 	});
 }
 
-function onCardLeave(motionGroup) {
+function onCardLeave(motion) {
 	const offset = this.node.current.getBoundingClientRect();
 
 	this.setState(function (prev) {
-		for (const m of motionGroup.children()) {
+		for (const m of motion.cards()) {
 			const p = prev.cards.find(p => p.equals(m));
 			m.setStartState(p.endState());
 			m.moveBy(offset);
