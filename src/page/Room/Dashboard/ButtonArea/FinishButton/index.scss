@@ -1,15 +1,19 @@
 
 .dashboard {
 	button.finish {
-		background:  url('../style/button/finish/normal.png') no-repeat;
+		background:  url('../style/button/finish/disabled.png') no-repeat;
 		width: 35px;
 		height: 75px;
 		border: 0 solid;
 		left: 67px;
 		top: 37px;
 
-		&:hover{
-			background: url('../style/button/finish/hover.png') no-repeat;
+		&.enabled {
+			background-image: url('../style/button/finish/normal.png');
+
+			&:hover {
+				background-image: url('../style/button/finish/hover.png');
+			}
 		}
 	}
 }

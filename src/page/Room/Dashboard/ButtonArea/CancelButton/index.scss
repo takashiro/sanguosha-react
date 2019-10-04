@@ -2,15 +2,19 @@
 
 .dashboard {
 	button.cancel {
-		background: url('../style/button/cancel/normal.png') no-repeat;
+		background: url('../style/button/cancel/disabled.png') no-repeat;
 		width: 70px;
 		height: 69px;
 		border: 0 solid;
 		left: 6px;
 		top: 79px;
 
-		&:hover{
-			background: url('../style/button/cancel/hover.png') no-repeat;
+		&.enabled {
+			background-image: url('../style/button/cancel/normal.png');
+
+			&:hover {
+				background-image: url('../style/button/cancel/hover.png');
+			}
 		}
 	}
 }

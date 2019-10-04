@@ -2,7 +2,7 @@
 
 import cmd from '../../protocol';
 
-export default function chooseGeneral(option) {
+export default function ChooseGeneral(option) {
 	const num = parseInt(option.num, 10) || 1;
 	//const sameKingdom = !!option.sameKingdom;
 	const generals = option.generals || [];

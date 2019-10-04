@@ -14,6 +14,7 @@ class CardArea extends EventEmitter {
 
 		this._type = type;
 		this._cards = [];
+		this._enabled = false;
 	}
 
 	type() {
@@ -85,11 +86,23 @@ class CardArea extends EventEmitter {
 	}
 
 	/**
-	 * Enable cards that matches the regular expression
-	 * @param {RegExp} regexp
+	 * Returns whether the area is enabled.
+	 * @return {boolean}
 	 */
-	enableCards(regexp) {
-		this.emit('cardenabled', regexp);
+	isEnabled() {
+		return this._enabled;
+	}
+
+	/**
+	 * Enable or disable the area
+	 */
+	setEnabled(enabled) {
+		if (this._enabled === enabled) {
+			return;
+		}
+
+		this._enabled = enabled;
+		this.emit('enabledchanged', enabled);
 	}
 
 }

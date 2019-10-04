@@ -1,11 +1,29 @@
 
 .hand-area {
+	position: relative;
+
+	.movable > .wrapper > .card {
+		position: relative;
+		top: 0;
+		left: 0;
+		transition: top 280ms ease-in-out, opacity 280ms ease-in-out;
+	}
+
 	&.selectable {
-		.card {
-			opacity: 0.6;
+		.movable > .wrapper {
+			> .card {
+				opacity: 0.6;
+			}
+
+			&.selectable > .card {
+				opacity: 1;
+			}
+
+			&.selected > .card {
+				top: -20px;
+			}
 		}
 	}
-	position: relative;
 
 	.card-num {
 		position: absolute;

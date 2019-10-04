@@ -1,15 +1,13 @@
+const cmd = {
+	Invalid: 0,
 
-import Enum from './game/Enum';
-
-const cmd = new Enum(
-	'Invalid',
-
-	'StartGame',
-	'ArrangeSeats',
-	'ChooseGeneral',
-	'UpdatePlayer',
-	'ToBattle',
-	'MoveCards',
-);
+	StartGame: 1,
+	ArrangeSeats: 2,
+	ChooseGeneral: 3,
+	UpdatePlayer: 4,
+	ToBattle: 5,
+	MoveCards: 6,
+	ChooseCards: 7,
+};
 
 export default cmd;

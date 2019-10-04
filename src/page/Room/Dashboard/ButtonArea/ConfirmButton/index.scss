@@ -1,15 +1,19 @@
 
 .dashboard {
-	button.confirm{
-		background: url('../style/button/confirm/normal.png') no-repeat;
+	button.confirm {
+		background: url('../style/button/confirm/disabled.png') no-repeat;
 		width: 70px;
 		height: 70px;
 		border: 0 solid;
 		left: 6px;
 		top: 3px;
 
-		&:hover{
-			background: url('../style/button/confirm/hover.png') no-repeat;
+		&.enabled {
+			background-image: url('../style/button/confirm/normal.png');
+
+			&:hover {
+				background-image: url('../style/button/confirm/hover.png');
+			}
 		}
 	}
 }

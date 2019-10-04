@@ -28,6 +28,7 @@ export default function ArrangeSeats(metas) {
 	for (let i = 0; i < metas.length; i++) {
 		const meta = metas[i];
 		const player = new Player(meta.uid, meta.seat, meta.name);
+		this.players[i] = player;
 		if (player.uid() === this.dashboardUid) {
 			player.handArea = new CardArea(CardArea.Type.Hand);
 		} else {
@@ -36,7 +37,9 @@ export default function ArrangeSeats(metas) {
 		player.equipArea = new CardArea(CardArea.Type.Equip);
 		player.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
 		player.judgeArea = new CardArea(CardArea.Type.Judge);
-		this.players[i] = player;
+		player.on('phaseChanged', function () {
+			player.handArea.setEnabled(false);
+		});
 	}
 
 	sortPlayerSeat.call(this);
