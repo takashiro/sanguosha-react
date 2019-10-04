@@ -15,26 +15,31 @@ class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const room = this.props.room;
+		const { dashboard } = this.props;
 		this.state = {
-			player: room.dashboardPlayer()
+			player: dashboard.player(),
 		};
-		room.on('playerChanged', () => {
-			this.setState({player: room.dashboardPlayer()});
+		dashboard.on('playerChanged', () => {
+			this.setState({player: dashboard.player()});
 		});
 	}
 
 	render() {
-		const player = this.state.player;
+		const { player } = this.state;
 		if (!player) {
 			return null;
 		}
 
+		const { dashboard } = this.props;
+
 		return <div className="dashboard">
 			<PhaseBar player={player} />
 			<EquipArea />
-			<HandArea area={player.handArea} />
-			<ButtonArea player={player} />
+			<HandArea
+				area={player.handArea}
+				onSelectionChanged={cards => dashboard.setSelectedCards(cards)}
+			/>
+			<ButtonArea dashboard={dashboard} />
 			<AvatarArea player={player} />
 			<HpArea player={player} />
 		</div>;

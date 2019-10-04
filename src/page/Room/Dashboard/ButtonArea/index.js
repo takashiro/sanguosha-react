@@ -10,7 +10,7 @@ import CancelButton from './CancelButton';
 import FinishButton from './FinishButton';
 import Phase from '../../../../game/Player/Phase';
 
-function onHandAreaEnabled(enabled) {
+function onDashboardEnabled(enabled) {
 	this.setState({ enabled });
 }
 
@@ -23,24 +23,23 @@ class ButtonArea extends React.Component {
 			enabled: false,
 		};
 
-		this.onHandAreaEnabled = onHandAreaEnabled.bind(this);
+		this.onDashboardEnabled = onDashboardEnabled.bind(this);
 	}
 
 	componentDidMount() {
-		const { player } = this.props;
-		const { handArea } = player;
-		handArea.on('enabledchanged', this.onHandAreaEnabled);
+		const { dashboard } = this.props;
+		dashboard.on('enabledchanged', this.onDashboardEnabled);
 	}
 
 	componentWillUnmount() {
-		const { player } = this.props;
-		const { handArea } = player;
-		handArea.off('enabledchanged', this.onHandAreaEnabled);
+		const { dashboard } = this.props;
+		dashboard.off('enabledchanged', this.onDashboardEnabled);
 	}
 
 	render() {
-		const { player } = this.props;
+		const { dashboard } = this.props;
 		const { enabled } = this.state;
+		const player = dashboard.player();
 
 		return <div className="button-area">
 			<KingdomIcon />

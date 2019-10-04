@@ -78,11 +78,16 @@ function repositionCards(cards) {
 }
 
 function onCardEnabled(enabled) {
+	const { onSelectionChanged } = this.props;
+
 	this.setState(function (prev) {
 		const { cards } = prev;
 		if (!enabled) {
 			for (const card of cards) {
 				card.setSelected(false);
+			}
+			if (onSelectionChanged) {
+				onSelectionChanged([]);
 			}
 		}
 		return {
@@ -90,6 +95,17 @@ function onCardEnabled(enabled) {
 			cards,
 		};
 	});
+}
+
+function onCardClicked() {
+	const { onSelectionChanged } = this.props;
+	if (onSelectionChanged) {
+		const { cards } = this.state;
+		const selectedCards = cards
+			.filter(card => card.isSelected())
+			.map(card => card.instance());
+		onSelectionChanged(selectedCards);
+	}
 }
 
 class HandArea extends React.Component {
@@ -107,6 +123,7 @@ class HandArea extends React.Component {
 		this.onCardEnter = onCardEnter.bind(this);
 		this.onCardLeave = onCardLeave.bind(this);
 		this.onCardEnabled = onCardEnabled.bind(this);
+		this.onCardClicked = onCardClicked.bind(this);
 	}
 
 	componentDidMount() {
@@ -141,6 +158,7 @@ class HandArea extends React.Component {
 					key={card.id()}
 					card={card}
 					selectable={selectable}
+					onClick={this.onCardClicked}
 				/>
 			)}
 		</div>;

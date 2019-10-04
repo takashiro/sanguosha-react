@@ -9,4 +9,5 @@ export default function ChooseCards(options) {
 	}
 
 	area.setEnabled(true);
+	this.dashboard.setEnabled(true);
 }

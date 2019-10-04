@@ -19,7 +19,7 @@ class Room extends React.Component {
 		const room = this.props.room;
 		return <div className="room">
 			<MainArea room={room} />
-			<Dashboard room={room} />
+			<Dashboard dashboard={room.dashboard} />
 			<DrawPile area={room.drawPile} />
 			<DiscardPile area={room.discardPile} />
 			<AnimationCanvas room={room} />

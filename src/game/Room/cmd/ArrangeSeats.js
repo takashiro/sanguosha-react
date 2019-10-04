@@ -37,11 +37,12 @@ export default function ArrangeSeats(metas) {
 		player.equipArea = new CardArea(CardArea.Type.Equip);
 		player.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
 		player.judgeArea = new CardArea(CardArea.Type.Judge);
-		player.on('phaseChanged', function () {
-			player.handArea.setEnabled(false);
-		});
 	}
 
 	sortPlayerSeat.call(this);
+
+	const me = this.dashboardPlayer();
+	this.dashboard.setPlayer(me);
+
 	this.emit('playerChanged', this.players);
 }
