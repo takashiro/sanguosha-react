@@ -107,6 +107,13 @@
 			text-align: center;
 			font-size: 12px;
 		}
+
+		.movable {
+			transform: translate(-50%, -50%);
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 	}
 
 	&.shu {

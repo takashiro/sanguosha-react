@@ -1,53 +1,74 @@
 
 import EventEmitter from 'events';
 
+let serial = 1;
+
 class CardMotion extends EventEmitter {
 
 	/**
-	 * A card move with start and end point
+	 * A card move with start and end states
 	 * @param {Card} card
 	 */
 	constructor(card) {
 		super();
 
+		this._id = serial++;
 		this._card = card;
-		this._startPos = null;
-		this._endPos = null;
-		this._finished = false;
+		this._startState = null;
+		this._endState = null;
+	}
+
+	id() {
+		return this._id;
 	}
 
 	/**
-	 * The start point
-	 * @return {{top: number, left: number}}
+	 * The start state
+	 * @return {MotionState}
 	 */
-	startPos() {
-		return this._startPos;
+	startState() {
+		return this._startState;
 	}
 
 	/**
 	 * Sets the start point
-	 * @param {number} top
-	 * @param {number} left
+	 * @param {MotionState} state
 	 */
-	setStartPos(top, left) {
-		this._startPos = {top, left};
+	setStartState(state) {
+		this._startState = {
+			opacity: 1,
+			...state,
+		};
 	}
 
 	/**
 	 * The end point
-	 * @return {{top: number, left: number}}
+	 * @return {MotionState}
 	 */
-	endPos() {
-		return this._endPos;
+	endState() {
+		return this._endState;
 	}
 
 	/**
 	 * Sets the end point
-	 * @param {number} top
-	 * @param {number} left
+	 * @param {MotionState} state
 	 */
-	setEndPos(top, left) {
-		this._endPos = {top, left};
+	setEndState(state) {
+		this._endState = {
+			opacity: 1,
+			...state,
+		};
+	}
+
+	/**
+	 * Move start state and end state by an offset
+	 * @param {{top: number, left: number}} offset
+	 */
+	moveBy(offset) {
+		this._startState.top += offset.top;
+		this._startState.left += offset.left;
+		this._endState.top += offset.top;
+		this._endState.left += offset.left;
 	}
 
 	/**
@@ -56,23 +77,6 @@ class CardMotion extends EventEmitter {
 	 */
 	card() {
 		return this._card;
-	}
-
-	/**
-	 * Check if the motion is finished.
-	 * @return {boolean}
-	 */
-	isFinished() {
-		return this._finished;
-	}
-
-	/**
-	 * Sets the motion as finished.
-	 * @param {boolean} finished
-	 */
-	setFinished(finished) {
-		this._finished = finished;
-		this.emit('finished');
 	}
 
 	/**
@@ -91,8 +95,8 @@ class CardMotion extends EventEmitter {
 			return;
 		}
 
-		this._startPos = null;
-		this._endPos = null;
+		this._startState = null;
+		this._endState = null;
 		this._card = null;
 		this.emit('destroyed');
 	}
@@ -100,3 +104,10 @@ class CardMotion extends EventEmitter {
 }
 
 export default CardMotion;
+
+/**
+ * @typedef MotionState
+ * @property {number} top
+ * @property {number} left
+ * @property {number} opacity
+ */

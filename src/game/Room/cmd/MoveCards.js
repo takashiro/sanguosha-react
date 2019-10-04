@@ -9,11 +9,10 @@ export default function MoveCards(move) {
 	// Move cards at back-end
 	const cards = from.map(move.cards || new Array(move.cardNum).fill(null));
 	from.remove(cards);
-	to.own(cards);
+	to.add(cards);
 
 	// Play card move animation
 	const motion = new CardMotionGroup(cards);
 	from.sendOff(motion);
 	to.pickUp(motion);
-	this.emit('cardmove', motion);
 }

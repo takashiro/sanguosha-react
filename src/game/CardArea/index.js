@@ -29,14 +29,6 @@ class CardArea extends EventEmitter {
 	}
 
 	/**
-	 * Add ownership of cards going into this area
-	 * @param {Card[]} cards
-	 */
-	own(cards) {
-		this.emit('cardowned', cards);
-	}
-
-	/**
 	 * Add cards into this area
 	 * @param {Card[]} cards
 	 */
@@ -90,11 +82,6 @@ class CardArea extends EventEmitter {
 	 */
 	pickUp(motion) {
 		this.emit('cardenter', motion);
-		motion.prepare();
-		motion.finished().then(() => {
-			this.add(motion.cards());
-			motion.destroy();
-		});
 	}
 
 	/**

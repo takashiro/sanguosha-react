@@ -7,14 +7,22 @@ import locateCenterPos from '../../util/locateCenterPos';
 
 import './index.scss';
 
-function onCardLeaveDrawPile(path) {
+function onCardLeaveDrawPile(motions) {
 	const {top, left} = locateCenterPos(this.node.current);
-	path.setStartPos(top, left);
+	motions.setStartState({
+		top,
+		left,
+		opacity: 0,
+	});
 }
 
 function onCardEnterDrawPile(path) {
 	const {top, left} = locateCenterPos(this.node.current);
-	path.setEndPos(top, left);
+	path.setEndState({
+		top,
+		left,
+		opacity: 1,
+	});
 }
 
 class MainArea extends React.Component {

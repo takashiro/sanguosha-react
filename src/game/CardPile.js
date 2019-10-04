@@ -10,11 +10,11 @@ class CardPile extends CardArea {
 	}
 
 	/**
-	 * Add ownership of cards going into this area
-	 * @param {Card[]} cards
+	 * Gets the number of cards
+	 * @return {number}
 	 */
-	own(cards) {
-		this.emit('cardowned', cards);
+	size() {
+		return this._cardNum;
 	}
 
 	/**
