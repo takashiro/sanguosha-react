@@ -84,6 +84,20 @@ class MovableCard extends EventEmitter {
 	}
 
 	/**
+	 * Move the card into a new state
+	 * @param {MotionState} state
+	 */
+	goTo(state) {
+		this._startState = this._endState;
+		this._endState = {
+			...this._endState,
+			...state,
+		};
+
+		this.emit('move');
+	}
+
+	/**
 	 * Returns the first card.
 	 * @return {Card}
 	 */

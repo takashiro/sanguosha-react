@@ -20,7 +20,6 @@ class Movable extends React.Component {
 			top: from.top,
 			left: from.left,
 			opacity: from.opacity || 0,
-			visible: false,
 		};
 
 		this.onEnd = onEnd.bind(this);
@@ -33,6 +32,18 @@ class Movable extends React.Component {
 		}
 
 		this.timer = setTimeout(() => {
+			this.setState({
+				top: to.top,
+				left: to.left,
+				opacity: to.opacity,
+			});
+		}, 100);
+	}
+
+	componentDidUpdate() {
+		clearTimeout(this.timer);
+		this.timer = setTimeout(() => {
+			const { to } = this.props;
 			this.setState({
 				top: to.top,
 				left: to.left,

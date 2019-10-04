@@ -61,6 +61,17 @@ function onCardLeave(motion) {
 			cardNum: cards.length,
 			cards,
 		};
+	}, () => {
+		const { cards } = this.state;
+		repositionCards(cards);
+	});
+}
+
+function repositionCards(cards) {
+	cards.forEach(function (card, i) {
+		card.goTo({
+			left: i * (card.width() + 5),
+		});
 	});
 }
 
