@@ -28,12 +28,12 @@ class ButtonArea extends React.Component {
 
 	componentDidMount() {
 		const { dashboard } = this.props;
-		dashboard.on('enabledchanged', this.onDashboardEnabled);
+		dashboard.on('enabledChanged', this.onDashboardEnabled);
 	}
 
 	componentWillUnmount() {
 		const { dashboard } = this.props;
-		dashboard.off('enabledchanged', this.onDashboardEnabled);
+		dashboard.off('enabledChanged', this.onDashboardEnabled);
 	}
 
 	render() {

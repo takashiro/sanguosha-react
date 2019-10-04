@@ -3,7 +3,7 @@ import MovableCard from './component/MovableCard';
 
 import './DrawPile.scss';
 
-function onCardEnter(motion) {
+function onCardEntering(motion) {
 	const { top, left } = this.node.current.getBoundingClientRect();
 	motion.setEndState({
 		top,
@@ -29,7 +29,7 @@ function onCardEnter(motion) {
 	});
 }
 
-function onCardLeave(motion) {
+function onCardLeaving(motion) {
 	const { top, left } = this.node.current.getBoundingClientRect();
 	motion.setStartState({
 		top,
@@ -58,22 +58,22 @@ class DrawPile extends React.Component {
 		this.node = React.createRef();
 
 		this.cleanCards = cleanCards.bind(this);
-		this.onCardEnter = onCardEnter.bind(this);
-		this.onCardLeave = onCardLeave.bind(this);
+		this.onCardEntering = onCardEntering.bind(this);
+		this.onCardLeaving = onCardLeaving.bind(this);
 	}
 
 	componentDidMount() {
 		const { area } = this.props;
 
-		area.on('cardleave', this.onCardLeave);
-		area.on('cardenter', this.onCardEnter);
+		area.on('cardLeaving', this.onCardLeaving);
+		area.on('cardEntering', this.onCardEntering);
 	}
 
 	componentWillUnmount() {
 		const { area } = this.props;
 
-		area.off('cardleave', this.onCardLeave);
-		area.off('cardenter', this.onCardEnter);
+		area.off('cardLeaving', this.onCardLeaving);
+		area.off('cardEntering', this.onCardEntering);
 	}
 
 	render() {

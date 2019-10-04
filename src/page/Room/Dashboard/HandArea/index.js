@@ -13,7 +13,7 @@ function getCardPos(index, cardWidth) {
 	};
 }
 
-function onCardEnter(motion) {
+function onCardEntering(motion) {
 	const origin = this.node.current.getBoundingClientRect();
 	const offset = {
 		top: -origin.top,
@@ -44,7 +44,7 @@ function onCardEnter(motion) {
 	});
 }
 
-function onCardLeave(motion) {
+function onCardLeaving(motion) {
 	const offset = this.node.current.getBoundingClientRect();
 
 	this.setState(function (prev) {
@@ -120,8 +120,8 @@ class HandArea extends React.Component {
 		};
 		this.node = React.createRef();
 
-		this.onCardEnter = onCardEnter.bind(this);
-		this.onCardLeave = onCardLeave.bind(this);
+		this.onCardEntering = onCardEntering.bind(this);
+		this.onCardLeaving = onCardLeaving.bind(this);
 		this.onCardEnabled = onCardEnabled.bind(this);
 		this.onCardClicked = onCardClicked.bind(this);
 	}
@@ -129,17 +129,17 @@ class HandArea extends React.Component {
 	componentDidMount() {
 		const { area } = this.props;
 
-		area.on('cardenter', this.onCardEnter);
-		area.on('cardleave', this.onCardLeave);
-		area.on('enabledchanged', this.onCardEnabled);
+		area.on('cardEntering', this.onCardEntering);
+		area.on('cardLeaving', this.onCardLeaving);
+		area.on('enabledChanged', this.onCardEnabled);
 	}
 
 	componentWillUnmount() {
 		const { area } = this.props;
 
-		area.off('cardenter', this.onCardEnter);
-		area.off('cardleave', this.onCardLeave);
-		area.off('enabledchanged', this.onCardEnabled);
+		area.off('cardEntering', this.onCardEntering);
+		area.off('cardLeaving', this.onCardLeaving);
+		area.off('enabledChanged', this.onCardEnabled);
 	}
 
 	render() {

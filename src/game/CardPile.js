@@ -23,8 +23,8 @@ class CardPile extends CardArea {
 	 */
 	add(cards) {
 		this._cardNum += cards.length;
-		this.emit('cardadded', cards);
-		this.emit('numchanged', this._cardNum);
+		this.emit('cardAdded', cards);
+		this.emit('numChanged', this._cardNum);
 	}
 
 	/**
@@ -34,8 +34,8 @@ class CardPile extends CardArea {
 	 */
 	remove(cards) {
 		this._cardNum -= cards.length;
-		this.emit('cardremoved', cards);
-		this.emit('numchanged', this._cardNum);
+		this.emit('cardRemoved', cards);
+		this.emit('numChanged', this._cardNum);
 	}
 
 	/**

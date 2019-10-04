@@ -35,8 +35,8 @@ class CardArea extends EventEmitter {
 	 */
 	add(cards) {
 		this._cards.push(...cards);
-		this.emit('cardadded', cards);
-		this.emit('numchanged', this._cards.length);
+		this.emit('cardAdded', cards);
+		this.emit('numChanged', this._cards.length);
 	}
 
 	/**
@@ -50,8 +50,8 @@ class CardArea extends EventEmitter {
 				this._cards.splice(pos, 1);
 			}
 		}
-		this.emit('cardremoved', cards);
-		this.emit('numchanged', this._cards.length);
+		this.emit('cardRemoved', cards);
+		this.emit('numChanged', this._cards.length);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class CardArea extends EventEmitter {
 	 * @param {CardMotion} motion
 	 */
 	sendOff(motion) {
-		this.emit('cardleave', motion);
+		this.emit('cardLeaving', motion);
 	}
 
 	/**
@@ -82,7 +82,7 @@ class CardArea extends EventEmitter {
 	 * @param {CardMotion} motion
 	 */
 	pickUp(motion) {
-		this.emit('cardenter', motion);
+		this.emit('cardEntering', motion);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class CardArea extends EventEmitter {
 		}
 
 		this._enabled = enabled;
-		this.emit('enabledchanged', enabled);
+		this.emit('enabledChanged', enabled);
 	}
 
 }

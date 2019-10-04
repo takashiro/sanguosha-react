@@ -3,7 +3,7 @@ import React from 'react';
 
 import MovableCard from '../../component/MovableCard';
 
-function onCardLeave(motion) {
+function onCardLeaving(motion) {
 	const {top, left} = this.node.current.getBoundingClientRect();
 	motion.setStartState({
 		top,
@@ -29,7 +29,7 @@ function cleanCards() {
 	});
 }
 
-function onCardEnter(motion) {
+function onCardEntering(motion) {
 	const {top, left} = this.node.current.getBoundingClientRect();
 	motion.setEndState({
 		top,
@@ -68,23 +68,23 @@ class HandArea extends React.Component {
 			cards: [],
 		};
 
-		this.onCardEnter = onCardEnter.bind(this);
-		this.onCardLeave = onCardLeave.bind(this);
+		this.onCardEntering = onCardEntering.bind(this);
+		this.onCardLeaving = onCardLeaving.bind(this);
 		this.cleanCards = cleanCards.bind(this);
 	}
 
 	componentDidMount() {
 		const { area } = this.props;
 
-		area.on('cardenter', this.onCardEnter);
-		area.on('cardleave', this.onCardLeave);
+		area.on('cardEntering', this.onCardEntering);
+		area.on('cardLeaving', this.onCardLeaving);
 	}
 
 	componentWillUnmount() {
 		const { area } = this.props;
 
-		area.off('cardenter', this.onCardEnter);
-		area.off('cardleave', this.onCardLeave);
+		area.off('cardEntering', this.onCardEntering);
+		area.off('cardLeaving', this.onCardLeaving);
 	}
 
 	render() {
