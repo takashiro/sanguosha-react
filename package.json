@@ -5,10 +5,8 @@
   "main": "src/index.js",
   "dependencies": {
     "@karuta/client": "^0.1.0",
-    "events": "^3.0.0",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-transition-group": "^4.2.2"
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
