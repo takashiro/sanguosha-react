@@ -22,6 +22,14 @@ class CardMotion extends EventEmitter {
 		return this._id;
 	}
 
+	width() {
+		return 93
+	}
+
+	height() {
+		return 130;
+	}
+
 	/**
 	 * The start state
 	 * @return {MotionState}
@@ -65,10 +73,14 @@ class CardMotion extends EventEmitter {
 	 * @param {{top: number, left: number}} offset
 	 */
 	moveBy(offset) {
-		this._startState.top += offset.top;
-		this._startState.left += offset.left;
-		this._endState.top += offset.top;
-		this._endState.left += offset.left;
+		if (this._startState) {
+			this._startState.top += offset.top;
+			this._startState.left += offset.left;
+		}
+		if (this._endState) {
+			this._endState.top += offset.top;
+			this._endState.left += offset.left;
+		}
 	}
 
 	/**

@@ -1,71 +1,67 @@
 
 import React from 'react';
 
-import Card from '../../component/Card';
-import locateCenterPos from '../../../util/locateCenterPos';
+import MovableCard from '../../component/MovableCard';
 
 import './index.scss';
 
-function onCardEnter(motion) {
-	const cards = motion.cards();
-	const area = this.node.current;
-	const cardNodes = area.children;
+function onCardEnter(motions) {
+	const origin = this.node.current.getBoundingClientRect();
+	const offset = {
+		top: -origin.top,
+		left: -origin.left,
+	};
 
-	if (cardNodes.length < cards.length) {
-		console.error('Error: Card nodes are fewer than card paths');
-		const pos = locateCenterPos(area);
-		motion.setEndPos(pos.top, pos.left);
+	this.setState(function (prev) {
+		const cards = [
+			...prev.cards,
+			...motions.children(),
+		];
 
-	} else if (cards.length > 1) {
-		const cardNum = cards.length;
-
-		motion.prepare();
-		const motions = motion.children();
-		for (let i = 0; i < motions.length; i++) {
-			const m = motions[i];
-			const node = cardNodes[cardNodes.length - cardNum + i];
-			const endPos = locateCenterPos(node);
-			m.setEndPos(endPos.top, endPos.left);
+		for (let i = prev.cards.length; i < cards.length; i++) {
+			const m = cards[i];
+			m.moveBy(offset);
+			m.moveBy({
+				top: -m.width() / 2,
+				left: -m.height() / 2,
+			});
+			m.setEndState({
+				top: 10,
+				left: i * (m.width() + 5),
+				opacity: 1,
+			});
 		}
 
-	} else {
-		const finalCardNode = cardNodes[cardNodes.length - 1];
-		const pos = locateCenterPos(finalCardNode);
-		motion.setEndPos(pos.top, pos.left);
-	}
+		const cardNum = cards.length;
+		return {
+			cardNum,
+			cards,
+		};
+	});
 }
 
-function onCardOwned(cards) {
+function onCardLeave(motionGroup) {
+	const offset = this.node.current.getBoundingClientRect();
+
 	this.setState(function (prev) {
-		const incomingCards = prev.incomingCards;
-		incomingCards.push(...cards);
-		return {incomingCards};
-	});
-}
+		for (const m of motionGroup.children()) {
+			const card = m.card();
+			const p = prev.cards.find(m => m.card() === card);
+			m.setStartState(p.endState());
+			m.moveBy(offset);
+			m.moveBy({
+				top: m.width() / 2,
+				left: m.height() / 2,
+			});
 
-function onCardUpdated() {
-	const cards = this.props.area.cards();
-	this.setState({
-		cards: [...cards],
-		incomingCards: [],
-	});
-}
+			p.destroy();
+		}
 
-function onCardSelected(card) {
-	this.selectedCards.push(card);
-}
-
-function onCardUnselected(card) {
-	const index = this.selectedCards.indexOf(card);
-	if (index >= 0) {
-		this.selectedCards.splice(index, 1);
-	}
-}
-
-function onCardEnabled(exp) {
-	this.setState({
-		selectable: Boolean(exp),
-		cardExp: exp,
+		const cards = prev.cards.filter(card => card.isValid());
+		return {
+			cardNum: cards.length,
+			cards,
+		};
 	});
 }
 
@@ -74,38 +70,34 @@ class HandArea extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const area = props.area;
-		const cards = area.cards();
 		this.state = {
-			cards: [...cards],
-			incomingCards: [],
-			cardNum: cards.length,
+			cards: [],
+			cardNum: 0,
 			selectable: false,
 			cardExp: null,
 		};
 		this.node = React.createRef();
-		this.selectedCards = [];
 
-		this.onCardSelected = onCardSelected.bind(this);
-		this.onCardUnselected = onCardUnselected.bind(this);
+		this.onCardEnter = onCardEnter.bind(this);
+		this.onCardLeave = onCardLeave.bind(this);
 	}
 
 	componentDidMount() {
-		const area = this.props.area;
-		area.on('cardenter', onCardEnter.bind(this));
-		area.on('cardowned', onCardOwned.bind(this));
+		const { area } = this.props;
 
-		const updateCard = onCardUpdated.bind(this);
-		area.on('cardadded', updateCard);
-		area.on('cardremoved', updateCard);
+		area.on('cardenter', this.onCardEnter);
+		area.on('cardleave', this.onCardLeave);
+	}
 
-		area.on('cardenabled', onCardEnabled.bind(this));
+	componentWillUnmount() {
+		const { area } = this.props;
+
+		area.off('cardenter', this.onCardEnter);
+		area.off('cardleave', this.onCardLeave);
 	}
 
 	render() {
-		const cards = this.state.cards;
-		const incomingCards = this.state.incomingCards;
-		const cardExp = this.state.selectable && this.state.cardExp;
+		const { cards } = this.state;
 
 		const classNames = ['hand-area'];
 		if (this.state.selectable) {
@@ -114,19 +106,10 @@ class HandArea extends React.Component {
 
 		return <div className={classNames.join(' ')} ref={this.node}>
 			{cards.map(
-				card => <Card
-					key={card.key()}
-					card={card}
-					selectable={cardExp && cardExp.match(card)}
-					onSelected={this.onCardSelected}
-					onUnselected={this.onCardUnselected}
-				/>
-			)}
-			{incomingCards.map(
-				card => <Card
-					key={card.key()}
-					card={card}
-					visibility="hidden"
+				motion => <MovableCard
+					permanent={true}
+					key={motion.id()}
+					motion={motion}
 				/>
 			)}
 		</div>;
