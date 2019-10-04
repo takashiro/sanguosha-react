@@ -5,6 +5,14 @@ import MovableCard from '../../component/MovableCard';
 
 import './index.scss';
 
+function getCardPos(index, cardWidth) {
+	return {
+		top: 10,
+		left: 20 + index * (cardWidth + 5),
+		opacity: 1,
+	};
+}
+
 function onCardEnter(motion) {
 	const origin = this.node.current.getBoundingClientRect();
 	const offset = {
@@ -25,11 +33,7 @@ function onCardEnter(motion) {
 				top: -m.width() / 2,
 				left: -m.height() / 2,
 			});
-			m.setEndState({
-				top: 10,
-				left: i * (m.width() + 5),
-				opacity: 1,
-			});
+			m.setEndState(getCardPos(i, m.width()));
 		}
 
 		const cardNum = cards.length;
@@ -69,9 +73,7 @@ function onCardLeave(motion) {
 
 function repositionCards(cards) {
 	cards.forEach(function (card, i) {
-		card.goTo({
-			left: i * (card.width() + 5),
-		});
+		card.goTo(getCardPos(i, card.width()));
 	});
 }
 
