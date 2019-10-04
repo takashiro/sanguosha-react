@@ -1,7 +1,7 @@
 
 
 import EventEmitter from 'events';
-import CardMotion from './CardMotion';
+import MovableCard from './MovableCard';
 
 /**
  * @typedef MotionState
@@ -20,7 +20,7 @@ class CardMotionGroup extends EventEmitter {
 		super();
 
 
-		this._children = cards ? cards.map(card => new CardMotion(card)) : [];
+		this._children = cards ? cards.map(card => new MovableCard(card)) : [];
 	}
 
 	/**

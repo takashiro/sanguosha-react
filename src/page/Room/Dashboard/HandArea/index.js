@@ -45,8 +45,7 @@ function onCardLeave(motionGroup) {
 
 	this.setState(function (prev) {
 		for (const m of motionGroup.children()) {
-			const card = m.card();
-			const p = prev.cards.find(m => m.card() === card);
+			const p = prev.cards.find(p => p.equals(m));
 			m.setStartState(p.endState());
 			m.moveBy(offset);
 			m.moveBy({
@@ -106,10 +105,10 @@ class HandArea extends React.Component {
 
 		return <div className={classNames.join(' ')} ref={this.node}>
 			{cards.map(
-				motion => <MovableCard
+				card => <MovableCard
 					permanent={true}
-					key={motion.id()}
-					motion={motion}
+					key={card.id()}
+					card={card}
 				/>
 			)}
 		</div>;

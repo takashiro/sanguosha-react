@@ -15,14 +15,14 @@ function onCardEnter(motions) {
 		left: -left,
 	});
 
-	for (const motion of motions.children()) {
-		motion.once('destroyed', this.cleanCardMotions);
+	for (const card of motions.children()) {
+		card.once('destroyed', this.cleanCards);
 	}
 
 	this.setState(function (prev) {
 		return {
-			motions: [
-				...prev.motions,
+			cards: [
+				...prev.cards,
 				...motions.children(),
 			],
 		};
@@ -38,10 +38,10 @@ function onCardLeave(motions) {
 	});
 }
 
-function cleanCardMotions() {
+function cleanCards() {
 	this.setState(function (prev) {
 		return {
-			motions: prev.motions.filter(motion => motion.isValid()),
+			cards: prev.cards.filter(card => card.isValid()),
 		};
 	});
 }
@@ -52,12 +52,12 @@ class DiscardPile extends React.Component {
 		super(props);
 
 		this.state = {
-			motions: [],
+			cards: [],
 		};
 
 		this.node = React.createRef();
 
-		this.cleanCardMotions = cleanCardMotions.bind(this);
+		this.cleanCards = cleanCards.bind(this);
 		this.onCardEnter = onCardEnter.bind(this);
 		this.onCardLeave = onCardLeave.bind(this);
 	}
@@ -77,9 +77,9 @@ class DiscardPile extends React.Component {
 	}
 
 	render() {
-		const { motions } = this.state;
+		const { cards } = this.state;
 		return <div ref={this.node} className="discard-pile">
-			{motions.map(motion => <MovableCard key={motion.id()} motion={motion} />)}
+			{cards.map(card => <MovableCard key={card.id()} card={card} />)}
 		</div>;
 	}
 

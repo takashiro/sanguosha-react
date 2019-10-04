@@ -17,14 +17,14 @@ function onCardLeave(motions) {
 	});
 }
 
-function cleanCardMotions() {
+function cleanCards() {
 	const { area } = this.props;
 	this.setState(function (prev) {
-		const { motions } = prev;
+		const { cards } = prev;
 		const num = area.size();
 		return {
 			num,
-			motions: motions.filter(motion => motion.isValid()),
+			cards: cards.filter(motion => motion.isValid()),
 		};
 	});
 }
@@ -42,13 +42,13 @@ function onCardEnter(motions) {
 	});
 
 	for (const motion of motions.children()) {
-		motion.once('destroyed', this.cleanCardMotions);
+		motion.once('destroyed', this.cleanCards);
 	}
 
 	this.setState(function (prev) {
 		return {
-			motions: [
-				...prev.motions,
+			cards: [
+				...prev.cards,
 				...motions.children(),
 			],
 		};
@@ -65,12 +65,12 @@ class HandArea extends React.Component {
 		this.node = React.createRef();
 		this.state = {
 			num: area.size(),
-			motions: [],
+			cards: [],
 		};
 
 		this.onCardEnter = onCardEnter.bind(this);
 		this.onCardLeave = onCardLeave.bind(this);
-		this.cleanCardMotions = cleanCardMotions.bind(this);
+		this.cleanCards = cleanCards.bind(this);
 	}
 
 	componentDidMount() {
@@ -88,11 +88,11 @@ class HandArea extends React.Component {
 	}
 
 	render() {
-		const { motions } = this.state;
+		const { cards } = this.state;
 
 		return <div ref={this.node} className="hand-area">
 			<div className="card-num">{this.state.num}</div>
-			{motions.map(motion => <MovableCard key={motion.id()} motion={motion} />)}
+			{cards.map(card => <MovableCard key={card.id()} card={card} />)}
 		</div>;
 	}
 

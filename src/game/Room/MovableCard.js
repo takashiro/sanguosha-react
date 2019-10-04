@@ -3,7 +3,7 @@ import EventEmitter from 'events';
 
 let serial = 1;
 
-class CardMotion extends EventEmitter {
+class MovableCard extends EventEmitter {
 
 	/**
 	 * A card move with start and end states
@@ -87,8 +87,16 @@ class CardMotion extends EventEmitter {
 	 * Returns the first card.
 	 * @return {Card}
 	 */
-	card() {
+	instance() {
 		return this._card;
+	}
+
+	/**
+	 * Check if it is the same card.
+	 * @param {MovableCard} card
+	 */
+	equals(card) {
+		return this.instance() === card.instance();
 	}
 
 	/**
@@ -115,7 +123,7 @@ class CardMotion extends EventEmitter {
 
 }
 
-export default CardMotion;
+export default MovableCard;
 
 /**
  * @typedef MotionState

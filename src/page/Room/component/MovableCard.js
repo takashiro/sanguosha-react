@@ -10,16 +10,15 @@ class MovableCard extends React.Component {
 	}
 
 	render() {
-		const { motion } = this.props;
+		const { card } = this.props;
 		const { permanent } = this.props;
 
-		const from = motion.startState();
-		const to = motion.endState();
-		const card = motion.card();
-		const onEnd = permanent ? null : () => motion.destroy();
+		const from = card.startState();
+		const to = card.endState();
+		const onEnd = permanent ? null : () => card.destroy();
 
 		return <Movable from={from} to={to} onEnd={onEnd}>
-			<Card card={card} />
+			<Card card={card.instance()} />
 		</Movable>;
 	}
 
