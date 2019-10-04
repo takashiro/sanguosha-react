@@ -38,9 +38,10 @@ class Photo extends React.Component {
 	}
 
 	render() {
-		const player = this.props.player;
+		const { player } = this.props;
+		const { kingdom } = this.state;
 
-		return <div className={'photo' + ' ' + this.state.kingdom}>
+		return <div className={`photo ${kingdom ? kingdom.toLowerCase() : 'unknown'}`}>
 			<div className={'avatar-area g' + this.state.generalNum}>
 				<PhotoAvatar
 					position="head"

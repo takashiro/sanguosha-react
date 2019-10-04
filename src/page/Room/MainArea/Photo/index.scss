@@ -87,10 +87,56 @@
 		}
 	}
 
-	.handcard-num {
+	.hand-area {
 		position: absolute;
-		left: -10px;
-		top: 102px;
+		overflow: visible;
+		top: 50%;
+		left: 50%;
+
+		.card-num {
+			position: absolute;
+			left: -89px;
+			top: 9px;
+			width: 28px;
+			height: 15px;
+			background: url(../style/handcard/unknown.png) no-repeat;
+			background-size: 26px 15px;
+			background-position: center left;
+			color: white;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+			text-align: center;
+			font-size: 12px;
+		}
+	}
+
+	&.shu {
+		.hand-area .card-num {
+			background-image: url(../style/handcard/shu.png);
+		}
+	}
+
+	&.wu {
+		.hand-area .card-num {
+			background-image: url(../style/handcard/wu.png);
+		}
+	}
+
+	&.wei {
+		.hand-area .card-num {
+			background-image: url(../style/handcard/wei.png);
+		}
+	}
+
+	&.qun {
+		.hand-area .card-num {
+			background-image: url(../style/handcard/qun.png);
+		}
+	}
+
+	&.god {
+		.hand-area .card-num {
+			background-image: url(../style/handcard/god.png);
+		}
 	}
 
 	.kingdom {

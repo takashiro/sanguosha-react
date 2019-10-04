@@ -35,47 +35,5 @@
 		}
 	}
 
-	.handcard-num {
-		width: 28px;
-		height: 15px;
-		background: url(../style/handcard/unknown.png) no-repeat;
-		background-size: 26px 15px;
-		background-position: center left;
-		color: white;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-		text-align: center;
-		font-size: 12px;
-	}
-
-	.god {
-		.handcard-num {
-			background-image: url(../style/handcard/god.png);
-		}
-	}
-
-	&.shu {
-		.handcard-num {
-			background-image: url(../style/handcard/shu.png);
-		}
-	}
-
-	&.wu {
-		.handcard-num {
-			background-image: url(../style/handcard/wu.png);
-		}
-	}
-
-	&.wei {
-		.handcard-num {
-			background-image: url(../style/handcard/wei.png);
-		}
-	}
-
-	&.qun {
-		.handcard-num {
-			background-image: url(../style/handcard/qun.png);
-		}
-	}
-
 	@import 'button.scss';
 }
