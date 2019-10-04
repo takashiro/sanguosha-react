@@ -1,4 +1,5 @@
 .room {
+	position: relative;
 	height: 100%;
 	background: url('../style/table.jpg') no-repeat;
 	background-size: cover;
@@ -9,6 +10,12 @@
 	.main-area {
 		flex: 1 1 auto;
 		margin: 10px;
+	}
+
+	.discard-pile {
+		position: absolute;
+		top: 55%;
+		left: 50%;
 	}
 
 	.room-info {

@@ -55,10 +55,10 @@ class Photo extends React.Component {
 			{this.state.generalNum === 2 ? <div className="frame"></div> : null}
 			<div className="screen-name">{this.state.screenName}</div>
 			<KingdomIcon kingdom={this.state.kingdom} />
-			<HandArea area={player.handArea} />
 			<HpBar size={18} hp={this.state.hp} maxHp={this.state.maxHp} />
 			<SeatNumber number={this.state.seat} />
 			<PhaseBar player={player} />
+			<HandArea area={player.handArea} />
 		</div>;
 	}
 

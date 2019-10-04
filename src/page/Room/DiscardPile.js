@@ -1,5 +1,5 @@
 import React from 'react';
-import MovableCard from '../component/MovableCard';
+import MovableCard from './component/MovableCard';
 
 import './DiscardPile.scss';
 
