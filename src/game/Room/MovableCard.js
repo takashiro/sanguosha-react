@@ -37,6 +37,7 @@ class MovableCard extends EventEmitter {
 
 	setSelected(selected) {
 		this._selected = selected;
+		this.emit('selectedChanged', selected);
 	}
 
 	/**

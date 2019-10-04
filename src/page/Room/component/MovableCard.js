@@ -11,16 +11,17 @@ function updatePos() {
 	});
 }
 
+function updateSelection(selected) {
+	this.setState({ selected });
+}
+
 function onClick() {
-	this.setState(prev => {
-		const { card } = this.props;
-		const selected = !prev.selected;
-		card.setSelected(selected);
-		if (this.props.onClick) {
-			setTimeout(this.props.onClick, 0, this.props.card);
-		}
-		return { selected };
-	});
+	const { card } = this.props;
+	const selected = !card.isSelected();
+	card.setSelected(selected);
+	if (this.props.onClick) {
+		setTimeout(this.props.onClick, 0, this.props.card);
+	}
 }
 
 class MovableCard extends React.Component {
@@ -43,15 +44,21 @@ class MovableCard extends React.Component {
 		if (permanent) {
 			const { card } = this.props;
 			this.updatePos = updatePos.bind(this);
+			this.updateSelection = updateSelection.bind(this);
 			card.on('move', this.updatePos);
+			card.on('selectedChanged', this.updateSelection);
 		}
 	}
 
 	componentWillUnmount() {
+		const { card } = this.props;
 		if (this.updatePos) {
-			const { card } = this.props;
 			card.off('move', this.updatePos);
 			this.updatePos = null;
+		}
+		if (this.updateSelection) {
+			card.off('selectedChanged', this.updateSelection);
+			this.updateSelection = null;
 		}
 	}
 
