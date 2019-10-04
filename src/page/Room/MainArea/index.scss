@@ -1,6 +1,13 @@
 
 .main-area {
+	position: relative;
 	max-height: 100%;
 	overflow: hidden;
 	display: flex;
+
+	.discard-pile {
+		position: absolute;
+		top: 55%;
+		left: 50%;
+	}
 }

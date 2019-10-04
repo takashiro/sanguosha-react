@@ -2,6 +2,7 @@
 import React from 'react';
 
 import PhotoLayout from './PhotoLayout';
+import DiscardPile from './DiscardPile';
 
 import locateCenterPos from '../../util/locateCenterPos';
 
@@ -39,15 +40,14 @@ class MainArea extends React.Component {
 		const drawPile = room.drawPile;
 		drawPile.on('cardleave', onCardLeaveDrawPile.bind(this));
 		drawPile.on('cardenter', onCardEnterDrawPile.bind(this));
-
-		const discardPile = room.discardPile;
-		discardPile.on('cardleave', onCardLeaveDrawPile.bind(this));
-		discardPile.on('cardenter', onCardEnterDrawPile.bind(this));
 	}
 
 	render() {
+		const room = this.props.room;
+
 		return <div ref={this.node} className="main-area">
 			<PhotoLayout room={this.props.room} />
+			<DiscardPile area={room.discardPile} />
 		</div>;
 	}
 }
