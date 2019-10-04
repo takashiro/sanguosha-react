@@ -3,6 +3,7 @@ import EventEmitter from 'events';
 
 import CardArea from '../CardArea';
 import CardPile from '../CardPile';
+import Dashboard from './Dashboard';
 
 import cmd from '../../protocol';
 import CommandMap from './cmd';
@@ -20,7 +21,7 @@ class Room extends EventEmitter {
 		super();
 
 		this.client = client;
-		this.dashboardUid = client.uid;
+		this.dashboard = new Dashboard(client.uid);
 		this.players = [];
 		this.drawPile = new CardPile(CardPile.Type.Draw);
 		this.discardPile = new CardPile(CardPile.Type.Discard);
@@ -30,6 +31,10 @@ class Room extends EventEmitter {
 
 	start() {
 		this.client.send(cmd.StartGame);
+	}
+
+	dashboardUid() {
+		return this.dashboard.uid();
 	}
 
 	dashboardPlayer() {
