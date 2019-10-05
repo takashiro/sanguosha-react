@@ -8,11 +8,6 @@ import SeatNumber from './SeatNumber';
 import ConfirmButton from './ConfirmButton';
 import CancelButton from './CancelButton';
 import FinishButton from './FinishButton';
-import Phase from '../../../../game/Player/Phase';
-
-function onDashboardEnabled(enabled) {
-	this.setState({ enabled });
-}
 
 function onPlayerChanged(player) {
 	this.setState({ kingdom: player.kingdom() });
@@ -20,6 +15,33 @@ function onPlayerChanged(player) {
 
 function onPlayerKingdomChanged(kingdom) {
 	this.setState({ kingdom });
+}
+
+function onConfirmEnabled(enabled) {
+	this.setState({ confirmEnabled: enabled });
+}
+
+function onCancelEnabled(enabled) {
+	this.setState({ cancelEnabled: enabled });
+}
+
+function onFinishEnabled(enabled) {
+	this.setState({ finishEnabled: enabled });
+}
+
+function onConfirmClicked() {
+	const { dashboard } = this.props;
+	dashboard.confirm();
+}
+
+function onCancelClicked() {
+	const { dashboard } = this.props;
+	dashboard.cancel();
+}
+
+function onFinishClicked() {
+	const { dashboard } = this.props;
+	dashboard.finish();
 }
 
 class ButtonArea extends React.Component {
@@ -32,40 +54,52 @@ class ButtonArea extends React.Component {
 
 		this.state = {
 			kingdom: player.kingdom(),
-			enabled: false,
+			confirmEnabled: false,
+			cancelEnabled: false,
+			finishEnabled: false,
 		};
 
-		this.onDashboardEnabled = onDashboardEnabled.bind(this);
 		this.onPlayerChanged = onPlayerChanged.bind(this);
 		this.onPlayerKingdomChanged = onPlayerKingdomChanged.bind(this);
+		this.onConfirmEnabled = onConfirmEnabled.bind(this);
+		this.onCancelEnabled = onCancelEnabled.bind(this);
+		this.onFinishEnabled = onFinishEnabled.bind(this);
+		this.onConfirmClicked = onConfirmClicked.bind(this);
+		this.onCancelClicked = onCancelClicked.bind(this);
+		this.onFinishClicked = onFinishClicked.bind(this);
 	}
 
 	componentDidMount() {
 		const { dashboard } = this.props;
-		dashboard.on('enabledChanged', this.onDashboardEnabled);
 		dashboard.on('playerChanged', this.onPlayerChanged);
+		dashboard.on('confirmEnabledChanged', this.onConfirmEnabled);
+		dashboard.on('cancelEnabledChanged', this.onCancelEnabled);
+		dashboard.on('finishEnabledChanged', this.onFinishEnabled);
+
 		const player = dashboard.player();
 		player.on('kingdomChanged', this.onPlayerKingdomChanged);
 	}
 
 	componentWillUnmount() {
 		const { dashboard } = this.props;
-		dashboard.off('enabledChanged', this.onDashboardEnabled);
 		dashboard.off('playerChanged', this.onPlayerChanged);
+		dashboard.off('confirmEnabledChanged', this.onConfirmEnabled);
+		dashboard.off('cancelEnabledChanged', this.onCancelEnabled);
+		dashboard.off('finishEnabledChanged', this.onFinishEnabled);
+
 		const player = dashboard.player();
 		player.off('kingdomChanged', this.onPlayerKingdomChanged);
 	}
 
 	render() {
 		const { dashboard } = this.props;
-		const { enabled } = this.state;
 		const player = dashboard.player();
 
 		return <div className="button-area">
 			<KingdomIcon kingdom={this.state.kingdom} />
-			<ConfirmButton enabled={enabled} />
-			<CancelButton enabled={enabled} />
-			<FinishButton enabled={enabled && player.phase() === Phase.Play} />
+			<ConfirmButton enabled={this.state.confirmEnabled} onClick={this.onConfirmClicked} />
+			<CancelButton enabled={this.state.cancelEnabled} onClick={this.onCancelClicked} />
+			<FinishButton enabled={this.state.finishEnabled} onClick={this.onFinishClicked} />
 			<SeatNumber number={player.seat()} />
 		</div>;
 	}

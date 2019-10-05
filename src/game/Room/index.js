@@ -77,6 +77,10 @@ class Room extends EventEmitter {
 		return null;
 	}
 
+	reply(command, args) {
+		this.client.send(command, args);
+	}
+
 }
 
 export default Room;

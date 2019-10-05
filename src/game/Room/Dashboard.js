@@ -8,7 +8,9 @@ class Dashboard extends EventEmitter {
 		this._uid = uid;
 		this._player = null;
 		this._selectedCards = [];
-		this._enabled = false;
+		this._confirmEnabled = false;
+		this._cancelEnabled = false;
+		this._finishEnabled = false;
 	}
 
 	uid() {
@@ -37,15 +39,52 @@ class Dashboard extends EventEmitter {
 
 	setSelectedCards(cards) {
 		this._selectedCards = cards;
+		this.emit('selectedCardsChanged', cards);
 	}
 
-	isEnabled() {
-		return this._enabled;
+	isConfirmEnabled() {
+		return this._confirmEnabled;
+	}
+
+	setConfirmEnabled(enabled) {
+		this._confirmEnabled = enabled;
+		this.emit('confirmEnabledChanged', enabled);
+	}
+
+	isCancelEnabled() {
+		return this._cancelEnabled;
+	}
+
+	setCancelEnabled(enabled) {
+		this._cancelEnabled = enabled;
+		this.emit('cancelEnabledChanged', enabled);
+	}
+
+	isFinishEnabled() {
+		return this._finishEnabled;
+	}
+
+	setFinishEnabled(enabled) {
+		this._finishEnabled = enabled;
+		this.emit('finishEnabledChanged', enabled);
 	}
 
 	setEnabled(enabled) {
-		this._enabled = enabled;
-		this.emit('enabledChanged', enabled);
+		this.setConfirmEnabled(enabled);
+		this.setCancelEnabled(enabled);
+		this.setConfirmEnabled(enabled);
+	}
+
+	confirm() {
+		this.emit('confirm');
+	}
+
+	cancel() {
+		this.emit('cancel');
+	}
+
+	finish() {
+		this.emit('finish');
 	}
 
 }
