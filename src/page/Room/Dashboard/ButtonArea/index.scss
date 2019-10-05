@@ -7,6 +7,10 @@
 
 		button {
 			position: absolute;
+
+			&:focus {
+				outline: 0;
+			}
 		}
 
 		i.kingdom {
