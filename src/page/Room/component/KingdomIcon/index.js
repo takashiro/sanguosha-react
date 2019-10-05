@@ -6,16 +6,14 @@ import './index.scss';
 class KingdomIcon extends React.Component {
 
 	constructor(props) {
-		super();
-
-		this.state = {
-			kingdom: props.kingdom ? props.kingdom : 'unknown',
-		};
+		super(props);
 	}
 
 	render() {
-		let style = {
-			backgroundImage: `url('style/kingdom/${this.state.kingdom}.png')`,
+		let { kingdom } = this.props;
+		kingdom = kingdom ? kingdom.toLowerCase() : 'unknown';
+		const style = {
+			backgroundImage: `url('style/kingdom/${kingdom}.png')`,
 		};
 		return <i className="kingdom" style={style}>
 		</i>;
