@@ -53,8 +53,8 @@ function onCardLeaving(motion) {
 			m.setStartState(p.endState());
 			m.moveBy(offset);
 			m.moveBy({
-				top: m.width() / 2,
-				left: m.height() / 2,
+				top: m.height() / 2 - 20,
+				left: m.width() / 2,
 			});
 
 			p.destroy();

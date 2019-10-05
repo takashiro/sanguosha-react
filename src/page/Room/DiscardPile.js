@@ -5,14 +5,14 @@ import './DiscardPile.scss';
 
 function onCardEntering(motion) {
 	const { top, left } = this.node.current.getBoundingClientRect();
-	motion.setEndState({
-		top,
-		left,
-		opacity: 1,
-	});
 	motion.moveBy({
 		top: -top,
 		left: -left,
+	});
+	motion.setEndState({
+		top: 0,
+		left: 0,
+		opacity: 1,
 	});
 
 	for (const card of motion.cards()) {
