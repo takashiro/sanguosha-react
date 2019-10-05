@@ -25,7 +25,8 @@
   "scripts": {
     "build": "webpack",
     "debug": "webpack -d --watch",
-    "test": "eslint src && webpack"
+	"test": "eslint src && webpack",
+	"lint": "eslint src"
   },
   "repository": {
     "type": "git",
