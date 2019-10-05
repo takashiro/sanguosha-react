@@ -4,7 +4,7 @@
   "description": "Sanguosha GUI",
   "main": "src/index.js",
   "dependencies": {
-    "@karuta/client": "^0.1.1",
+    "@karuta/client": "^0.1.3",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
   },
