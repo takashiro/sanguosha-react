@@ -4,7 +4,6 @@ import React from 'react';
 import Kingdom from '../../game/Kingdom';
 
 class GeneralCard extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -18,16 +17,16 @@ class GeneralCard extends React.Component {
 	handleClick(e) {
 		e.preventDefault();
 		if (this.props.selectable) {
-			let selected = !this.state.selected;
+			const selected = !this.state.selected;
 			if (this.props.onChange) {
-				this.setState({selected});
+				this.setState({ selected });
 				setTimeout(this.props.onChange, 0, this.props.general, selected);
 			}
 		}
 	}
 
 	render() {
-		const general = this.props.general;
+		const { general } = this.props;
 
 		let className = 'general-card';
 		if (this.props.selectable) {
@@ -38,13 +37,14 @@ class GeneralCard extends React.Component {
 			className += ' unselectable';
 		}
 
-		className += ' ' + Kingdom.fromNum(general.kingdom).toLowerCase();
+		className += ` ${Kingdom.fromNum(general.kingdom).toLowerCase()}`;
 
-		return <div className={className} onClick={this.handleClick}>
-			<img src={`style/general/fullphoto/${general.name}.png`} />
-		</div>;
+		return (
+			<div className={className} onClick={this.handleClick}>
+				<img src={`style/general/fullphoto/${general.name}.png`} />
+			</div>
+		);
 	}
-
 }
 
 export default GeneralCard;

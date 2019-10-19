@@ -4,7 +4,7 @@ import CardArea from '../../CardArea';
 import CardPile from '../../CardPile';
 
 function sortPlayerSeat() {
-	const dashboardPlayer = this.players.find(player => player.uid() === this.dashboardUid());
+	const dashboardPlayer = this.players.find((player) => player.uid() === this.dashboardUid());
 	const dashboardSeat = dashboardPlayer.seat();
 	const playerNum = this.players.length;
 

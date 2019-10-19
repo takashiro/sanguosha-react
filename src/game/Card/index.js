@@ -4,7 +4,6 @@ import Suit from './Suit';
 let cardKey = 0;
 
 class Card {
-
 	constructor(props) {
 		if (props) {
 			this._id = props.id;
@@ -21,7 +20,7 @@ class Card {
 	}
 
 	key() {
-		return this._id || 'u' + this._key;
+		return this._id || `u${this._key}`;
 	}
 
 	name() {
@@ -37,7 +36,7 @@ class Card {
 	}
 
 	color() {
-		switch(this._suit) {
+		switch (this._suit) {
 		case Suit.Spade:
 		case Suit.Club:
 			return 'black';
@@ -52,7 +51,6 @@ class Card {
 	number() {
 		return this._number;
 	}
-
 }
 
 Card.Suit = Suit;

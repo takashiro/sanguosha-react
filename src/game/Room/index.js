@@ -9,14 +9,13 @@ import cmd from '../../protocol';
 import CommandMap from './cmd';
 
 function bindCommand() {
-	const client = this.client;
+	const { client } = this;
 	for (const [command, callback] of CommandMap) {
 		client.bind(command, callback.bind(this));
 	}
 }
 
 class Room extends EventEmitter {
-
 	constructor(client) {
 		super();
 
@@ -46,12 +45,12 @@ class Room extends EventEmitter {
 	}
 
 	findPlayer(uid) {
-		return this.players.find(player => player.uid() === uid);
+		return this.players.find((player) => player.uid() === uid);
 	}
 
 	findArea(info) {
 		if (info.owner) {
-			let player = this.findPlayer(info.owner);
+			const player = this.findPlayer(info.owner);
 			if (!player) {
 				return null;
 			}
@@ -80,7 +79,6 @@ class Room extends EventEmitter {
 	reply(command, args) {
 		this.client.send(command, args);
 	}
-
 }
 
 export default Room;

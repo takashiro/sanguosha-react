@@ -4,7 +4,6 @@ import React from 'react';
 import './index.scss';
 
 class SeatNumber extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -14,12 +13,11 @@ class SeatNumber extends React.Component {
 	}
 
 	render() {
-		let style = {
+		const style = {
 			backgroundImage: `url(style/dashboard/seatnum/${this.state.number}.png)`,
 		};
 		return <i className="seat-number" style={style} />;
 	}
-
 }
 
 export default SeatNumber;

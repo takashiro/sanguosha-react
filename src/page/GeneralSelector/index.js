@@ -11,7 +11,6 @@ import GeneralCard from './GeneralCard';
 import './index.scss';
 
 class GeneralSelector extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -25,9 +24,9 @@ class GeneralSelector extends React.Component {
 		this.handleSelection = this.handleSelection.bind(this);
 		this.handleConfirm = this.handleConfirm.bind(this);
 
-		const client = props.client;
+		const { client } = props;
 		this.room = new GameRoom(client);
-		client.bind(cmd.ChooseGeneral, option => {
+		client.bind(cmd.ChooseGeneral, (option) => {
 			this.setState({
 				num: parseInt(option.num, 10) || 1,
 				sameKingdom: !!option.sameKingdom,
@@ -37,7 +36,7 @@ class GeneralSelector extends React.Component {
 		client.bind(cmd.ToBattle, () => {
 			ReactDOM.render(
 				<Room room={this.room} />,
-				document.getElementById('app-container')
+				document.getElementById('app-container'),
 			);
 		});
 	}
@@ -47,18 +46,18 @@ class GeneralSelector extends React.Component {
 	}
 
 	handleSelection(general, selected) {
-		this.setState(prev => {
-			let selectedGenerals = prev.selectedGenerals;
+		this.setState((prev) => {
+			const { selectedGenerals } = prev;
 			if (selected) {
-				if (!selectedGenerals.find(g => g.id === general.id)) {
+				if (!selectedGenerals.find((g) => g.id === general.id)) {
 					selectedGenerals.push(general);
-					return {selectedGenerals};
+					return { selectedGenerals };
 				}
 			} else {
 				for (let i = 0; i < selectedGenerals.length; i++) {
 					if (selectedGenerals[i].id === general.id) {
 						selectedGenerals.splice(i, 1);
-						return {selectedGenerals};
+						return { selectedGenerals };
 					}
 				}
 			}
@@ -68,27 +67,27 @@ class GeneralSelector extends React.Component {
 	handleConfirm(e) {
 		e.preventDefault();
 
-		let selected = this.state.selectedGenerals.map(g => g.id);
-		const client = this.props.client;
+		const selected = this.state.selectedGenerals.map((g) => g.id);
+		const { client } = this.props;
 		client.send(cmd.ChooseGeneral, selected);
 	}
 
 	render() {
-		const {generals, selectedGenerals} = this.state;
+		const { generals, selectedGenerals } = this.state;
 
 		let cards = null;
 		if (generals) {
 			cards = generals.map((general, i) => {
-				let selected = selectedGenerals.some(g => g.id === general.id);
+				const selected = selectedGenerals.some((g) => g.id === general.id);
 				let selectable = selected
 					|| selectedGenerals.length < this.state.num;
 				if (this.state.sameKingdom) {
-					let same = selectedGenerals.every(s => s.kingdom === general.kingdom);
+					const same = selectedGenerals.every((s) => s.kingdom === general.kingdom);
 					if (!same) {
 						selectable = false;
 					} else {
 						let available = 0;
-						for (let g of generals) {
+						for (const g of generals) {
 							if (g.kingdom === general.kingdom) {
 								available++;
 							}
@@ -99,29 +98,32 @@ class GeneralSelector extends React.Component {
 						}
 					}
 				}
-				return <li key={i}>
-					<GeneralCard
-						general={general}
-						selectable={selectable}
-						selected={selected}
-						onChange={this.handleSelection}
-					/>
-				</li>;
+				return (
+					<li key={i}>
+						<GeneralCard
+							general={general}
+							selectable={selectable}
+							selected={selected}
+							onChange={this.handleSelection}
+						/>
+					</li>
+				);
 			});
 		}
 
-		let feasible = true;//selectedGenerals.length === this.state.num;
+		const feasible = true;// selectedGenerals.length === this.state.num;
 
-		return <div className="general-selector">
-			<ul className="general">
-				{cards}
-			</ul>
-			<div className="button-area">
-				{feasible ? <button type="button" onClick={this.handleConfirm}>确定</button> : null}
+		return (
+			<div className="general-selector">
+				<ul className="general">
+					{cards}
+				</ul>
+				<div className="button-area">
+					{feasible ? <button type="button" onClick={this.handleConfirm}>确定</button> : null}
+				</div>
 			</div>
-		</div>;
+		);
 	}
-
 }
 
 export default GeneralSelector;

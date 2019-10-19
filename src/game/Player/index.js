@@ -4,7 +4,6 @@ import EventEmitter from 'events';
 import Kingdom from '../Kingdom';
 
 class Player extends EventEmitter {
-
 	constructor(uid, seat, name) {
 		super();
 
@@ -27,14 +26,14 @@ class Player extends EventEmitter {
 	}
 
 	property(prop) {
-		let getter = this[prop];
+		const getter = this[prop];
 		if (getter) {
 			return getter.call(this);
 		}
 	}
 
 	setProperty(prop, value) {
-		let setter = this['set' + prop.substr(0, 1).toUpperCase() + prop.substr(1)];
+		const setter = this[`set${prop.substr(0, 1).toUpperCase()}${prop.substr(1)}`];
 		if (setter) {
 			return setter.call(this, value);
 		}
@@ -122,7 +121,6 @@ class Player extends EventEmitter {
 		this._phase = phase;
 		this.emit('phaseChanged', phase);
 	}
-
 }
 
 export default Player;

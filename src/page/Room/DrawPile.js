@@ -41,13 +41,12 @@ function onCardLeaving(motion) {
 function cleanCards() {
 	this.setState(function (prev) {
 		return {
-			cards: prev.cards.filter(card => card.isValid()),
+			cards: prev.cards.filter((card) => card.isValid()),
 		};
 	});
 }
 
 class DrawPile extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -78,11 +77,12 @@ class DrawPile extends React.Component {
 
 	render() {
 		const { cards } = this.state;
-		return <div ref={this.node} className="draw-pile">
-			{cards.map(card => <MovableCard key={card.id()} card={card} />)}
-		</div>;
+		return (
+			<div ref={this.node} className="draw-pile">
+				{cards.map((card) => <MovableCard key={card.id()} card={card} />)}
+			</div>
+		);
 	}
-
 }
 
 export default DrawPile;

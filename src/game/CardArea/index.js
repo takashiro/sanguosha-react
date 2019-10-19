@@ -4,7 +4,6 @@ import EventEmitter from 'events';
 import Type from './Type';
 
 class CardArea extends EventEmitter {
-
 	/**
 	 * Create a card area
 	 * @param {CardArea.Type} type
@@ -44,8 +43,8 @@ class CardArea extends EventEmitter {
 	 * @param {Card[]} cards
 	 */
 	remove(cards) {
-		for (let card of cards) {
-			let pos = this._cards.indexOf(card);
+		for (const card of cards) {
+			const pos = this._cards.indexOf(card);
 			if (pos >= 0) {
 				this._cards.splice(pos, 1);
 			}
@@ -60,12 +59,11 @@ class CardArea extends EventEmitter {
 	 * @return {Card[]} cards
 	 */
 	map(metas) {
-		return metas.map(meta => {
+		return metas.map((meta) => {
 			if (typeof meta === 'number') {
-				return this._cards.find(card => card.id() === meta);
-			} else {
-				return this._cards.find(card => card.id() === meta.id);
+				return this._cards.find((card) => card.id() === meta);
 			}
+			return this._cards.find((card) => card.id() === meta.id);
 		});
 	}
 
@@ -104,7 +102,6 @@ class CardArea extends EventEmitter {
 		this._enabled = enabled;
 		this.emit('enabledChanged', enabled);
 	}
-
 }
 
 CardArea.Type = Type;

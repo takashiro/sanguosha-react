@@ -11,7 +11,6 @@ import HpArea from './HpArea';
 import PhaseBar from '../component/PhaseBar';
 
 class Dashboard extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -20,7 +19,7 @@ class Dashboard extends React.Component {
 			player: dashboard.player(),
 		};
 		dashboard.on('playerChanged', () => {
-			this.setState({player: dashboard.player()});
+			this.setState({ player: dashboard.player() });
 		});
 	}
 
@@ -32,19 +31,20 @@ class Dashboard extends React.Component {
 
 		const { dashboard } = this.props;
 
-		return <div className="dashboard">
-			<PhaseBar player={player} />
-			<EquipArea />
-			<HandArea
-				area={player.handArea}
-				onSelectionChanged={cards => dashboard.setSelectedCards(cards)}
-			/>
-			<ButtonArea dashboard={dashboard} />
-			<AvatarArea player={player} />
-			<HpArea player={player} />
-		</div>;
+		return (
+			<div className="dashboard">
+				<PhaseBar player={player} />
+				<EquipArea />
+				<HandArea
+					area={player.handArea}
+					onSelectionChanged={(cards) => dashboard.setSelectedCards(cards)}
+				/>
+				<ButtonArea dashboard={dashboard} />
+				<AvatarArea player={player} />
+				<HpArea player={player} />
+			</div>
+		);
 	}
-
 }
 
 export default Dashboard;

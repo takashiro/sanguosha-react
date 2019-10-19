@@ -45,7 +45,6 @@ function onFinishClicked() {
 }
 
 class ButtonArea extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -95,15 +94,16 @@ class ButtonArea extends React.Component {
 		const { dashboard } = this.props;
 		const player = dashboard.player();
 
-		return <div className="button-area">
-			<KingdomIcon kingdom={this.state.kingdom} />
-			<ConfirmButton enabled={this.state.confirmEnabled} onClick={this.onConfirmClicked} />
-			<CancelButton enabled={this.state.cancelEnabled} onClick={this.onCancelClicked} />
-			<FinishButton enabled={this.state.finishEnabled} onClick={this.onFinishClicked} />
-			<SeatNumber number={player.seat()} />
-		</div>;
+		return (
+			<div className="button-area">
+				<KingdomIcon kingdom={this.state.kingdom} />
+				<ConfirmButton enabled={this.state.confirmEnabled} onClick={this.onConfirmClicked} />
+				<CancelButton enabled={this.state.cancelEnabled} onClick={this.onCancelClicked} />
+				<FinishButton enabled={this.state.finishEnabled} onClick={this.onFinishClicked} />
+				<SeatNumber number={player.seat()} />
+			</div>
+		);
 	}
-
 }
 
 export default ButtonArea;

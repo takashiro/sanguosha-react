@@ -1,7 +1,6 @@
 import EventEmitter from 'events';
 
 class Dashboard extends EventEmitter {
-
 	constructor(uid) {
 		super();
 
@@ -86,7 +85,6 @@ class Dashboard extends EventEmitter {
 	finish() {
 		this.emit('finish');
 	}
-
 }
 
 export default Dashboard;

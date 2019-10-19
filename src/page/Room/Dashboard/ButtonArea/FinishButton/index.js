@@ -9,7 +9,6 @@ function onClick() {
 }
 
 class FinishButton extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -21,10 +20,10 @@ class FinishButton extends React.Component {
 		if (this.props.enabled) {
 			classNames.push('enabled');
 		}
-		return <button className={classNames.join(' ')} onClick={this.onClick}>
-		</button>;
+		return (
+			<button className={classNames.join(' ')} onClick={this.onClick} />
+		);
 	}
-
 }
 
 export default FinishButton;

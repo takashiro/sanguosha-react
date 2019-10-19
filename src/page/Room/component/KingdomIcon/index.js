@@ -4,7 +4,6 @@ import React from 'react';
 import './index.scss';
 
 class KingdomIcon extends React.Component {
-
 	constructor(props) {
 		super(props);
 	}
@@ -15,10 +14,10 @@ class KingdomIcon extends React.Component {
 		const style = {
 			backgroundImage: `url('style/kingdom/${kingdom}.png')`,
 		};
-		return <i className="kingdom" style={style}>
-		</i>;
+		return (
+			<i className="kingdom" style={style} />
+		);
 	}
-
 }
 
 export default KingdomIcon;

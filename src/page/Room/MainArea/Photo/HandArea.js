@@ -4,7 +4,7 @@ import React from 'react';
 import MovableCard from '../../component/MovableCard';
 
 function onCardLeaving(motion) {
-	const {top, left} = this.node.current.getBoundingClientRect();
+	const { top, left } = this.node.current.getBoundingClientRect();
 	motion.setStartState({
 		top,
 		left,
@@ -24,13 +24,13 @@ function cleanCards() {
 		const num = area.size();
 		return {
 			num,
-			cards: cards.filter(motion => motion.isValid()),
+			cards: cards.filter((motion) => motion.isValid()),
 		};
 	});
 }
 
 function onCardEntering(motion) {
-	const {top, left} = this.node.current.getBoundingClientRect();
+	const { top, left } = this.node.current.getBoundingClientRect();
 	motion.setEndState({
 		top,
 		left,
@@ -56,11 +56,10 @@ function onCardEntering(motion) {
 }
 
 class HandArea extends React.Component {
-
 	constructor(props) {
 		super(props);
 
-		const area = props.area;
+		const { area } = props;
 
 		this.node = React.createRef();
 		this.state = {
@@ -90,12 +89,13 @@ class HandArea extends React.Component {
 	render() {
 		const { cards } = this.state;
 
-		return <div ref={this.node} className="hand-area">
-			<div className="card-num">{this.state.num}</div>
-			{cards.map(card => <MovableCard key={card.id()} card={card} />)}
-		</div>;
+		return (
+			<div ref={this.node} className="hand-area">
+				<div className="card-num">{this.state.num}</div>
+				{cards.map((card) => <MovableCard key={card.id()} card={card} />)}
+			</div>
+		);
 	}
-
 }
 
 export default HandArea;

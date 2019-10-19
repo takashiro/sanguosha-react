@@ -4,7 +4,6 @@ import React from 'react';
 import './index.scss';
 
 class HpBar extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -15,8 +14,8 @@ class HpBar extends React.Component {
 	}
 
 	getLevel() {
-		let hp = this.state.hp;
-		let maxHp = this.state.maxHp;
+		const { hp } = this.state;
+		const { maxHp } = this.state;
 		switch (maxHp) {
 		case 2:
 			if (hp < 2) {
@@ -24,16 +23,18 @@ class HpBar extends React.Component {
 			}
 			break;
 		case 3:
-			if(hp < 2){
+			if (hp < 2) {
 				return 'low';
-			} else if (hp < 3){
+			}
+			if (hp < 3) {
 				return 'medium';
 			}
 			break;
 		default:
 			if (hp <= maxHp / 3) {
 				return 'low';
-			} else if (hp <= maxHp / 2) {
+			}
+			if (hp <= maxHp / 2) {
 				return 'medium';
 			}
 		}
@@ -41,26 +42,29 @@ class HpBar extends React.Component {
 	}
 
 	render() {
-		let className = `hp-bar ${this.getLevel()}`;
+		const className = `hp-bar ${this.getLevel()}`;
 
-		let hp = new Array(this.state.hp);
+		const hp = new Array(this.state.hp);
 		for (let i = 0; i < this.state.hp; i++) {
-			hp[i] = <div
-				key={i}
-				className="hp"
-			/>;
+			hp[i] = (
+				<div
+					key={i}
+					className="hp"
+				/>
+			);
 		}
 
-		let barStyle = {
-			width: this.props.size + 'px',
-			height: (this.props.size * this.state.maxHp) + 'px',
+		const barStyle = {
+			width: `${this.props.size}px`,
+			height: `${this.props.size * this.state.maxHp}px`,
 		};
 
-		return <div className={className} style={barStyle}>
-			{hp}
-		</div>;
+		return (
+			<div className={className} style={barStyle}>
+				{hp}
+			</div>
+		);
 	}
-
 }
 
 export default HpBar;

@@ -6,7 +6,6 @@ import PhotoLayout from './PhotoLayout';
 import './index.scss';
 
 class MainArea extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -14,9 +13,11 @@ class MainArea extends React.Component {
 	}
 
 	render() {
-		return <div ref={this.node} className="main-area">
-			<PhotoLayout room={this.props.room} />
-		</div>;
+		return (
+			<div ref={this.node} className="main-area">
+				<PhotoLayout room={this.props.room} />
+			</div>
+		);
 	}
 }
 

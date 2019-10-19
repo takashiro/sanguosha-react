@@ -6,7 +6,7 @@ import UpdatePlayer from './UpdatePlayer';
 import MoveCards from './MoveCards';
 import ChooseCards from './ChooseCards';
 
-const bindMap = new Map;
+const bindMap = new Map();
 bindMap.set(cmd.ArrangeSeats, ArrangeSeats);
 bindMap.set(cmd.UpdatePlayer, UpdatePlayer);
 bindMap.set(cmd.MoveCards, MoveCards);

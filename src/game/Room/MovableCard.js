@@ -4,7 +4,6 @@ import EventEmitter from 'events';
 let serial = 1;
 
 class MovableCard extends EventEmitter {
-
 	/**
 	 * A card move with start and end states
 	 * @param {Card} card
@@ -144,7 +143,6 @@ class MovableCard extends EventEmitter {
 		this._card = null;
 		this.emit('destroyed');
 	}
-
 }
 
 export default MovableCard;

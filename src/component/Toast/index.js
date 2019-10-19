@@ -5,12 +5,11 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 
 class Toast extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			visible: false
+			visible: false,
 		};
 	}
 
@@ -30,17 +29,18 @@ class Toast extends React.Component {
 	}
 
 	render() {
-		return <div className="toast" ref={toast => { this.toast = toast; }}>
-			{this.props.message}
-		</div>;
+		return (
+			<div className="toast" ref={(toast) => { this.toast = toast; }}>
+				{this.props.message}
+			</div>
+		);
 	}
-
 }
 
-Toast.makeToast = message => {
+Toast.makeToast = (message) => {
 	ReactDOM.render(
 		<Toast message={message} />,
-		document.getElementById('overlay')
+		document.getElementById('overlay'),
 	);
 };
 

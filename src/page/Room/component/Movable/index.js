@@ -10,7 +10,6 @@ function onEnd() {
 }
 
 class Movable extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -66,11 +65,12 @@ class Movable extends React.Component {
 			opacity: this.state.opacity,
 		};
 
-		return <div className="movable" style={style} onTransitionEnd={this.onEnd}>
-			{this.props.children}
-		</div>;
+		return (
+			<div className="movable" style={style} onTransitionEnd={this.onEnd}>
+				{this.props.children}
+			</div>
+		);
 	}
-
 }
 
 export default Movable;

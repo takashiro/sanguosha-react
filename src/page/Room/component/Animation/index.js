@@ -4,15 +4,14 @@ import React from 'react';
 import './index.scss';
 
 class Animation extends React.Component {
-
 	constructor(props) {
 		super(props);
 	}
 
 	render() {
 		const style = {
-			width: this.props.width + 'px',
-			height: this.props.height + 'px',
+			width: `${this.props.width}px`,
+			height: `${this.props.height}px`,
 		};
 
 		const frames = new Array(this.props.frame + 1);
@@ -20,9 +19,11 @@ class Animation extends React.Component {
 			frames[i] = <img key={i} src={`style/animation/${this.props.name}/${i}.png`} />;
 		}
 
-		return <div className="animation" style={style} ref={div => this.run(div)}>
-			{frames}
-		</div>;
+		return (
+			<div className="animation" style={style} ref={(div) => this.run(div)}>
+				{frames}
+			</div>
+		);
 	}
 
 	run(div) {
@@ -43,15 +44,13 @@ class Animation extends React.Component {
 			}
 		}
 
-		Promise.all(Array.prototype.map.call(div.children, img => {
-			return new Promise(resolve => {
-				if (img.tagName !== 'IMG' || img.loaded) {
-					setTimeout(resolve, 0);
-				} else {
-					img.addEventListener('load', resolve, {once: true});
-				}
-			});
-		})).then(next);
+		Promise.all(Array.prototype.map.call(div.children, (img) => new Promise((resolve) => {
+			if (img.tagName !== 'IMG' || img.loaded) {
+				setTimeout(resolve, 0);
+			} else {
+				img.addEventListener('load', resolve, { once: true });
+			}
+		}))).then(next);
 	}
 }
 

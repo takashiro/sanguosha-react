@@ -49,7 +49,7 @@ function onCardLeaving(motion) {
 
 	this.setState(function (prev) {
 		for (const m of motion.cards()) {
-			const p = prev.cards.find(p => p.equals(m));
+			const p = prev.cards.find((p) => p.equals(m));
 			m.setStartState(p.endState());
 			m.moveBy(offset);
 			m.moveBy({
@@ -60,7 +60,7 @@ function onCardLeaving(motion) {
 			p.destroy();
 		}
 
-		const cards = prev.cards.filter(card => card.isValid());
+		const cards = prev.cards.filter((card) => card.isValid());
 		return {
 			cardNum: cards.length,
 			cards,
@@ -102,14 +102,13 @@ function onCardClicked() {
 	if (onSelectionChanged) {
 		const { cards } = this.state;
 		const selectedCards = cards
-			.filter(card => card.isSelected())
-			.map(card => card.instance());
+			.filter((card) => card.isSelected())
+			.map((card) => card.instance());
 		onSelectionChanged(selectedCards);
 	}
 }
 
 class HandArea extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -151,19 +150,22 @@ class HandArea extends React.Component {
 			classNames.push('selectable');
 		}
 
-		return <div className={classNames.join(' ')} ref={this.node}>
-			{cards.map(
-				card => <MovableCard
-					permanent={true}
-					key={card.id()}
-					card={card}
-					selectable={selectable}
-					onClick={this.onCardClicked}
-				/>
-			)}
-		</div>;
+		return (
+			<div className={classNames.join(' ')} ref={this.node}>
+				{cards.map(
+					(card) => (
+						<MovableCard
+							permanent
+							key={card.id()}
+							card={card}
+							selectable={selectable}
+							onClick={this.onCardClicked}
+						/>
+					),
+				)}
+			</div>
+		);
 	}
-
 }
 
 export default HandArea;

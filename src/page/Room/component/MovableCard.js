@@ -25,7 +25,6 @@ function onClick() {
 }
 
 class MovableCard extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -80,13 +79,14 @@ class MovableCard extends React.Component {
 		}
 		const onClick = selectable ? this.onClick : null;
 
-		return <Movable from={from} to={to} onEnd={onEnd}>
-			<div className={classNames && classNames.join(' ')} onClick={onClick}>
-				<Card card={card.instance()} />
-			</div>
-		</Movable>;
+		return (
+			<Movable from={from} to={to} onEnd={onEnd}>
+				<div className={classNames && classNames.join(' ')} onClick={onClick}>
+					<Card card={card.instance()} />
+				</div>
+			</Movable>
+		);
 	}
-
 }
 
 export default MovableCard;

@@ -8,5 +8,5 @@ export default function locateCenterPos(element) {
 	const rect = element.getBoundingClientRect();
 	const left = (rect.left + rect.right) / 2;
 	const top = (rect.top + rect.bottom) / 2;
-	return {top, left};
+	return { top, left };
 }

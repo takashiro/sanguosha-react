@@ -13,12 +13,12 @@ import Toast from '../../component/Toast';
 function returnToStartScene() {
 	ReactDOM.render(
 		<StartScene />,
-		document.getElementById('app-container')
+		document.getElementById('app-container'),
 	);
 }
 
 async function createRoom() {
-	let client = this.props.client;
+	const { client } = this.props;
 	if (!client) {
 		return;
 	}
@@ -27,19 +27,19 @@ async function createRoom() {
 	client.roomId = room_id;
 
 	// Add 7 robots here
-	let robots = new Array(7);
+	const robots = new Array(7);
 	for (let i = 0; i < robots.length; i++) {
-		robots[i] = new Robot(client.url, room_id, 'Robot ' + String.fromCharCode(0x41 + i));
+		robots[i] = new Robot(client.url, room_id, `Robot ${String.fromCharCode(0x41 + i)}`);
 	}
 
-	await Promise.all(robots.map(robot => robot.connect()));
+	await Promise.all(robots.map((robot) => robot.connect()));
 	// Load Game
 	client.send(cmd.LoadGame, 'sanguosha');
 
 	if (client.roomId) {
 		ReactDOM.render(
 			<GeneralSelector client={client} />,
-			document.getElementById('app-container')
+			document.getElementById('app-container'),
 		);
 	} else {
 		return Promise.reject('Failed to create a new room.');
@@ -47,7 +47,6 @@ async function createRoom() {
 }
 
 class Lobby extends React.Component {
-
 	constructor(props) {
 		super(props);
 	}
@@ -69,7 +68,6 @@ class Lobby extends React.Component {
 	render() {
 		return null;
 	}
-
 }
 
 export default Lobby;

@@ -1,5 +1,4 @@
 
-
 import EventEmitter from 'events';
 import MovableCard from './MovableCard';
 
@@ -11,7 +10,6 @@ import MovableCard from './MovableCard';
  */
 
 class CardMotion extends EventEmitter {
-
 	/**
 	 * A card motion with start state and end state
 	 * @param {Card[]} cards
@@ -20,7 +18,7 @@ class CardMotion extends EventEmitter {
 		super();
 
 
-		this._cards = cards ? cards.map(card => new MovableCard(card)) : [];
+		this._cards = cards ? cards.map((card) => new MovableCard(card)) : [];
 	}
 
 	/**
@@ -76,8 +74,6 @@ class CardMotion extends EventEmitter {
 	cards() {
 		return this._cards;
 	}
-
 }
 
 export default CardMotion;
-

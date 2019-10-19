@@ -8,17 +8,17 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 module.exports = {
-	mode: mode,
+	mode,
 	entry: {
 		app: './src/index.js',
 		vendor: Object.keys(pkg.dependencies),
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist/static')
+		path: path.resolve(__dirname, 'dist/static'),
 	},
 	resolveLoader: {
-		modules: [path.resolve(__dirname, 'node_modules')]
+		modules: [path.resolve(__dirname, 'node_modules')],
 	},
 	optimization: {
 		splitChunks: {
@@ -27,10 +27,10 @@ module.exports = {
 					test: /[\\/]node_modules[\\/]/,
 					name: 'vendor',
 					enforce: true,
-					chunks: 'all'
-				}
-			}
-		}
+					chunks: 'all',
+				},
+			},
+		},
 	},
 	module: {
 		rules: [
@@ -40,8 +40,8 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-react']
-					}
+						presets: ['@babel/preset-react'],
+					},
 				},
 			},
 			{
@@ -54,24 +54,23 @@ module.exports = {
 						options: {
 							url: false,
 							sourceMap: mode === 'development',
-						}
+						},
 					},
 					{
 						loader: 'sass-loader',
 						options: {
-							url: false,
 							sourceMap: mode === 'development',
-						}
+						},
 					},
 				],
-			}
-		]
+			},
+		],
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 			chunkFilename: '[id].css',
-		})
+		}),
 	],
 	devtool: mode === 'production' ? undefined : 'source-map',
 };

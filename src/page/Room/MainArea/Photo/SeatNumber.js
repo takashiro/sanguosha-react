@@ -18,12 +18,10 @@ const seatTexts = [
 ];
 
 class SeatNumber extends React.Component {
-
 	render() {
 		const seatText = seatTexts[this.props.number];
 		return <span className="seat-number">{seatText}</span>;
 	}
-
 }
 
 export default SeatNumber;

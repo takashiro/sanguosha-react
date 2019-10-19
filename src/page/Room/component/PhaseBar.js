@@ -4,7 +4,6 @@ import React from 'react';
 import Phase from '../../../game/Player/Phase';
 
 class PhaseBar extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -12,12 +11,12 @@ class PhaseBar extends React.Component {
 			phase: Phase.Invalid,
 		};
 
-		const player = props.player;
-		player.on('phaseChanged', phase => this.setState({phase}));
+		const { player } = props;
+		player.on('phaseChanged', (phase) => this.setState({ phase }));
 	}
 
 	render() {
-		let phase = this.state.phase;
+		let { phase } = this.state;
 		if (!phase || phase === Phase.Invalid || phase === Phase.Inactive) {
 			return null;
 		}
@@ -27,12 +26,13 @@ class PhaseBar extends React.Component {
 			return null;
 		}
 
-		let img = 'style/phase/' + phase.toLowerCase() + '.png';
-		return <div className="phase-bar">
-			<img src={img} />
-		</div>;
+		const img = `style/phase/${phase.toLowerCase()}.png`;
+		return (
+			<div className="phase-bar">
+				<img src={img} />
+			</div>
+		);
 	}
-
 }
 
 export default PhaseBar;

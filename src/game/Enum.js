@@ -1,6 +1,5 @@
 
 class Enum {
-
 	/**
 	 * Create an enumeration
 	 */
@@ -22,7 +21,6 @@ class Enum {
 	fromNum(num) {
 		return this.enums[num];
 	}
-
 }
 
 export default Enum;

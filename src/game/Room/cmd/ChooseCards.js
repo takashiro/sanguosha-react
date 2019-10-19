@@ -17,7 +17,7 @@ export default function ChooseCards(options) {
 	const { dashboard } = this;
 	dashboard.setCancelEnabled(true);
 
-	const onSelectedCardsChanged = cards => {
+	const onSelectedCardsChanged = (cards) => {
 		const acceptable = cards.length === options.num;
 		dashboard.setConfirmEnabled(acceptable);
 	};
@@ -28,7 +28,7 @@ export default function ChooseCards(options) {
 
 		const cards = dashboard.selectedCards();
 		dashboard.setSelectedCards([]);
-		const ids = cards.map(card => card.id());
+		const ids = cards.map((card) => card.id());
 		client.reply(locker, ids);
 	};
 	dashboard.once('confirm', onConfirmClicked);

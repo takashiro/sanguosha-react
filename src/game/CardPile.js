@@ -3,7 +3,6 @@ import CardArea from './CardArea';
 import Card from './Card';
 
 class CardPile extends CardArea {
-
 	constructor(type) {
 		super(type);
 		this._cardNum = 0;
@@ -44,9 +43,8 @@ class CardPile extends CardArea {
 	 * @return {Card[]}
 	 */
 	map(metas) {
-		return metas.map(meta => new Card(meta));
+		return metas.map((meta) => new Card(meta));
 	}
-
 }
 
 CardPile.Type = {
