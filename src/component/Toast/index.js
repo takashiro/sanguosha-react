@@ -5,14 +5,6 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 
 class Toast extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			visible: false,
-		};
-	}
-
 	componentDidMount() {
 		setTimeout(() => {
 			this.toast.classList.add('in');
@@ -29,9 +21,10 @@ class Toast extends React.Component {
 	}
 
 	render() {
+		const { message } = this.props;
 		return (
 			<div className="toast" ref={(toast) => { this.toast = toast; }}>
-				{this.props.message}
+				{message}
 			</div>
 		);
 	}

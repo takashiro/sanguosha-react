@@ -16,6 +16,8 @@ class MovableCard extends EventEmitter {
 		this._startState = null;
 		this._endState = null;
 		this._selected = false;
+		this._width = 93;
+		this._height = 130;
 	}
 
 	id() {
@@ -23,11 +25,11 @@ class MovableCard extends EventEmitter {
 	}
 
 	width() {
-		return 93;
+		return this._width;
 	}
 
 	height() {
-		return 130;
+		return this._height;
 	}
 
 	isSelected() {

@@ -22,18 +22,24 @@ class AvatarArea extends React.Component {
 	}
 
 	render() {
+		const {
+			kingdom,
+			generalNum,
+			headGeneral,
+			deputyGeneral,
+		} = this.state;
 		return (
 			<div className="avatar-area">
 				<GeneralAvatar
 					position="head"
-					kingdom={this.state.kingdom}
-					general={this.state.headGeneral}
+					kingdom={kingdom}
+					general={headGeneral}
 				/>
-				{this.state.generalNum > 1 ? (
+				{generalNum > 1 ? (
 					<GeneralAvatar
 						position="deputy"
-						kingdom={this.state.kingdom}
-						general={this.state.deputyGeneral}
+						kingdom={kingdom}
+						general={deputyGeneral}
 					/>
 				) : null}
 			</div>

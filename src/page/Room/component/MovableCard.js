@@ -15,7 +15,7 @@ function updateSelection(selected) {
 	this.setState({ selected });
 }
 
-function onClick() {
+function handleClick() {
 	const { card } = this.props;
 	const selected = !card.isSelected();
 	card.setSelected(selected);
@@ -35,7 +35,7 @@ class MovableCard extends React.Component {
 			selected: false,
 		};
 
-		this.onClick = onClick.bind(this);
+		this.handleClick = handleClick.bind(this);
 	}
 
 	componentDidMount() {
@@ -77,11 +77,11 @@ class MovableCard extends React.Component {
 				classNames.push('selected');
 			}
 		}
-		const onClick = selectable ? this.onClick : null;
+		const onClick = selectable ? this.handleClick : null;
 
 		return (
 			<Movable from={from} to={to} onEnd={onEnd}>
-				<div className={classNames && classNames.join(' ')} onClick={onClick}>
+				<div role="button" tabIndex="0" className={classNames && classNames.join(' ')} onClick={onClick} onKeyDown={onClick}>
 					<Card card={card.instance()} />
 				</div>
 			</Movable>

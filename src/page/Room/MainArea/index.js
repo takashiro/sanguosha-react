@@ -13,9 +13,10 @@ class MainArea extends React.Component {
 	}
 
 	render() {
+		const { room } = this.props;
 		return (
 			<div ref={this.node} className="main-area">
-				<PhotoLayout room={this.props.room} />
+				<PhotoLayout room={room} />
 			</div>
 		);
 	}

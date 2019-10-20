@@ -3,16 +3,10 @@ import React from 'react';
 
 import './index.scss';
 
-class AnimationCanvas extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<div className="animation-canvas" />
-		);
-	}
+function AnimationCanvas() {
+	return (
+		<div className="animation-canvas" />
+	);
 }
 
 export default AnimationCanvas;

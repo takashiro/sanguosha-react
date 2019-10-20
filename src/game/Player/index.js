@@ -30,12 +30,14 @@ class Player extends EventEmitter {
 		if (getter) {
 			return getter.call(this);
 		}
+
+		return null;
 	}
 
 	setProperty(prop, value) {
 		const setter = this[`set${prop.substr(0, 1).toUpperCase()}${prop.substr(1)}`];
 		if (setter) {
-			return setter.call(this, value);
+			setter.call(this, value);
 		}
 	}
 

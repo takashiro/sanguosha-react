@@ -3,11 +3,11 @@ class Enum {
 	/**
 	 * Create an enumeration
 	 */
-	constructor() {
-		this.enums = [...arguments];
+	constructor(...enums) {
+		this.enums = [...enums];
 
-		for (let i = 0; i < arguments.length; i++) {
-			this[arguments[i]] = i;
+		for (let i = 0; i < enums.length; i++) {
+			this[enums[i]] = i;
 		}
 
 		Object.freeze(this);

@@ -43,9 +43,9 @@ class Card {
 		case Suit.Heart:
 		case Suit.Diamond:
 			return 'red';
+		default:
+			return '';
 		}
-
-		return '';
 	}
 
 	number() {

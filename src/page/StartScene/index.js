@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -30,14 +29,15 @@ async function handleLogin(e) {
 	const screenNameInput = document.getElementById('screen-name-input');
 	const screenName = screenNameInput.value.substr(0, 8);
 	if (screenName.length <= 0) {
-		return Toast.makeToast('请输入您的昵称。');
+		Toast.makeToast('请输入您的昵称。');
+		return;
 	}
 
 	localStorage.setItem('screenName', screenName);
 
-	const login_status = document.getElementById('login-status');
+	const loginStatus = document.getElementById('login-status');
 	function log(message) {
-		login_status.innerHTML = message;
+		loginStatus.innerHTML = message;
 		console.log(message);
 	}
 
@@ -51,15 +51,11 @@ async function handleLogin(e) {
 }
 
 class StartScene extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
-		const screen_name = localStorage.getItem('screenName');
-		if (screen_name) {
-			const screen_name_input = document.getElementById('screen-name-input');
-			screen_name_input.value = screen_name;
+		const screenName = localStorage.getItem('screenName');
+		if (screenName) {
+			const input = document.getElementById('screen-name-input');
+			input.value = screenName;
 		}
 	}
 

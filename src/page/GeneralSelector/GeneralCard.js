@@ -16,21 +16,33 @@ class GeneralCard extends React.Component {
 
 	handleClick(e) {
 		e.preventDefault();
-		if (this.props.selectable) {
-			const selected = !this.state.selected;
-			if (this.props.onChange) {
+
+		const { selectable } = this.props;
+		let { selected } = this.state;
+		if (selectable) {
+			selected = !selected;
+
+			const { onChange } = this.props;
+			if (onChange) {
 				this.setState({ selected });
-				setTimeout(this.props.onChange, 0, this.props.general, selected);
+				const { general } = this.props;
+				setTimeout(onChange, 0, general, selected);
 			}
 		}
 	}
 
 	render() {
-		const { general } = this.props;
+		const {
+			general,
+			selectable,
+		} = this.props;
+		const {
+			selected,
+		} = this.state;
 
 		let className = 'general-card';
-		if (this.props.selectable) {
-			if (this.state.selected) {
+		if (selectable) {
+			if (selected) {
 				className += ' selected';
 			}
 		} else {
@@ -40,8 +52,8 @@ class GeneralCard extends React.Component {
 		className += ` ${Kingdom.fromNum(general.kingdom).toLowerCase()}`;
 
 		return (
-			<div className={className} onClick={this.handleClick}>
-				<img src={`style/general/fullphoto/${general.name}.png`} />
+			<div role="button" tabIndex="0" className={className} onClick={this.handleClick} onKeyDown={this.handleClick}>
+				<img src={`style/general/fullphoto/${general.name}.png`} alt="" />
 			</div>
 		);
 	}

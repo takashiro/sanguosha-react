@@ -13,8 +13,9 @@ class SeatNumber extends React.Component {
 	}
 
 	render() {
+		const { number } = this.state;
 		const style = {
-			backgroundImage: `url(style/dashboard/seatnum/${this.state.number}.png)`,
+			backgroundImage: `url(style/dashboard/seatnum/${number}.png)`,
 		};
 		return <i className="seat-number" style={style} />;
 	}

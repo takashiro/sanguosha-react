@@ -88,10 +88,11 @@ class HandArea extends React.Component {
 
 	render() {
 		const { cards } = this.state;
+		const { num } = this.state;
 
 		return (
 			<div ref={this.node} className="hand-area">
-				<div className="card-num">{this.state.num}</div>
+				<div className="card-num">{num}</div>
 				{cards.map((card) => <MovableCard key={card.id()} card={card} />)}
 			</div>
 		);

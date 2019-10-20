@@ -42,6 +42,7 @@ class CardPile extends CardArea {
 	 * @param {object[]} metas
 	 * @return {Card[]}
 	 */
+	// eslint-disable-next-line class-methods-use-this
 	map(metas) {
 		return metas.map((meta) => new Card(meta));
 	}

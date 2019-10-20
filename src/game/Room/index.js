@@ -64,6 +64,8 @@ class Room extends EventEmitter {
 				return player.delayedTrickArea;
 			case CardArea.Type.Judge:
 				return player.judgeArea;
+			default:
+				return null;
 			}
 		}
 
@@ -72,8 +74,9 @@ class Room extends EventEmitter {
 			return this.drawPile;
 		case CardArea.Type.DiscardPile:
 			return this.discardPile;
+		default:
+			return null;
 		}
-		return null;
 	}
 
 	reply(command, args) {

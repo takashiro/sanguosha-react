@@ -94,12 +94,18 @@ class ButtonArea extends React.Component {
 		const { dashboard } = this.props;
 		const player = dashboard.player();
 
+		const {
+			kingdom,
+			confirmEnabled,
+			cancelEnabled,
+			finishEnabled,
+		} = this.state;
 		return (
 			<div className="button-area">
-				<KingdomIcon kingdom={this.state.kingdom} />
-				<ConfirmButton enabled={this.state.confirmEnabled} onClick={this.onConfirmClicked} />
-				<CancelButton enabled={this.state.cancelEnabled} onClick={this.onCancelClicked} />
-				<FinishButton enabled={this.state.finishEnabled} onClick={this.onFinishClicked} />
+				<KingdomIcon kingdom={kingdom} />
+				<ConfirmButton enabled={confirmEnabled} onClick={this.onConfirmClicked} />
+				<CancelButton enabled={cancelEnabled} onClick={this.onCancelClicked} />
+				<FinishButton enabled={finishEnabled} onClick={this.onFinishClicked} />
 				<SeatNumber number={player.seat()} />
 			</div>
 		);

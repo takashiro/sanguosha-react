@@ -9,23 +9,17 @@ import DrawPile from './DrawPile';
 import DiscardPile from './DiscardPile';
 import AnimationCanvas from './AnimationCanvas';
 
-class Room extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		const { room } = this.props;
-		return (
-			<div className="room">
-				<MainArea room={room} />
-				<Dashboard dashboard={room.dashboard} />
-				<DrawPile area={room.drawPile} />
-				<DiscardPile area={room.discardPile} />
-				<AnimationCanvas room={room} />
-			</div>
-		);
-	}
+function Room(props) {
+	const { room } = props;
+	return (
+		<div className="room">
+			<MainArea room={room} />
+			<Dashboard dashboard={room.dashboard} />
+			<DrawPile area={room.drawPile} />
+			<DiscardPile area={room.discardPile} />
+			<AnimationCanvas room={room} />
+		</div>
+	);
 }
 
 export default Room;

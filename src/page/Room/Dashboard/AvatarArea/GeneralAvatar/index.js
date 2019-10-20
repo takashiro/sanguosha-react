@@ -12,19 +12,25 @@ class GeneralAvatar extends React.Component {
 		this.state = {
 			position: props.position || 'head',
 			name: '', // TODO: translate
-			kingdom: general && general.kingdom || 'unknown',
-			avatar: general && general.name || 'unknown',
+			kingdom: (general && general.kingdom) || 'unknown',
+			avatar: (general && general.name) || 'unknown',
 		};
 	}
 
 	render() {
-		const className = `general-avatar ${this.state.kingdom} ${this.state.position}`;
-		const avatar = `style/general/fullphoto/${this.state.avatar}.png`;
+		const {
+			kingdom,
+			position,
+			avatar,
+			name,
+		} = this.state;
+
+		const className = `general-avatar ${kingdom} ${position}`;
 		return (
 			<div className={className}>
-				<img className="avatar" src={avatar} />
+				<img className="avatar" src={`style/general/fullphoto/${avatar}.png`} alt="" />
 				<div className="frame" />
-				<div className="name">{this.state.name}</div>
+				<div className="name">{name}</div>
 			</div>
 		);
 	}

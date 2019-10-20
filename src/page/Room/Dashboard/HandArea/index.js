@@ -36,11 +36,13 @@ function onCardEntering(motion) {
 			m.setEndState(getCardPos(i, m.width()));
 		}
 
-		const cardNum = cards.length;
-		return {
-			cardNum,
-			cards,
-		};
+		return { cards };
+	});
+}
+
+function repositionCards(cards) {
+	cards.forEach(function (card, i) {
+		card.goTo(getCardPos(i, card.width()));
 	});
 }
 
@@ -49,7 +51,7 @@ function onCardLeaving(motion) {
 
 	this.setState(function (prev) {
 		for (const m of motion.cards()) {
-			const p = prev.cards.find((p) => p.equals(m));
+			const p = prev.cards.find((c) => c.equals(m));
 			m.setStartState(p.endState());
 			m.moveBy(offset);
 			m.moveBy({
@@ -61,19 +63,10 @@ function onCardLeaving(motion) {
 		}
 
 		const cards = prev.cards.filter((card) => card.isValid());
-		return {
-			cardNum: cards.length,
-			cards,
-		};
+		return { cards };
 	}, () => {
 		const { cards } = this.state;
 		repositionCards(cards);
-	});
-}
-
-function repositionCards(cards) {
-	cards.forEach(function (card, i) {
-		card.goTo(getCardPos(i, card.width()));
 	});
 }
 
@@ -114,7 +107,6 @@ class HandArea extends React.Component {
 
 		this.state = {
 			cards: [],
-			cardNum: 0,
 			selectable: false,
 		};
 		this.node = React.createRef();
@@ -146,7 +138,7 @@ class HandArea extends React.Component {
 		const { selectable } = this.state;
 
 		const classNames = ['hand-area'];
-		if (this.state.selectable) {
+		if (selectable) {
 			classNames.push('selectable');
 		}
 

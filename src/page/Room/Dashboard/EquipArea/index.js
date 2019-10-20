@@ -9,23 +9,32 @@ class EquipArea extends React.Component {
 
 		this.state = {
 			equips: [
-				null,
-				null,
-				null,
-				null,
-				null,
+				{
+					type: 'weapon',
+				},
+				{
+					type: 'armor',
+				},
+				{
+					type: 'offensiveHorse',
+				},
+				{
+					type: 'defensiveHorse',
+				},
+				{
+					type: 'treasure',
+				},
 			],
 		};
 	}
 
 	render() {
-		const equips = this.state.equips.map((value, i) => (
-			<li key={i} />
-		));
-
+		const { equips } = this.state;
 		return (
 			<ul className="equip-area">
-				{equips}
+				{equips.map((equip) => (
+					<li key={equip.type} />
+				))}
 			</ul>
 		);
 	}

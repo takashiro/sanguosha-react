@@ -5,10 +5,10 @@ import cmd from '@karuta/client/cmd';
 import bindMind from './mind';
 
 class Robot {
-	constructor(url, room_id, name) {
+	constructor(url, roomId, name) {
 		const client = new Client(url);
 		this.client = client;
-		this.roomId = room_id;
+		this.roomId = roomId;
 		this.name = name;
 	}
 

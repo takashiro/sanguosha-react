@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -61,27 +60,35 @@ class GeneralSelector extends React.Component {
 					}
 				}
 			}
+
+			return {};
 		});
 	}
 
 	handleConfirm(e) {
 		e.preventDefault();
 
-		const selected = this.state.selectedGenerals.map((g) => g.id);
+		const { selectedGenerals } = this.state;
+		const selected = selectedGenerals.map((g) => g.id);
 		const { client } = this.props;
 		client.send(cmd.ChooseGeneral, selected);
 	}
 
 	render() {
-		const { generals, selectedGenerals } = this.state;
+		const {
+			generals,
+			selectedGenerals,
+			num,
+			sameKingdom,
+		} = this.state;
 
 		let cards = null;
 		if (generals) {
-			cards = generals.map((general, i) => {
+			cards = generals.map((general) => {
 				const selected = selectedGenerals.some((g) => g.id === general.id);
 				let selectable = selected
-					|| selectedGenerals.length < this.state.num;
-				if (this.state.sameKingdom) {
+					|| selectedGenerals.length < num;
+				if (sameKingdom) {
 					const same = selectedGenerals.every((s) => s.kingdom === general.kingdom);
 					if (!same) {
 						selectable = false;
@@ -93,13 +100,13 @@ class GeneralSelector extends React.Component {
 							}
 						}
 
-						if (available < this.state.num) {
+						if (available < num) {
 							selectable = false;
 						}
 					}
 				}
 				return (
-					<li key={i}>
+					<li key={general.id}>
 						<GeneralCard
 							general={general}
 							selectable={selectable}

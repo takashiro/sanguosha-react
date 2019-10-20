@@ -21,7 +21,7 @@ class PhaseBar extends React.Component {
 			return null;
 		}
 
-		phase = Phase.fromNum(this.state.phase);
+		phase = Phase.fromNum(phase);
 		if (!phase) {
 			return null;
 		}
@@ -29,7 +29,7 @@ class PhaseBar extends React.Component {
 		const img = `style/phase/${phase.toLowerCase()}.png`;
 		return (
 			<div className="phase-bar">
-				<img src={img} />
+				<img src={img} alt="" />
 			</div>
 		);
 	}

@@ -19,12 +19,13 @@ class HpArea extends React.Component {
 	}
 
 	render() {
+		const { hp, maxHp } = this.state;
 		return (
 			<div className="hp-area">
 				<HpBar
 					size="24"
-					maxHp={this.state.maxHp}
-					hp={this.state.hp}
+					maxHp={maxHp}
+					hp={hp}
 				/>
 			</div>
 		);

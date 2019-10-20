@@ -42,11 +42,13 @@ class HpBar extends React.Component {
 	}
 
 	render() {
+		const { size } = this.props;
+		const { hp, maxHp } = this.state;
 		const className = `hp-bar ${this.getLevel()}`;
 
-		const hp = new Array(this.state.hp);
-		for (let i = 0; i < this.state.hp; i++) {
-			hp[i] = (
+		const magatama = new Array(hp);
+		for (let i = 0; i < hp; i++) {
+			magatama[i] = (
 				<div
 					key={i}
 					className="hp"
@@ -55,13 +57,13 @@ class HpBar extends React.Component {
 		}
 
 		const barStyle = {
-			width: `${this.props.size}px`,
-			height: `${this.props.size * this.state.maxHp}px`,
+			width: `${size}px`,
+			height: `${size * maxHp}px`,
 		};
 
 		return (
 			<div className={className} style={barStyle}>
-				{hp}
+				{magatama}
 			</div>
 		);
 	}

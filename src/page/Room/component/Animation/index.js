@@ -4,38 +4,16 @@ import React from 'react';
 import './index.scss';
 
 class Animation extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		const style = {
-			width: `${this.props.width}px`,
-			height: `${this.props.height}px`,
-		};
-
-		const frames = new Array(this.props.frame + 1);
-		for (let i = 0; i < frames.length; i++) {
-			frames[i] = <img key={i} src={`style/animation/${this.props.name}/${i}.png`} />;
-		}
-
-		return (
-			<div className="animation" style={style} ref={(div) => this.run(div)}>
-				{frames}
-			</div>
-		);
-	}
-
 	run(div) {
 		let current = 0;
-		const frameNum = this.props.frame;
+		const { frame } = this.props;
 		const rate = 48;
 		function next() {
 			div.children[current].classList.remove('current');
 			current++;
 			div.children[current].classList.add('current');
 
-			if (current < frameNum) {
+			if (current < frame) {
 				setTimeout(next, rate);
 			} else {
 				setTimeout(function () {
@@ -51,6 +29,31 @@ class Animation extends React.Component {
 				img.addEventListener('load', resolve, { once: true });
 			}
 		}))).then(next);
+	}
+
+	render() {
+		const {
+			width,
+			height,
+			frame,
+			name,
+		} = this.props;
+
+		const style = {
+			width: `${width}px`,
+			height: `${height}px`,
+		};
+
+		const frames = new Array(frame + 1);
+		for (let i = 0; i < frames.length; i++) {
+			frames[i] = <img key={i} src={`style/animation/${name}/${i}.png`} alt="" />;
+		}
+
+		return (
+			<div className="animation" style={style} ref={(div) => this.run(div)}>
+				{frames}
+			</div>
+		);
 	}
 }
 

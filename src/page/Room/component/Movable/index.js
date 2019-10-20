@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.scss';
 
-function onEnd() {
+function handleTransitionEnd() {
 	const { onEnd } = this.props;
 	if (onEnd) {
 		setTimeout(onEnd, 0);
@@ -21,7 +21,7 @@ class Movable extends React.Component {
 			opacity: from.opacity || 0,
 		};
 
-		this.onEnd = onEnd.bind(this);
+		this.handleTransitionEnd = handleTransitionEnd.bind(this);
 	}
 
 	componentDidMount() {
@@ -59,15 +59,22 @@ class Movable extends React.Component {
 	}
 
 	render() {
+		const {
+			top,
+			left,
+			opacity,
+		} = this.state;
+
 		const style = {
-			top: this.state.top,
-			left: this.state.left,
-			opacity: this.state.opacity,
+			top,
+			left,
+			opacity,
 		};
 
+		const { children } = this.props;
 		return (
-			<div className="movable" style={style} onTransitionEnd={this.onEnd}>
-				{this.props.children}
+			<div className="movable" style={style} onTransitionEnd={this.handleTransitionEnd}>
+				{children}
 			</div>
 		);
 	}

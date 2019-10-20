@@ -39,26 +39,32 @@ class Photo extends React.Component {
 	render() {
 		const { player } = this.props;
 		const { kingdom } = this.state;
+		const { generalNum } = this.state;
+		const { headGeneral } = this.state;
+		const { deputyGeneral } = this.state;
+		const { screenName } = this.state;
+		const { hp, maxHp } = this.state;
+		const { seat } = this.state;
 
 		return (
 			<div className={`photo ${kingdom ? kingdom.toLowerCase() : 'unknown'}`}>
-				<div className={`avatar-area g${this.state.generalNum}`}>
+				<div className={`avatar-area g${generalNum}`}>
 					<PhotoAvatar
 						position="head"
-						general={this.state.headGeneral}
+						general={headGeneral}
 					/>
-					{this.state.generalNum > 1 ? (
+					{generalNum > 1 ? (
 						<PhotoAvatar
 							position="deputy"
-							general={this.state.deputyGeneral}
+							general={deputyGeneral}
 						/>
 					) : null}
 				</div>
-				{this.state.generalNum === 2 ? <div className="frame" /> : null}
-				<div className="screen-name">{this.state.screenName}</div>
-				<KingdomIcon kingdom={this.state.kingdom} />
-				<HpBar size={18} hp={this.state.hp} maxHp={this.state.maxHp} />
-				<SeatNumber number={this.state.seat} />
+				{generalNum === 2 ? <div className="frame" /> : null}
+				<div className="screen-name">{screenName}</div>
+				<KingdomIcon kingdom={kingdom} />
+				<HpBar size={18} hp={hp} maxHp={maxHp} />
+				<SeatNumber number={seat} />
 				<PhaseBar player={player} />
 				<HandArea area={player.handArea} />
 			</div>
