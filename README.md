@@ -40,6 +40,6 @@ Build and Run
 1. Clone karuta-node-server and sanguosha-server in the same parent directory.
 1. Create a symlink karuta-node-server/extension/sanguosha <----> sanguosha-server
 1. Start server application via `npm start` in karuta-node-server. Or click "Launch Program" in sanguosha-server with Visual Studio Code.
-1. Run `npm install` and `npm build` in sanguosha-react.
+1. Run `npm install` and `npm run build` in sanguosha-react.
 1. Start client application via ./dist/index.html. Or click "Launch Chrome" in Visual Studio Code.
 1. Now you are ready! Type your nickname and start a new game.
