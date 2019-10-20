@@ -1,4 +1,4 @@
-SanguoSha GUI (React.js) [![Build Status](https://www.travis-ci.org/takashiro/sanguosha-react.svg?branch=dev)](https://www.travis-ci.org/takashiro/sanguosha-react)
+Sanguosha GUI (React.js) [![Build Status](https://www.travis-ci.org/takashiro/sanguosha-react.svg?branch=dev)](https://www.travis-ci.org/takashiro/sanguosha-react)
 ==========
 
 | Example Page |  http://sgs.takashiro.cn     |
