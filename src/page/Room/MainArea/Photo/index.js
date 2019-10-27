@@ -18,13 +18,13 @@ class Photo extends React.Component {
 
 		this.state = {
 			generalNum: 1,
-			seat: player.seat(),
-			headGeneral: player.headGeneral(),
-			deputyGeneral: player.deputyGeneral(),
-			screenName: player.name(),
-			hp: player.hp(),
-			maxHp: player.maxHp(),
-			kingdom: player.kingdom(),
+			seat: player.getSeat(),
+			headGeneral: player.getHeadGeneral(),
+			deputyGeneral: player.getDeputyGeneral(),
+			screenName: player.getName(),
+			hp: player.getHp(),
+			maxHp: player.getMaxHp(),
+			kingdom: player.getKingdom(),
 		};
 
 		player.on('seatChanged', (seat) => this.setState({ seat }));

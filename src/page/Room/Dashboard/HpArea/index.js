@@ -11,8 +11,8 @@ class HpArea extends React.Component {
 
 		const { player } = this.props;
 		this.state = {
-			hp: player.hp(),
-			maxHp: player.maxHp(),
+			hp: player.getHp(),
+			maxHp: player.getMaxHp(),
 		};
 		player.on('hpChanged', (hp) => this.setState({ hp }));
 		player.on('maxHpChanged', (maxHp) => this.setState({ maxHp }));

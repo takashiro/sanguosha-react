@@ -33,7 +33,7 @@ class Room extends EventEmitter {
 	}
 
 	dashboardUid() {
-		return this.dashboard.uid();
+		return this.dashboard.getUid();
 	}
 
 	dashboardPlayer() {
@@ -45,7 +45,7 @@ class Room extends EventEmitter {
 	}
 
 	findPlayer(uid) {
-		return this.players.find((player) => player.uid() === uid);
+		return this.players.find((player) => player.getUid() === uid);
 	}
 
 	findArea(info) {

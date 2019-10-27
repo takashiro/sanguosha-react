@@ -6,37 +6,37 @@ let cardKey = 0;
 class Card {
 	constructor(props) {
 		if (props) {
-			this._id = props.id;
-			this._name = props.name;
-			this._suit = props.suit;
-			this._number = props.number;
+			this.id = props.id;
+			this.name = props.name;
+			this.suit = props.suit;
+			this.number = props.number;
 		} else {
-			this._key = cardKey++;
+			this.key = cardKey++;
 		}
 	}
 
-	id() {
-		return this._id;
+	getId() {
+		return this.id;
 	}
 
-	key() {
-		return this._id || `u${this._key}`;
+	getKey() {
+		return this.id || `u${this.key}`;
 	}
 
-	name() {
-		return this._name;
+	getName() {
+		return this.name;
 	}
 
-	suit() {
-		return this._suit;
+	getSuit() {
+		return this.suit;
 	}
 
-	suitString() {
-		return Suit.fromNum(this._suit);
+	getSuitString() {
+		return Suit.fromNum(this.suit);
 	}
 
-	color() {
-		switch (this._suit) {
+	getColor() {
+		switch (this.suit) {
 		case Suit.Spade:
 		case Suit.Club:
 			return 'black';
@@ -48,8 +48,8 @@ class Card {
 		}
 	}
 
-	number() {
-		return this._number;
+	getNumber() {
+		return this.number;
 	}
 }
 

@@ -16,10 +16,10 @@ class Dashboard extends React.Component {
 
 		const { dashboard } = this.props;
 		this.state = {
-			player: dashboard.player(),
+			player: dashboard.getPlayer(),
 		};
 		dashboard.on('playerChanged', () => {
-			this.setState({ player: dashboard.player() });
+			this.setState({ player: dashboard.getPlayer() });
 		});
 	}
 

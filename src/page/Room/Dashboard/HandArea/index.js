@@ -23,17 +23,17 @@ function onCardEntering(motion) {
 	this.setState(function (prev) {
 		const cards = [
 			...prev.cards,
-			...motion.cards(),
+			...motion.getCards(),
 		];
 
 		for (let i = prev.cards.length; i < cards.length; i++) {
 			const m = cards[i];
 			m.moveBy(offset);
 			m.moveBy({
-				top: -m.width() / 2,
-				left: -m.height() / 2,
+				top: -m.getWidth() / 2,
+				left: -m.getHeight() / 2,
 			});
-			m.setEndState(getCardPos(i, m.width()));
+			m.setEndState(getCardPos(i, m.getWidth()));
 		}
 
 		return { cards };
@@ -42,7 +42,7 @@ function onCardEntering(motion) {
 
 function repositionCards(cards) {
 	cards.forEach(function (card, i) {
-		card.goTo(getCardPos(i, card.width()));
+		card.goTo(getCardPos(i, card.getWidth()));
 	});
 }
 
@@ -50,13 +50,13 @@ function onCardLeaving(motion) {
 	const offset = this.node.current.getBoundingClientRect();
 
 	this.setState(function (prev) {
-		for (const m of motion.cards()) {
+		for (const m of motion.getCards()) {
 			const p = prev.cards.find((c) => c.equals(m));
-			m.setStartState(p.endState());
+			m.setStartState(p.getEndState());
 			m.moveBy(offset);
 			m.moveBy({
-				top: m.height() / 2 - 20,
-				left: m.width() / 2,
+				top: m.getHeight() / 2 - 20,
+				left: m.getWidth() / 2,
 			});
 
 			p.destroy();
@@ -148,7 +148,7 @@ class HandArea extends React.Component {
 					(card) => (
 						<MovableCard
 							permanent
-							key={card.id()}
+							key={card.getId()}
 							card={card}
 							selectable={selectable}
 							onClick={this.onCardClicked}

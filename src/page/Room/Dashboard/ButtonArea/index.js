@@ -10,7 +10,7 @@ import CancelButton from './CancelButton';
 import FinishButton from './FinishButton';
 
 function onPlayerChanged(player) {
-	this.setState({ kingdom: player.kingdom() });
+	this.setState({ kingdom: player.getKingdom() });
 }
 
 function onPlayerKingdomChanged(kingdom) {
@@ -49,10 +49,10 @@ class ButtonArea extends React.Component {
 		super(props);
 
 		const { dashboard } = this.props;
-		const player = dashboard.player();
+		const player = dashboard.getPlayer();
 
 		this.state = {
-			kingdom: player.kingdom(),
+			kingdom: player.getKingdom(),
 			confirmEnabled: false,
 			cancelEnabled: false,
 			finishEnabled: false,
@@ -75,7 +75,7 @@ class ButtonArea extends React.Component {
 		dashboard.on('cancelEnabledChanged', this.onCancelEnabled);
 		dashboard.on('finishEnabledChanged', this.onFinishEnabled);
 
-		const player = dashboard.player();
+		const player = dashboard.getPlayer();
 		player.on('kingdomChanged', this.onPlayerKingdomChanged);
 	}
 
@@ -86,13 +86,13 @@ class ButtonArea extends React.Component {
 		dashboard.off('cancelEnabledChanged', this.onCancelEnabled);
 		dashboard.off('finishEnabledChanged', this.onFinishEnabled);
 
-		const player = dashboard.player();
+		const player = dashboard.getPlayer();
 		player.off('kingdomChanged', this.onPlayerKingdomChanged);
 	}
 
 	render() {
 		const { dashboard } = this.props;
-		const player = dashboard.player();
+		const player = dashboard.getPlayer();
 
 		const {
 			kingdom,
@@ -106,7 +106,7 @@ class ButtonArea extends React.Component {
 				<ConfirmButton enabled={confirmEnabled} onClick={this.onConfirmClicked} />
 				<CancelButton enabled={cancelEnabled} onClick={this.onCancelClicked} />
 				<FinishButton enabled={finishEnabled} onClick={this.onFinishClicked} />
-				<SeatNumber number={player.seat()} />
+				<SeatNumber number={player.getSeat()} />
 			</div>
 		);
 	}

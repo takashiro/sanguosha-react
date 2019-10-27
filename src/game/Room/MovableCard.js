@@ -11,33 +11,33 @@ class MovableCard extends EventEmitter {
 	constructor(card) {
 		super();
 
-		this._id = serial++;
-		this._card = card;
-		this._startState = null;
-		this._endState = null;
-		this._selected = false;
-		this._width = 93;
-		this._height = 130;
+		this.id = serial++;
+		this.card = card;
+		this.startState = null;
+		this.endState = null;
+		this.selected = false;
+		this.width = 93;
+		this.height = 130;
 	}
 
-	id() {
-		return this._id;
+	getId() {
+		return this.id;
 	}
 
-	width() {
-		return this._width;
+	getWidth() {
+		return this.width;
 	}
 
-	height() {
-		return this._height;
+	getHeight() {
+		return this.height;
 	}
 
 	isSelected() {
-		return this._selected;
+		return this.selected;
 	}
 
 	setSelected(selected) {
-		this._selected = selected;
+		this.selected = selected;
 		this.emit('selectedChanged', selected);
 	}
 
@@ -45,8 +45,8 @@ class MovableCard extends EventEmitter {
 	 * The start state
 	 * @return {MotionState}
 	 */
-	startState() {
-		return this._startState;
+	getStartState() {
+		return this.startState;
 	}
 
 	/**
@@ -54,7 +54,7 @@ class MovableCard extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	setStartState(state) {
-		this._startState = {
+		this.startState = {
 			opacity: 1,
 			...state,
 		};
@@ -64,8 +64,8 @@ class MovableCard extends EventEmitter {
 	 * The end point
 	 * @return {MotionState}
 	 */
-	endState() {
-		return this._endState;
+	getEndState() {
+		return this.endState;
 	}
 
 	/**
@@ -73,7 +73,7 @@ class MovableCard extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	setEndState(state) {
-		this._endState = {
+		this.endState = {
 			opacity: 1,
 			...state,
 		};
@@ -84,13 +84,13 @@ class MovableCard extends EventEmitter {
 	 * @param {{top: number, left: number}} offset
 	 */
 	moveBy(offset) {
-		if (this._startState) {
-			this._startState.top += offset.top;
-			this._startState.left += offset.left;
+		if (this.startState) {
+			this.startState.top += offset.top;
+			this.startState.left += offset.left;
 		}
-		if (this._endState) {
-			this._endState.top += offset.top;
-			this._endState.left += offset.left;
+		if (this.endState) {
+			this.endState.top += offset.top;
+			this.endState.left += offset.left;
 		}
 	}
 
@@ -99,9 +99,9 @@ class MovableCard extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	goTo(state) {
-		this._startState = this._endState;
-		this._endState = {
-			...this._endState,
+		this.startState = this.endState;
+		this.endState = {
+			...this.endState,
 			...state,
 		};
 
@@ -113,7 +113,7 @@ class MovableCard extends EventEmitter {
 	 * @return {Card}
 	 */
 	instance() {
-		return this._card;
+		return this.card;
 	}
 
 	/**
@@ -129,20 +129,20 @@ class MovableCard extends EventEmitter {
 	 * @return {boolean}
 	 */
 	isValid() {
-		return Boolean(this._card);
+		return Boolean(this.card);
 	}
 
 	/**
 	 * Destroy the path to indicate animation is done.
 	 */
 	destroy() {
-		if (!this._card) {
+		if (!this.card) {
 			return;
 		}
 
-		this._startState = null;
-		this._endState = null;
-		this._card = null;
+		this.startState = null;
+		this.endState = null;
+		this.card = null;
 		this.emit('destroyed');
 	}
 }

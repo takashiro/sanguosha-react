@@ -15,7 +15,7 @@ function onCardEntering(motion) {
 		opacity: 1,
 	});
 
-	for (const card of motion.cards()) {
+	for (const card of motion.getCards()) {
 		card.once('destroyed', this.cleanCards);
 	}
 
@@ -23,7 +23,7 @@ function onCardEntering(motion) {
 		return {
 			cards: [
 				...prev.cards,
-				...motion.cards(),
+				...motion.getCards(),
 			],
 		};
 	});
@@ -79,7 +79,7 @@ class DiscardPile extends React.Component {
 		const { cards } = this.state;
 		return (
 			<div ref={this.node} className="discard-pile">
-				{cards.map((card) => <MovableCard key={card.id()} card={card} />)}
+				{cards.map((card) => <MovableCard key={card.getId()} card={card} />)}
 			</div>
 		);
 	}

@@ -11,21 +11,21 @@ class CardArea extends EventEmitter {
 	constructor(type) {
 		super();
 
-		this._type = type;
-		this._cards = [];
-		this._enabled = false;
+		this.type = type;
+		this.cards = [];
+		this.enabled = false;
 	}
 
-	type() {
-		return this._type;
+	getType() {
+		return this.type;
 	}
 
-	cards() {
-		return this._cards;
+	getCards() {
+		return this.cards;
 	}
 
-	size() {
-		return this._cards.length;
+	get size() {
+		return this.cards.length;
 	}
 
 	/**
@@ -33,9 +33,9 @@ class CardArea extends EventEmitter {
 	 * @param {Card[]} cards
 	 */
 	add(cards) {
-		this._cards.push(...cards);
+		this.cards.push(...cards);
 		this.emit('cardAdded', cards);
-		this.emit('numChanged', this._cards.length);
+		this.emit('numChanged', this.cards.length);
 	}
 
 	/**
@@ -44,13 +44,13 @@ class CardArea extends EventEmitter {
 	 */
 	remove(cards) {
 		for (const card of cards) {
-			const pos = this._cards.indexOf(card);
+			const pos = this.cards.indexOf(card);
 			if (pos >= 0) {
-				this._cards.splice(pos, 1);
+				this.cards.splice(pos, 1);
 			}
 		}
 		this.emit('cardRemoved', cards);
-		this.emit('numChanged', this._cards.length);
+		this.emit('numChanged', this.cards.length);
 	}
 
 	/**
@@ -61,9 +61,9 @@ class CardArea extends EventEmitter {
 	map(metas) {
 		return metas.map((meta) => {
 			if (typeof meta === 'number') {
-				return this._cards.find((card) => card.id() === meta);
+				return this.cards.find((card) => card.getId() === meta);
 			}
-			return this._cards.find((card) => card.id() === meta.id);
+			return this.cards.find((card) => card.getId() === meta.id);
 		});
 	}
 
@@ -88,18 +88,18 @@ class CardArea extends EventEmitter {
 	 * @return {boolean}
 	 */
 	isEnabled() {
-		return this._enabled;
+		return this.enabled;
 	}
 
 	/**
 	 * Enable or disable the area
 	 */
 	setEnabled(enabled) {
-		if (this._enabled === enabled) {
+		if (this.enabled === enabled) {
 			return;
 		}
 
-		this._enabled = enabled;
+		this.enabled = enabled;
 		this.emit('enabledChanged', enabled);
 	}
 }

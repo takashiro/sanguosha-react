@@ -26,9 +26,9 @@ export default function ChooseCards(options) {
 	const onConfirmClicked = () => {
 		dashboard.off('selectedCardsChanged', onSelectedCardsChanged);
 
-		const cards = dashboard.selectedCards();
+		const cards = dashboard.getSelectedCards();
 		dashboard.setSelectedCards([]);
-		const ids = cards.map((card) => card.id());
+		const ids = cards.map((card) => card.getId());
 		client.reply(locker, ids);
 	};
 	dashboard.once('confirm', onConfirmClicked);

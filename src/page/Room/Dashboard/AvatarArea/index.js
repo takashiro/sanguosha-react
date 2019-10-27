@@ -13,8 +13,8 @@ class AvatarArea extends React.Component {
 		this.state = {
 			generalNum: 1,
 			kingdom: 'unknown',
-			headGeneral: player.headGeneral(),
-			deputyGeneral: player.deputyGeneral(),
+			headGeneral: player.getHeadGeneral(),
+			deputyGeneral: player.getDeputyGeneral(),
 		};
 
 		player.on('headGeneralChanged', (general) => this.setState({ headGeneral: general }));

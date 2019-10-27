@@ -24,7 +24,7 @@ class PhotoLayout extends React.Component {
 		const { players } = this.state;
 		return (
 			<div className={`photo-layout n${players.length}`}>
-				{players.map((player) => <Photo key={player.seat()} player={player} />)}
+				{players.map((player) => <Photo key={player.getSeat()} player={player} />)}
 			</div>
 		);
 	}

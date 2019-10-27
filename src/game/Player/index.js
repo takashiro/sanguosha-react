@@ -7,22 +7,22 @@ class Player extends EventEmitter {
 	constructor(uid, seat, name) {
 		super();
 
-		this._uid = uid;
-		this._seat = seat;
-		this._name = name;
+		this.uid = uid;
+		this.seat = seat;
+		this.name = name;
 
-		this._headGeneral = null;
-		this._deputyGeneral = null;
-		this._kingdom = 0;
+		this.headGeneral = null;
+		this.deputyGeneral = null;
+		this.kingdom = 0;
 
-		this._hp = 0;
-		this._maxHp = 0;
+		this.hp = 0;
+		this.maxHp = 0;
 
-		this._phase = 0;
+		this.phase = 0;
 	}
 
-	uid() {
-		return this._uid;
+	getUid() {
+		return this.uid;
 	}
 
 	property(prop) {
@@ -41,86 +41,86 @@ class Player extends EventEmitter {
 		}
 	}
 
-	seat() {
-		return this._seat;
+	getSeat() {
+		return this.seat;
 	}
 
 	setSeat(seat) {
-		this._seat = seat;
+		this.seat = seat;
 		this.emit('seatChanged', seat);
 	}
 
-	name() {
-		return this._name;
+	getName() {
+		return this.name;
 	}
 
 	setName(name) {
-		this._name = name;
+		this.name = name;
 		this.emit('nameChanged', name);
 	}
 
-	general() {
-		return this.headGeneral();
+	getGeneral() {
+		return this.getHeadGeneral();
 	}
 
 	setGeneral(general) {
 		this.setHeadGeneral(general);
 	}
 
-	headGeneral() {
-		return this._headGeneral;
+	getHeadGeneral() {
+		return this.headGeneral;
 	}
 
 	setHeadGeneral(general) {
-		this._headGeneral = general;
+		this.headGeneral = general;
 		this.emit('headGeneralChanged', general);
 	}
 
-	deputyGeneral() {
-		return this._deputyGeneral;
+	getDeputyGeneral() {
+		return this.deputyGeneral;
 	}
 
 	setDeputyGeneral(general) {
-		this._deputyGeneral = general;
+		this.deputyGeneral = general;
 		this.emit('deputyGeneralChanged', general);
 	}
 
-	kingdom() {
-		return this._kingdom;
+	getKingdom() {
+		return this.kingdom;
 	}
 
 	setKingdom(kingdom) {
 		if (typeof kingdom === 'number') {
 			kingdom = Kingdom.fromNum(kingdom);
 		}
-		this._kingdom = kingdom;
+		this.kingdom = kingdom;
 		this.emit('kingdomChanged', kingdom);
 	}
 
-	hp() {
-		return this._hp;
+	getHp() {
+		return this.hp;
 	}
 
 	setHp(hp) {
-		this._hp = hp;
+		this.hp = hp;
 		this.emit('hpChanged', hp);
 	}
 
-	maxHp() {
-		return this._maxHp;
+	getMaxHp() {
+		return this.maxHp;
 	}
 
 	setMaxHp(maxHp) {
-		this._maxHp = maxHp;
+		this.maxHp = maxHp;
 		this.emit('maxHpChanged', maxHp);
 	}
 
-	phase() {
-		return this._phase;
+	getPhase() {
+		return this.phase;
 	}
 
 	setPhase(phase) {
-		this._phase = phase;
+		this.phase = phase;
 		this.emit('phaseChanged', phase);
 	}
 }

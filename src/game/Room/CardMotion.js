@@ -18,7 +18,7 @@ class CardMotion extends EventEmitter {
 		super();
 
 
-		this._cards = cards ? cards.map((card) => new MovableCard(card)) : [];
+		this.cards = cards ? cards.map((card) => new MovableCard(card)) : [];
 	}
 
 	/**
@@ -26,11 +26,11 @@ class CardMotion extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	setStartState(state) {
-		const cardNum = this._cards.length;
+		const cardNum = this.cards.length;
 		const midIndex = (cardNum - 1) / 2;
 		const offset = cardNum <= 5 ? 30 : 150 / cardNum;
 
-		this._cards.forEach((card, index) => {
+		this.cards.forEach((card, index) => {
 			card.setStartState({
 				top: state.top,
 				left: state.left + offset * (index - midIndex),
@@ -44,11 +44,11 @@ class CardMotion extends EventEmitter {
 	 * @param {MotionState} state
 	 */
 	setEndState(state) {
-		const cardNum = this._cards.length;
+		const cardNum = this.cards.length;
 		const midIndex = (cardNum - 1) / 2;
 		const offset = cardNum <= 5 ? 30 : 150 / cardNum;
 
-		this._cards.forEach((card, index) => {
+		this.cards.forEach((card, index) => {
 			card.setEndState({
 				top: state.top,
 				left: state.left + offset * (index - midIndex),
@@ -62,7 +62,7 @@ class CardMotion extends EventEmitter {
 	 * @param {{top: number, left: number}} offset
 	 */
 	moveBy(offset) {
-		for (const card of this._cards) {
+		for (const card of this.cards) {
 			card.moveBy(offset);
 		}
 	}
@@ -71,8 +71,8 @@ class CardMotion extends EventEmitter {
 	 * Returns all movable cards
 	 * @return {MovableCard[]}
 	 */
-	cards() {
-		return this._cards;
+	getCards() {
+		return this.cards;
 	}
 }
 

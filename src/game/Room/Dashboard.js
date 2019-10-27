@@ -4,24 +4,24 @@ class Dashboard extends EventEmitter {
 	constructor(uid) {
 		super();
 
-		this._uid = uid;
-		this._player = null;
-		this._selectedCards = [];
-		this._confirmEnabled = false;
-		this._cancelEnabled = false;
-		this._finishEnabled = false;
+		this.uid = uid;
+		this.player = null;
+		this.selectedCards = [];
+		this.confirmEnabled = false;
+		this.cancelEnabled = false;
+		this.finishEnabled = false;
 	}
 
-	uid() {
-		return this._uid;
+	getUid() {
+		return this.uid;
 	}
 
-	player() {
-		return this._player;
+	getPlayer() {
+		return this.player;
 	}
 
 	setPlayer(player) {
-		this._player = player;
+		this.player = player;
 
 		player.on('phaseChanged', () => {
 			this.setEnabled(false);
@@ -32,39 +32,39 @@ class Dashboard extends EventEmitter {
 		this.emit('playerChanged', player);
 	}
 
-	selectedCards() {
-		return this._selectedCards;
+	getSelectedCards() {
+		return this.selectedCards;
 	}
 
 	setSelectedCards(cards) {
-		this._selectedCards = cards;
+		this.selectedCards = cards;
 		this.emit('selectedCardsChanged', cards);
 	}
 
 	isConfirmEnabled() {
-		return this._confirmEnabled;
+		return this.confirmEnabled;
 	}
 
 	setConfirmEnabled(enabled) {
-		this._confirmEnabled = enabled;
+		this.confirmEnabled = enabled;
 		this.emit('confirmEnabledChanged', enabled);
 	}
 
 	isCancelEnabled() {
-		return this._cancelEnabled;
+		return this.cancelEnabled;
 	}
 
 	setCancelEnabled(enabled) {
-		this._cancelEnabled = enabled;
+		this.cancelEnabled = enabled;
 		this.emit('cancelEnabledChanged', enabled);
 	}
 
 	isFinishEnabled() {
-		return this._finishEnabled;
+		return this.finishEnabled;
 	}
 
 	setFinishEnabled(enabled) {
-		this._finishEnabled = enabled;
+		this.finishEnabled = enabled;
 		this.emit('finishEnabledChanged', enabled);
 	}
 

@@ -6,18 +6,18 @@ import './index.scss';
 function Card(props) {
 	const { card } = props;
 
-	if (card.id()) {
-		const classNames = ['card', card.color()];
+	if (card.getId()) {
+		const classNames = ['card', card.getColor()];
 		const style = {
-			backgroundImage: `url(style/card/${card.name()}.png)`,
+			backgroundImage: `url(style/card/${card.getName()}.png)`,
 		};
 		return (
 			<div className={classNames.join(' ')} style={style}>
-				<div className={`suit ${card.suitString().toLowerCase()}`} />
+				<div className={`suit ${card.getSuitString().toLowerCase()}`} />
 				<div
 					className="number"
 					style={{
-						backgroundImage: `url(style/card/number/${card.color()}/${card.number()}.png)`,
+						backgroundImage: `url(style/card/number/${card.getColor()}/${card.getNumber()}.png)`,
 					}}
 				/>
 			</div>

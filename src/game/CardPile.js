@@ -5,15 +5,15 @@ import Card from './Card';
 class CardPile extends CardArea {
 	constructor(type) {
 		super(type);
-		this._cardNum = 0;
+		this.cardNum = 0;
 	}
 
 	/**
 	 * Gets the number of cards
 	 * @return {number}
 	 */
-	size() {
-		return this._cardNum;
+	get size() {
+		return this.cardNum;
 	}
 
 	/**
@@ -21,9 +21,9 @@ class CardPile extends CardArea {
 	 * @param {Card[]} cards
 	 */
 	add(cards) {
-		this._cardNum += cards.length;
+		this.cardNum += cards.length;
 		this.emit('cardAdded', cards);
-		this.emit('numChanged', this._cardNum);
+		this.emit('numChanged', this.cardNum);
 	}
 
 	/**
@@ -32,9 +32,9 @@ class CardPile extends CardArea {
 	 * @return {Card[]}
 	 */
 	remove(cards) {
-		this._cardNum -= cards.length;
+		this.cardNum -= cards.length;
 		this.emit('cardRemoved', cards);
-		this.emit('numChanged', this._cardNum);
+		this.emit('numChanged', this.cardNum);
 	}
 
 	/**

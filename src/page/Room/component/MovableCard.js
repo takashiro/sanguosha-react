@@ -6,8 +6,8 @@ import Card from './Card';
 function updatePos() {
 	const { card } = this.props;
 	this.setState({
-		from: card.startState(),
-		to: card.endState(),
+		from: card.getStartState(),
+		to: card.getEndState(),
 	});
 }
 
@@ -30,8 +30,8 @@ class MovableCard extends React.Component {
 
 		const { card } = props;
 		this.state = {
-			from: card.startState(),
-			to: card.endState(),
+			from: card.getStartState(),
+			to: card.getEndState(),
 			selected: false,
 		};
 

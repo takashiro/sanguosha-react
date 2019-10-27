@@ -13,7 +13,7 @@ function onCardLeaving(motion) {
 
 	const { area } = this.props;
 	this.setState({
-		num: area.size(),
+		num: area.size,
 	});
 }
 
@@ -21,7 +21,7 @@ function cleanCards() {
 	const { area } = this.props;
 	this.setState(function (prev) {
 		const { cards } = prev;
-		const num = area.size();
+		const num = area.size;
 		return {
 			num,
 			cards: cards.filter((motion) => motion.isValid()),
@@ -41,7 +41,7 @@ function onCardEntering(motion) {
 		left: -left,
 	});
 
-	for (const card of motion.cards()) {
+	for (const card of motion.getCards()) {
 		card.once('destroyed', this.cleanCards);
 	}
 
@@ -49,7 +49,7 @@ function onCardEntering(motion) {
 		return {
 			cards: [
 				...prev.cards,
-				...motion.cards(),
+				...motion.getCards(),
 			],
 		};
 	});
@@ -63,7 +63,7 @@ class HandArea extends React.Component {
 
 		this.node = React.createRef();
 		this.state = {
-			num: area.size(),
+			num: area.size,
 			cards: [],
 		};
 
@@ -93,7 +93,7 @@ class HandArea extends React.Component {
 		return (
 			<div ref={this.node} className="hand-area">
 				<div className="card-num">{num}</div>
-				{cards.map((card) => <MovableCard key={card.id()} card={card} />)}
+				{cards.map((card) => <MovableCard key={card.getId()} card={card} />)}
 			</div>
 		);
 	}
