@@ -32,15 +32,15 @@ class Room extends EventEmitter {
 		this.client.send(cmd.StartGame);
 	}
 
-	dashboardUid() {
+	getDashboardUid() {
 		return this.dashboard.getUid();
 	}
 
-	dashboardPlayer() {
+	getDashboardPlayer() {
 		return this.players[0];
 	}
 
-	otherPlayers() {
+	getOtherPlayers() {
 		return this.players.slice(1);
 	}
 

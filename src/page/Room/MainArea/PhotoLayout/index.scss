@@ -7,6 +7,25 @@
 
 	.photo {
 		margin: 20px;
+		transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+	}
+
+	&.selectable {
+		.photo {
+			filter: brightness(0.5);
+
+			&.selectable {
+				filter: none;
+
+				&:hover {
+					box-shadow: rgb(252, 255, 49) 0 0 10px 2px;
+				}
+			}
+
+			&.selected {
+				box-shadow: rgb(255, 208, 0) 0 0 10px 2px;
+			}
+		}
 	}
 
 	&.n1 {

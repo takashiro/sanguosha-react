@@ -12,18 +12,25 @@ class PhotoLayout extends React.Component {
 		const { room } = this.props;
 
 		this.state = {
-			players: room.otherPlayers(),
+			selectable: false,
+			players: room.getOtherPlayers(),
 		};
 
 		room.on('playerChanged', () => {
-			this.setState({ players: room.otherPlayers() });
+			this.setState({ players: room.getOtherPlayers() });
 		});
 	}
 
 	render() {
+		const { selectable } = this.state;
 		const { players } = this.state;
+
+		const classNames = ['photo-layout', `n${players.length}`];
+		if (selectable) {
+			classNames.push('selectable');
+		}
 		return (
-			<div className={`photo-layout n${players.length}`}>
+			<div className={classNames.join(' ')}>
 				{players.map((player) => <Photo key={player.getSeat()} player={player} />)}
 			</div>
 		);

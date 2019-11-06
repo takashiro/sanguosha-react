@@ -25,6 +25,8 @@ class Photo extends React.Component {
 			hp: player.getHp(),
 			maxHp: player.getMaxHp(),
 			kingdom: player.getKingdom(),
+			selectable: false,
+			selected: false,
 		};
 
 		player.on('seatChanged', (seat) => this.setState({ seat }));
@@ -45,9 +47,17 @@ class Photo extends React.Component {
 		const { screenName } = this.state;
 		const { hp, maxHp } = this.state;
 		const { seat } = this.state;
+		const { selectable, selected } = this.state;
 
+		const classNames = ['photo', kingdom ? kingdom.toLowerCase() : 'unknown'];
+		if (selectable) {
+			classNames.push('selectable');
+			if (selected) {
+				classNames.push('selected');
+			}
+		}
 		return (
-			<div className={`photo ${kingdom ? kingdom.toLowerCase() : 'unknown'}`}>
+			<div className={classNames.join(' ')}>
 				<div className={`avatar-area g${generalNum}`}>
 					<PhotoAvatar
 						position="head"
