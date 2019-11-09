@@ -19,6 +19,13 @@ export default function Play(options) {
 		handArea.off('selectedCardsChanged', onSelectedCardsChanged);
 	});
 
+	dashboard.once('finish', () => {
+		handArea.off('selectedCardsChanged', onSelectedCardsChanged);
+		dashboard.setFinishEnabled(false);
+		client.reply(locker, null);
+	});
+
+	dashboard.setFinishEnabled(true);
 	handArea.setSelectableCards(options.cards);
 	handArea.setEnabled(true);
 }

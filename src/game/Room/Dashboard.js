@@ -68,7 +68,7 @@ class Dashboard extends EventEmitter {
 	setEnabled(enabled) {
 		this.setConfirmEnabled(enabled);
 		this.setCancelEnabled(enabled);
-		this.setConfirmEnabled(enabled);
+		this.setFinishEnabled(enabled);
 	}
 
 	confirm() {
