@@ -12,6 +12,7 @@ export default function ChooseCards(options) {
 	const { client } = this;
 	const locker = client.lock();
 
+	area.setSelectableCards(area.cards.map(card => card.getId()));
 	area.setEnabled(true);
 
 	const { dashboard } = this;
@@ -21,20 +22,19 @@ export default function ChooseCards(options) {
 		const acceptable = cards.length === options.num;
 		dashboard.setConfirmEnabled(acceptable);
 	};
-	dashboard.on('selectedCardsChanged', onSelectedCardsChanged);
+	area.on('selectedCardsChanged', onSelectedCardsChanged);
 
 	const onConfirmClicked = () => {
-		dashboard.off('selectedCardsChanged', onSelectedCardsChanged);
+		area.off('selectedCardsChanged', onSelectedCardsChanged);
 
-		const cards = dashboard.getSelectedCards();
-		dashboard.setSelectedCards([]);
-		const ids = cards.map((card) => card.getId());
-		client.reply(locker, ids);
+		const cards = area.getSelectedCards();
+		area.setSelectedCards([]);
+		client.reply(locker, cards);
 	};
 	dashboard.once('confirm', onConfirmClicked);
 
 	client.once('lockChanged', () => {
-		dashboard.off('selectedCardsChanged', onSelectedCardsChanged);
+		area.off('selectedCardsChanged', onSelectedCardsChanged);
 		dashboard.off('confirm', onConfirmClicked);
 	});
 }
