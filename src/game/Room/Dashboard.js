@@ -6,7 +6,6 @@ class Dashboard extends EventEmitter {
 
 		this.uid = uid;
 		this.player = null;
-		this.selectedCards = [];
 		this.confirmEnabled = false;
 		this.cancelEnabled = false;
 		this.finishEnabled = false;
@@ -22,23 +21,21 @@ class Dashboard extends EventEmitter {
 
 	setPlayer(player) {
 		this.player = player;
-
-		player.on('phaseChanged', () => {
-			this.setEnabled(false);
-			player.handArea.setEnabled(false);
-			player.equipArea.setEnabled(false);
-		});
-
+		player.on('phaseChanged', () => this.reset());
 		this.emit('playerChanged', player);
 	}
 
 	getSelectedCards() {
-		return this.selectedCards;
-	}
+		const areas = [
+			this.player.getHandArea(),
+			this.player.getEquipArea(),
+		];
 
-	setSelectedCards(cards) {
-		this.selectedCards = cards;
-		this.emit('selectedCardsChanged', cards);
+		const cards = [];
+		for (const area of areas) {
+			cards.push(...area.getSelectedCards());
+		}
+		return cards;
 	}
 
 	isConfirmEnabled() {
@@ -84,6 +81,22 @@ class Dashboard extends EventEmitter {
 
 	finish() {
 		this.emit('finish');
+	}
+
+	/**
+	 * Reset selectable cards, selected cards and disable all buttons.
+	 */
+	reset() {
+		this.setEnabled(false);
+		const areas = [
+			this.player.getHandArea(),
+			this.player.getEquipArea(),
+		];
+		for (const area of areas) {
+			area.setEnabled(false);
+			area.setSelectableCards([]);
+			area.setSelectedCards([]);
+		}
 	}
 }
 

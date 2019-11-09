@@ -35,10 +35,7 @@ class Dashboard extends React.Component {
 			<div className="dashboard">
 				<PhaseBar player={player} />
 				<EquipArea />
-				<HandArea
-					area={player.handArea}
-					onSelectionChanged={(cards) => dashboard.setSelectedCards(cards)}
-				/>
+				<HandArea area={player.handArea} />
 				<ButtonArea dashboard={dashboard} />
 				<AvatarArea player={player} />
 				<HpArea player={player} />

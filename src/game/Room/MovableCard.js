@@ -11,17 +11,22 @@ class MovableCard extends EventEmitter {
 	constructor(card) {
 		super();
 
-		this.id = serial++;
+		this.serial = serial++;
 		this.card = card;
 		this.startState = null;
 		this.endState = null;
+		this.selectable = false;
 		this.selected = false;
 		this.width = 93;
 		this.height = 130;
 	}
 
 	getId() {
-		return this.id;
+		return this.card.getId();
+	}
+
+	getSerial() {
+		return this.serial;
 	}
 
 	getWidth() {
@@ -39,6 +44,15 @@ class MovableCard extends EventEmitter {
 	setSelected(selected) {
 		this.selected = selected;
 		this.emit('selectedChanged', selected);
+	}
+
+	isSelectable() {
+		return this.selectable;
+	}
+
+	setSelectable(selectable) {
+		this.selectable = selectable;
+		this.emit('selectableChanged', selectable);
 	}
 
 	/**

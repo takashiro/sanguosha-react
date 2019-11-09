@@ -79,7 +79,7 @@ class DiscardPile extends React.Component {
 		const { cards } = this.state;
 		return (
 			<div ref={this.node} className="discard-pile">
-				{cards.map((card) => <MovableCard key={card.getId()} card={card} />)}
+				{cards.map((card) => <MovableCard key={card.getSerial()} card={card} />)}
 			</div>
 		);
 	}

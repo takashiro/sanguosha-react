@@ -71,17 +71,19 @@ function onCardLeaving(motion) {
 }
 
 function onEnabled(enabled) {
-	const { onSelectionChanged } = this.props;
-
+	const { area } = this.props;
 	this.setState(function (prev) {
 		const { cards } = prev;
-		if (!enabled) {
+		if (enabled) {
+			const selectableCards = area.getSelectableCards();
+			for (const card of cards) {
+				card.setSelectable(selectableCards.includes(card.getId()));
+			}
+		} else {
 			for (const card of cards) {
 				card.setSelected(false);
 			}
-			if (onSelectionChanged) {
-				onSelectionChanged([]);
-			}
+			area.setSelectedCards([]);
 		}
 		return {
 			selectable: enabled,
@@ -91,14 +93,12 @@ function onEnabled(enabled) {
 }
 
 function onCardClicked() {
-	const { onSelectionChanged } = this.props;
-	if (onSelectionChanged) {
-		const { cards } = this.state;
-		const selectedCards = cards
-			.filter((card) => card.isSelected())
-			.map((card) => card.instance());
-		onSelectionChanged(selectedCards);
-	}
+	const { area } = this.props;
+	const { cards } = this.state;
+	const selectedCards = cards
+		.filter((card) => card.isSelected())
+		.map((card) => card.getId());
+	area.setSelectedCards(selectedCards);
 }
 
 class HandArea extends React.Component {
@@ -148,9 +148,8 @@ class HandArea extends React.Component {
 					(card) => (
 						<MovableCard
 							permanent
-							key={card.getId()}
+							key={card.getSerial()}
 							card={card}
-							selectable={selectable}
 							onClick={this.onCardClicked}
 						/>
 					),

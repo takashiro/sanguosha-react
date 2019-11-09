@@ -11,7 +11,11 @@ function updatePos() {
 	});
 }
 
-function updateSelection(selected) {
+function onSelectableChanged(selectable) {
+	this.setState({ selectable });
+}
+
+function onSelectedChanged(selected) {
 	this.setState({ selected });
 }
 
@@ -32,6 +36,7 @@ class MovableCard extends React.Component {
 		this.state = {
 			from: card.getStartState(),
 			to: card.getEndState(),
+			selectable: false,
 			selected: false,
 		};
 
@@ -43,9 +48,11 @@ class MovableCard extends React.Component {
 		if (permanent) {
 			const { card } = this.props;
 			this.updatePos = updatePos.bind(this);
-			this.updateSelection = updateSelection.bind(this);
 			card.on('move', this.updatePos);
-			card.on('selectedChanged', this.updateSelection);
+			this.onSelectableChanged = onSelectableChanged.bind(this);
+			card.on('selectableChanged', this.onSelectableChanged);
+			this.onSelectedChanged = onSelectedChanged.bind(this);
+			card.on('selectedChanged', this.onSelectedChanged);
 		}
 	}
 
@@ -55,16 +62,20 @@ class MovableCard extends React.Component {
 			card.off('move', this.updatePos);
 			this.updatePos = null;
 		}
-		if (this.updateSelection) {
-			card.off('selectedChanged', this.updateSelection);
-			this.updateSelection = null;
+		if (this.onSelectableChanged) {
+			card.off('selectableChanged', this.onSelectableChanged);
+			this.onSelectableChanged = null;
+		}
+		if (this.onSelectedChanged) {
+			card.off('selectedChanged', this.onSelectedChanged);
+			this.onSelectedChanged = null;
 		}
 	}
 
 	render() {
 		const { card } = this.props;
 		const { permanent } = this.props;
-		const { selectable } = this.props;
+		const { selectable } = this.state;
 		const { selected } = this.state;
 
 		const { from, to } = this.state;
