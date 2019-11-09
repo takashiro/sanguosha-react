@@ -32,6 +32,14 @@ class Room extends EventEmitter {
 		this.client.send(cmd.StartGame);
 	}
 
+	getClient() {
+		return this.client;
+	}
+
+	getDashboard() {
+		return this.dashboard;
+	}
+
 	getDashboardUid() {
 		return this.dashboard.getUid();
 	}
@@ -57,13 +65,13 @@ class Room extends EventEmitter {
 
 			switch (info.type) {
 			case CardArea.Type.Hand:
-				return player.handArea;
+				return player.getHandArea();
 			case CardArea.Type.Equip:
-				return player.equipArea;
-			case CardArea.Type.DelayedTrick:
-				return player.delayedTrickArea;
+				return player.getEquipArea();
 			case CardArea.Type.Judge:
-				return player.judgeArea;
+				return player.getJudgeArea();
+			case CardArea.Type.Process:
+				return player.getProcessArea();
 			default:
 				return null;
 			}

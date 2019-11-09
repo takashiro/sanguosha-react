@@ -19,10 +19,47 @@ class Player extends EventEmitter {
 		this.maxHp = 0;
 
 		this.phase = 0;
+
+		this.handArea = null;
+		this.equipArea = null;
+		this.judgeArea = null;
+		this.processArea = null;
 	}
 
 	getUid() {
 		return this.uid;
+	}
+
+	getHandArea() {
+		return this.handArea;
+	}
+
+	setHandArea(area) {
+		this.handArea = area;
+	}
+
+	getEquipArea() {
+		return this.equipArea;
+	}
+
+	setEquipArea(area) {
+		this.equipArea = area;
+	}
+
+	getJudgeArea() {
+		return this.judgeArea;
+	}
+
+	setJudgeArea(area) {
+		this.judgeArea = area;
+	}
+
+	getProcessArea() {
+		return this.processArea;
+	}
+
+	setProcessArea(area) {
+		this.processArea = area;
 	}
 
 	property(prop) {

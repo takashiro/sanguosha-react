@@ -30,13 +30,13 @@ export default function ArrangeSeats(metas) {
 		const player = new Player(meta.uid, meta.seat, meta.name);
 		this.players[i] = player;
 		if (player.getUid() === this.getDashboardUid()) {
-			player.handArea = new CardArea(CardArea.Type.Hand);
+			player.setHandArea(new CardArea(CardArea.Type.Hand));
 		} else {
-			player.handArea = new CardPile(CardPile.Type.Hand);
+			player.setHandArea(new CardPile(CardPile.Type.Hand));
 		}
-		player.equipArea = new CardArea(CardArea.Type.Equip);
-		player.delayedTrickArea = new CardArea(CardArea.Type.DelayedTrick);
-		player.judgeArea = new CardArea(CardArea.Type.Judge);
+		player.setEquipArea(new CardArea(CardArea.Type.Equip));
+		player.setJudgeArea(new CardArea(CardArea.Type.Judge));
+		player.setProcessArea(new CardArea(CardArea.Type.Process));
 	}
 
 	sortPlayerSeat.call(this);
