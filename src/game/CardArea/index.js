@@ -14,6 +14,8 @@ class CardArea extends EventEmitter {
 		this.type = type;
 		this.cards = [];
 		this.enabled = false;
+		this.selectableCards = [];
+		this.selectedCards = [];
 	}
 
 	getType() {
@@ -101,6 +103,42 @@ class CardArea extends EventEmitter {
 
 		this.enabled = enabled;
 		this.emit('enabledChanged', enabled);
+	}
+
+
+	/**
+	 * Get selectable card ids.
+	 * It changes when a request comes.
+	 * @return {number[]}
+	 */
+	getSelectableCards() {
+		return this.selectableCards;
+	}
+
+	/**
+	 * Set selectable card ids.
+	 * @param {number[]} cards
+	 */
+	setSelectableCards(cards) {
+		this.selectableCards = cards;
+		this.emit('selectableCardsChanged', cards);
+	}
+
+	/**
+	 * Get selected card ids.
+	 * @return {number[]}
+	 */
+	getSelectedCards() {
+		return this.selectedCards;
+	}
+
+	/**
+	 * Set selected card ids.
+	 * @param {number[]} cards
+	 */
+	setSelectedCards(cards) {
+		this.selectedCards = cards;
+		this.emit('selectedCardsChanged', cards);
 	}
 }
 
