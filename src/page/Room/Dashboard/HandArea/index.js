@@ -70,7 +70,7 @@ function onCardLeaving(motion) {
 	});
 }
 
-function onCardEnabled(enabled) {
+function onEnabled(enabled) {
 	const { onSelectionChanged } = this.props;
 
 	this.setState(function (prev) {
@@ -111,9 +111,9 @@ class HandArea extends React.Component {
 		};
 		this.node = React.createRef();
 
+		this.onEnabled = onEnabled.bind(this);
 		this.onCardEntering = onCardEntering.bind(this);
 		this.onCardLeaving = onCardLeaving.bind(this);
-		this.onCardEnabled = onCardEnabled.bind(this);
 		this.onCardClicked = onCardClicked.bind(this);
 	}
 
@@ -122,15 +122,15 @@ class HandArea extends React.Component {
 
 		area.on('cardEntering', this.onCardEntering);
 		area.on('cardLeaving', this.onCardLeaving);
-		area.on('enabledChanged', this.onCardEnabled);
+		area.on('enabledChanged', this.onEnabled);
 	}
 
 	componentWillUnmount() {
 		const { area } = this.props;
 
+		area.off('enabledChanged', this.onEnabled);
 		area.off('cardEntering', this.onCardEntering);
 		area.off('cardLeaving', this.onCardLeaving);
-		area.off('enabledChanged', this.onCardEnabled);
 	}
 
 	render() {
