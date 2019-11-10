@@ -58,6 +58,14 @@ class Room extends EventEmitter {
 		this.emit('selectableChanged', selectable);
 	}
 
+	reset() {
+		this.setSelectable(false);
+		for (const player of this.players) {
+			player.setSelectable(false);
+			player.setSelected(false);
+		}
+	}
+
 	getPlayers() {
 		return this.players;
 	}
@@ -99,6 +107,10 @@ class Room extends EventEmitter {
 		default:
 			return null;
 		}
+	}
+
+	lock() {
+		return this.client.lock();
 	}
 
 	reply(command, args) {
