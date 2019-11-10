@@ -13,6 +13,8 @@ export default function ChoosePlayer(options) {
 
 	const onConfirmClicked = () => {
 		this.off('selectedPlayerChanged', onSelectedPlayerChanged);
+		this.resetSelection();
+		dashboard.resetSelection();
 		this.reply(locker, { confirm: true });
 	};
 	if (feasible) {
@@ -23,6 +25,7 @@ export default function ChoosePlayer(options) {
 	const onCancelClicked = () => {
 		this.off('selectedPlayerChanged', onSelectedPlayerChanged);
 		this.resetSelection();
+		dashboard.resetSelection();
 		this.reply(locker, { cancel: true });
 	};
 	dashboard.once('cancel', onCancelClicked);
@@ -36,8 +39,11 @@ export default function ChoosePlayer(options) {
 
 	const { candidates } = options;
 	for (const player of this.getPlayers()) {
-		if (!player.isSelected()) {
-			player.setSelectable(candidates.includes(player.getSeat()));
+		const selectable = candidates.includes(player.getSeat());
+		if (selectable) {
+			player.setSelectable(true);
+		} else if (!player.isSelected()) {
+			player.setSelectable(false);
 		}
 	}
 	this.setSelectable(true);

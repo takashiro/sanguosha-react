@@ -26,7 +26,6 @@ class Room extends EventEmitter {
 		this.drawPile = new CardPile(CardPile.Type.Draw);
 		this.discardPile = new CardPile(CardPile.Type.Discard);
 
-		this.dashboard.on('selectionReset', () => this.resetSelection());
 		this.client.on('lockerChanged', () => this.emit('lockerChanged'));
 
 		bindCommand.call(this);
@@ -77,18 +76,31 @@ class Room extends EventEmitter {
 		this.players = players;
 		this.emit('playersChanged', players);
 
-		const listeners = [];
+		const listenerMap = {
+			selectedChanged: [],
+			phaseChanged: [],
+		};
 		for (const player of players) {
-			const listener = () => {
+			const selectedListener = () => {
 				this.emit('selectedPlayerChanged', player);
 			};
-			listeners.push(listener);
-			player.on('selectedChanged', listener);
+			listenerMap.selectedChanged.push(selectedListener);
+			player.on('selectedChanged', selectedListener);
+
+			const phaseListener = () => {
+				this.resetSelection();
+				this.dashboard.resetSelection();
+			};
+			player.on('phaseChanged', phaseListener);
+			listenerMap.phaseChanged.push(phaseListener);
 		}
 
 		this.once('playersChanged', () => {
-			for (let i = 0; i < players.length; i++) {
-				players[i].off('selectedChanged', listeners[i]);
+			for (const event of Object.keys(listenerMap)) {
+				const listeners = listenerMap[event];
+				for (let i = 0; i < players.length; i++) {
+					players[i].off(event, listeners[i]);
+				}
 			}
 		});
 	}
@@ -116,7 +128,7 @@ class Room extends EventEmitter {
 			case CardArea.Type.Judge:
 				return player.getJudgeArea();
 			case CardArea.Type.Process:
-				return player.getProcessArea();
+				return this.discardPile;
 			default:
 				return null;
 			}

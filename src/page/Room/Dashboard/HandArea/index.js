@@ -121,9 +121,9 @@ class HandArea extends React.Component {
 	componentDidMount() {
 		const { area } = this.props;
 
+		area.on('enabledChanged', this.onEnabled);
 		area.on('cardEntering', this.onCardEntering);
 		area.on('cardLeaving', this.onCardLeaving);
-		area.on('enabledChanged', this.onEnabled);
 	}
 
 	componentWillUnmount() {
