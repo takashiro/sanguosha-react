@@ -7,10 +7,27 @@ class HpBar extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const { player } = props;
+
 		this.state = {
-			maxHp: props.maxHp !== undefined ? props.maxHp : 4,
-			hp: props.maxHp !== undefined ? props.hp : 3,
+			maxHp: player.getMaxHp(),
+			hp: player.getHp(),
 		};
+
+		this.onHpChanged = (hp) => this.setState({ hp });
+		this.onMaxHpChanged = (maxHp) => this.setState({ maxHp });
+	}
+
+	componentDidMount() {
+		const { player } = this.props;
+		player.on('hpChanged', this.onHpChanged);
+		player.on('maxHpChanged', this.onMaxHpChanged);
+	}
+
+	componentWillUnmount() {
+		const { player } = this.props;
+		player.off('hpChanged', this.onHpChanged);
+		player.off('maxHpChanged', this.onMaxHpChanged);
 	}
 
 	getLevel() {

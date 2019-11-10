@@ -33,8 +33,6 @@ class Photo extends React.Component {
 			headGeneral: player.getHeadGeneral(),
 			deputyGeneral: player.getDeputyGeneral(),
 			screenName: player.getName(),
-			hp: player.getHp(),
-			maxHp: player.getMaxHp(),
 			kingdom: player.getKingdom(),
 			selectable: false,
 			selected: false,
@@ -44,8 +42,6 @@ class Photo extends React.Component {
 		this.onHeadGeneralChanged = (general) => this.setState({ headGeneral: general });
 		this.onDeputyGeneralChanged = (general) => this.setState({ deputyGeneral: general });
 		this.onNameChanged = (name) => this.setState({ screenName: name });
-		this.onHpChanged = (hp) => this.setState({ hp });
-		this.onMaxHpChanged = (maxHp) => this.setState({ maxHp });
 		this.onKingdomChanged = (kingdom) => this.setState({ kingdom });
 		this.onSelectableChanged = (selectable) => this.setState({ selectable });
 		this.onSelectedChanged = (selected) => this.setState({ selected });
@@ -60,8 +56,6 @@ class Photo extends React.Component {
 		player.on('headGeneralChanged', this.onHeadGeneralChanged);
 		player.on('deputyGeneralChanged', this.onDeputyGeneralChanged);
 		player.on('nameChanged', this.onNameChanged);
-		player.on('hpChanged', this.onHpChanged);
-		player.on('maxHpChanged', this.onMaxHpChanged);
 		player.on('kingdomChanged', this.onKingdomChanged);
 		player.on('selectableChanged', this.onSelectableChanged);
 		player.on('selectedChanged', this.onSelectedChanged);
@@ -73,8 +67,6 @@ class Photo extends React.Component {
 		player.off('headGeneralChanged', this.onHeadGeneralChanged);
 		player.off('deputyGeneralChanged', this.onDeputyGeneralChanged);
 		player.off('nameChanged', this.onNameChanged);
-		player.off('hpChanged', this.onHpChanged);
-		player.off('maxHpChanged', this.onMaxHpChanged);
 		player.off('kingdomChanged', this.onKingdomChanged);
 		player.off('selectableChanged', this.onSelectableChanged);
 		player.off('selectedChanged', this.onSelectedChanged);
@@ -87,7 +79,6 @@ class Photo extends React.Component {
 		const { headGeneral } = this.state;
 		const { deputyGeneral } = this.state;
 		const { screenName } = this.state;
-		const { hp, maxHp } = this.state;
 		const { seat } = this.state;
 		const { selectable, selected } = this.state;
 
@@ -115,7 +106,7 @@ class Photo extends React.Component {
 				{generalNum === 2 ? <div className="frame" /> : null}
 				<div className="screen-name">{screenName}</div>
 				<KingdomIcon kingdom={kingdom} />
-				<HpBar size={18} hp={hp} maxHp={maxHp} />
+				<HpBar size={18} player={player} />
 				<SeatNumber number={seat} />
 				<PhaseBar player={player} />
 				<HandArea area={player.handArea} />
