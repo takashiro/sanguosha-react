@@ -104,6 +104,9 @@ class Player extends EventEmitter {
 	}
 
 	setSelectable(selectable) {
+		if (this.selectable === selectable) {
+			return;
+		}
 		this.selectable = selectable;
 		this.emit('selectableChanged', selectable);
 	}
@@ -113,6 +116,9 @@ class Player extends EventEmitter {
 	}
 
 	setSelected(selected) {
+		if (this.selected === selected) {
+			return;
+		}
 		this.selected = selected;
 		this.emit('selectedChanged', selected);
 	}
