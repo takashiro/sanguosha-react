@@ -46,7 +46,7 @@ class Room extends EventEmitter {
 	}
 
 	getDashboardPlayer() {
-		return this.players[0];
+		return this.dashboard.getPlayer();
 	}
 
 	isSelectable() {
@@ -68,6 +68,11 @@ class Room extends EventEmitter {
 
 	getPlayers() {
 		return this.players;
+	}
+
+	setPlayers(players) {
+		this.players = players;
+		this.emit('playersChanged', players);
 	}
 
 	getOtherPlayers() {

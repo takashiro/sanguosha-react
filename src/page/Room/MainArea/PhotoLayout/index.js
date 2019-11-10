@@ -9,7 +9,7 @@ function onSelectableChanged(selectable) {
 	this.setState({ selectable });
 }
 
-function onPlayerChanged() {
+function onPlayersChanged() {
 	const { room } = this.props;
 	this.setState({ players: room.getOtherPlayers() });
 }
@@ -26,19 +26,19 @@ class PhotoLayout extends React.Component {
 		};
 
 		this.onSelectableChanged = onSelectableChanged.bind(this);
-		this.onPlayerChanged = onPlayerChanged.bind(this);
+		this.onPlayersChanged = onPlayersChanged.bind(this);
 	}
 
 	componentDidMount() {
 		const { room } = this.props;
 		room.on('selectableChanged', this.onSelectableChanged);
-		room.on('playerChanged', this.onPlayerChanged);
+		room.on('playersChanged', this.onPlayersChanged);
 	}
 
 	componentWillUnmount() {
 		const { room } = this.props;
 		room.off('selectableChanged', this.onSelectableChanged);
-		room.off('playerChanged', this.onPlayerChanged);
+		room.off('playersChanged', this.onPlayersChanged);
 	}
 
 	render() {

@@ -3,10 +3,10 @@ import Player from '../../Player';
 import CardArea from '../../CardArea';
 import CardPile from '../../CardPile';
 
-function sortPlayerSeat() {
-	const dashboardPlayer = this.players.find((player) => player.getUid() === this.getDashboardUid());
+function sortPlayerSeat(players, dashboardUid) {
+	const dashboardPlayer = players.find((player) => player.getUid() === dashboardUid);
 	const dashboardSeat = dashboardPlayer.getSeat();
-	const playerNum = this.players.length;
+	const playerNum = players.length;
 
 	function getRelativeSeat(player) {
 		let seat = player.getSeat() - dashboardSeat;
@@ -16,7 +16,7 @@ function sortPlayerSeat() {
 		return seat;
 	}
 
-	this.players.sort(function (a, b) {
+	players.sort(function (a, b) {
 		const p = getRelativeSeat(a);
 		const q = getRelativeSeat(b);
 		return p - q;
@@ -24,11 +24,11 @@ function sortPlayerSeat() {
 }
 
 export default function ArrangeSeats(metas) {
-	this.players = new Array(metas.length);
+	const players = new Array(metas.length);
 	for (let i = 0; i < metas.length; i++) {
 		const meta = metas[i];
 		const player = new Player(meta.uid, meta.seat, meta.name);
-		this.players[i] = player;
+		players[i] = player;
 		if (player.getUid() === this.getDashboardUid()) {
 			player.setHandArea(new CardArea(CardArea.Type.Hand));
 		} else {
@@ -39,10 +39,7 @@ export default function ArrangeSeats(metas) {
 		player.setProcessArea(new CardArea(CardArea.Type.Process));
 	}
 
-	sortPlayerSeat.call(this);
-
-	const me = this.getDashboardPlayer();
-	this.dashboard.setPlayer(me);
-
-	this.emit('playerChanged', this.players);
+	sortPlayerSeat(players, this.getDashboardUid());
+	this.dashboard.setPlayer(players[0]);
+	this.setPlayers(players);
 }

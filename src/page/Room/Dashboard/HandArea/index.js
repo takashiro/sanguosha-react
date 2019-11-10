@@ -81,6 +81,7 @@ function onEnabled(enabled) {
 			}
 		} else {
 			for (const card of cards) {
+				card.setSelectable(false);
 				card.setSelected(false);
 			}
 			area.setSelectedCards([]);
