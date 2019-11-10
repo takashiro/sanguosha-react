@@ -10,6 +10,17 @@ import HandArea from './HandArea';
 import SeatNumber from './SeatNumber';
 import PhaseBar from '../../component/PhaseBar';
 
+function handleClick() {
+	const { player } = this.props;
+	if (player.isSelectable()) {
+		player.setSelected(!player.isSelected());
+	}
+}
+
+function handleKeyPress() {
+	// TO-DO:
+}
+
 class Photo extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,6 +49,9 @@ class Photo extends React.Component {
 		this.onKingdomChanged = (kingdom) => this.setState({ kingdom });
 		this.onSelectableChanged = (selectable) => this.setState({ selectable });
 		this.onSelectedChanged = (selected) => this.setState({ selected });
+
+		this.handleClick = handleClick.bind(this);
+		this.handleKeyPress = handleKeyPress.bind(this);
 	}
 
 	componentDidMount() {
@@ -85,7 +99,7 @@ class Photo extends React.Component {
 			}
 		}
 		return (
-			<div className={classNames.join(' ')}>
+			<div className={classNames.join(' ')} role="button" tabIndex={0} onClick={this.handleClick} onKeyPress={this.handleKeyPress}>
 				<div className={`avatar-area g${generalNum}`}>
 					<PhotoAvatar
 						position="head"

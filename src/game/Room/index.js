@@ -26,6 +26,9 @@ class Room extends EventEmitter {
 		this.drawPile = new CardPile(CardPile.Type.Draw);
 		this.discardPile = new CardPile(CardPile.Type.Discard);
 
+		this.dashboard.on('selectionReset', () => this.resetSelection());
+		this.client.on('lockerChanged', () => this.emit('lockerChanged'));
+
 		bindCommand.call(this);
 	}
 
@@ -58,7 +61,7 @@ class Room extends EventEmitter {
 		this.emit('selectableChanged', selectable);
 	}
 
-	reset() {
+	resetSelection() {
 		this.setSelectable(false);
 		for (const player of this.players) {
 			player.setSelectable(false);
@@ -73,6 +76,21 @@ class Room extends EventEmitter {
 	setPlayers(players) {
 		this.players = players;
 		this.emit('playersChanged', players);
+
+		const listeners = [];
+		for (const player of players) {
+			const listener = () => {
+				this.emit('selectedPlayerChanged', player);
+			};
+			listeners.push(listener);
+			player.on('selectedChanged', listener);
+		}
+
+		this.once('playersChanged', () => {
+			for (let i = 0; i < players.length; i++) {
+				players[i].off('selectedChanged', listeners[i]);
+			}
+		});
 	}
 
 	getOtherPlayers() {
@@ -118,8 +136,12 @@ class Room extends EventEmitter {
 		return this.client.lock();
 	}
 
-	reply(command, args) {
+	send(command, args) {
 		this.client.send(command, args);
+	}
+
+	reply(locker, args) {
+		this.client.reply(locker, args);
 	}
 }
 

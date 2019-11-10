@@ -21,7 +21,7 @@ class Dashboard extends EventEmitter {
 
 	setPlayer(player) {
 		this.player = player;
-		player.on('phaseChanged', () => this.reset());
+		player.on('phaseChanged', () => this.resetSelection());
 		this.emit('playerChanged', player);
 	}
 
@@ -86,7 +86,7 @@ class Dashboard extends EventEmitter {
 	/**
 	 * Reset selectable cards, selected cards and disable all buttons.
 	 */
-	reset() {
+	resetSelection() {
 		this.setEnabled(false);
 		const areas = [
 			this.player.getHandArea(),
@@ -97,6 +97,7 @@ class Dashboard extends EventEmitter {
 			area.setSelectableCards([]);
 			area.setSelectedCards([]);
 		}
+		this.emit('selectionReset');
 	}
 }
 

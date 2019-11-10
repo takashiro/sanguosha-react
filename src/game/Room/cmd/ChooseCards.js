@@ -12,7 +12,7 @@ export default function ChooseCards(options) {
 	const { client } = this;
 	const locker = client.lock();
 
-	area.setSelectableCards(area.cards.map(card => card.getId()));
+	area.setSelectableCards(area.cards.map((card) => card.getId()));
 	area.setEnabled(true);
 
 	const { dashboard } = this;
