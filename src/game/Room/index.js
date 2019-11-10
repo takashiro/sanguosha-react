@@ -21,6 +21,7 @@ class Room extends EventEmitter {
 
 		this.client = client;
 		this.dashboard = new Dashboard(client.uid);
+		this.selectable = false;
 		this.players = [];
 		this.drawPile = new CardPile(CardPile.Type.Draw);
 		this.discardPile = new CardPile(CardPile.Type.Discard);
@@ -46,6 +47,19 @@ class Room extends EventEmitter {
 
 	getDashboardPlayer() {
 		return this.players[0];
+	}
+
+	isSelectable() {
+		return this.selectable;
+	}
+
+	setSelectable(selectable) {
+		this.selectable = selectable;
+		this.emit('selectableChanged', selectable);
+	}
+
+	getPlayers() {
+		return this.players;
 	}
 
 	getOtherPlayers() {

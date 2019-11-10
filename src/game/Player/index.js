@@ -11,6 +11,9 @@ class Player extends EventEmitter {
 		this.seat = seat;
 		this.name = name;
 
+		this.selectable = false;
+		this.selected = false;
+
 		this.headGeneral = null;
 		this.deputyGeneral = null;
 		this.kingdom = 0;
@@ -94,6 +97,24 @@ class Player extends EventEmitter {
 	setName(name) {
 		this.name = name;
 		this.emit('nameChanged', name);
+	}
+
+	isSelectable() {
+		return this.selectable;
+	}
+
+	setSelectable(selectable) {
+		this.selectable = selectable;
+		this.emit('selectableChanged', selectable);
+	}
+
+	isSelected() {
+		return this.selected;
+	}
+
+	setSelected(selected) {
+		this.selected = selected;
+		this.emit('selectedChanged', selected);
 	}
 
 	getGeneral() {

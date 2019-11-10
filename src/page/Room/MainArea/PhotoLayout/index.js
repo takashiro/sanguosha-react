@@ -5,6 +5,15 @@ import Photo from '../Photo';
 
 import './index.scss';
 
+function onSelectableChanged(selectable) {
+	this.setState({ selectable });
+}
+
+function onPlayerChanged() {
+	const { room } = this.props;
+	this.setState({ players: room.getOtherPlayers() });
+}
+
 class PhotoLayout extends React.Component {
 	constructor(props) {
 		super(props);
@@ -16,9 +25,20 @@ class PhotoLayout extends React.Component {
 			players: room.getOtherPlayers(),
 		};
 
-		room.on('playerChanged', () => {
-			this.setState({ players: room.getOtherPlayers() });
-		});
+		this.onSelectableChanged = onSelectableChanged.bind(this);
+		this.onPlayerChanged = onPlayerChanged.bind(this);
+	}
+
+	componentDidMount() {
+		const { room } = this.props;
+		room.on('selectableChanged', this.onSelectableChanged);
+		room.on('playerChanged', this.onPlayerChanged);
+	}
+
+	componentWillUnmount() {
+		const { room } = this.props;
+		room.off('selectableChanged', this.onSelectableChanged);
+		room.off('playerChanged', this.onPlayerChanged);
 	}
 
 	render() {

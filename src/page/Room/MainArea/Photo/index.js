@@ -29,13 +29,41 @@ class Photo extends React.Component {
 			selected: false,
 		};
 
-		player.on('seatChanged', (seat) => this.setState({ seat }));
-		player.on('headGeneralChanged', (general) => this.setState({ headGeneral: general }));
-		player.on('deputyGeneralChanged', (general) => this.setState({ deputyGeneral: general }));
-		player.on('nameChanged', (name) => this.setState({ screenName: name }));
-		player.on('hpChanged', (hp) => this.setState({ hp }));
-		player.on('maxHpChanged', (maxHp) => this.setState({ maxHp }));
-		player.on('kingdomChanged', (kingdom) => this.setState({ kingdom }));
+		this.onSeatChanged = (seat) => this.setState({ seat });
+		this.onHeadGeneralChanged = (general) => this.setState({ headGeneral: general });
+		this.onDeputyGeneralChanged = (general) => this.setState({ deputyGeneral: general });
+		this.onNameChanged = (name) => this.setState({ screenName: name });
+		this.onHpChanged = (hp) => this.setState({ hp });
+		this.onMaxHpChanged = (maxHp) => this.setState({ maxHp });
+		this.onKingdomChanged = (kingdom) => this.setState({ kingdom });
+		this.onSelectableChanged = (selectable) => this.setState({ selectable });
+		this.onSelectedChanged = (selected) => this.setState({ selected });
+	}
+
+	componentDidMount() {
+		const { player } = this.props;
+		player.on('seatChanged', this.onSeatChanged);
+		player.on('headGeneralChanged', this.onHeadGeneralChanged);
+		player.on('deputyGeneralChanged', this.onDeputyGeneralChanged);
+		player.on('nameChanged', this.onNameChanged);
+		player.on('hpChanged', this.onHpChanged);
+		player.on('maxHpChanged', this.onMaxHpChanged);
+		player.on('kingdomChanged', this.onKingdomChanged);
+		player.on('selectableChanged', this.onSelectableChanged);
+		player.on('selectedChanged', this.onSelectedChanged);
+	}
+
+	componentWillUnmount() {
+		const { player } = this.props;
+		player.off('seatChanged', this.onSeatChanged);
+		player.off('headGeneralChanged', this.onHeadGeneralChanged);
+		player.off('deputyGeneralChanged', this.onDeputyGeneralChanged);
+		player.off('nameChanged', this.onNameChanged);
+		player.off('hpChanged', this.onHpChanged);
+		player.off('maxHpChanged', this.onMaxHpChanged);
+		player.off('kingdomChanged', this.onKingdomChanged);
+		player.off('selectableChanged', this.onSelectableChanged);
+		player.off('selectedChanged', this.onSelectedChanged);
 	}
 
 	render() {
