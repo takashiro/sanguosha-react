@@ -5,6 +5,8 @@ import Robot from '../../ai/Robot';
 
 import Toast from '../../component/Toast';
 
+import './index.scss';
+
 async function createRoom() {
 	const { client } = this.props;
 	if (!client) {
@@ -33,8 +35,10 @@ async function createRoom() {
 }
 
 class Lobby extends React.Component {
-	componentDidMount() {
-		this.createRoom();
+	constructor(props) {
+		super(props);
+
+		this.createRoom = this.createRoom.bind(this);
 	}
 
 	async createRoom() {
@@ -55,7 +59,24 @@ class Lobby extends React.Component {
 	}
 
 	render() {
-		return null;
+		return (
+			<div className="lobby">
+				<div className="info-panel">
+					<i className="logo" />
+				</div>
+				<div className="entrance-form">
+					<button type="submit" onClick={this.createRoom}>创建房间</button>
+					<input
+						id="room-number-input"
+						type="number"
+						className="room-number"
+						placeholder="房间号"
+						maxLength="8"
+					/>
+					<button type="submit">进入房间</button>
+				</div>
+			</div>
+		);
 	}
 }
 

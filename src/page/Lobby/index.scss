@@ -1,4 +1,4 @@
-.start-scene {
+.lobby {
 	height: 100%;
 	background: url(../style/start-scene.jpg) no-repeat;
 	background-size: 100% 100%;
@@ -13,24 +13,17 @@
 			margin: auto;
 			margin-top: calc(50% - 100px);
 		}
-
-		#login-status {
-			color: white;
-			text-align: center;
-			font-size: 14pt;
-			margin: 0.5em 0;
-		}
 	}
 
-	.login-form {
+	.entrance-form {
 		width: 48%;
 		height: 100%;
 		float: right;
 		box-sizing: border-box;
-		padding-top: 20%;
+		padding-top: 15%;
 		padding-left: 10%;
 
-		input.screen-name,
+		input.room-number,
 		button {
 			display: block;
 			width: 256px;
@@ -41,6 +34,14 @@
 			line-height: 3em;
 			padding: 0 0.6em;
 			text-align: center;
+		}
+
+		input.room-number {
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
 		}
 	}
 }
