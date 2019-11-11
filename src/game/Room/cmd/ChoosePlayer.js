@@ -11,30 +11,26 @@ export default function ChoosePlayer(options) {
 	};
 	this.once('selectedPlayerChanged', onSelectedPlayerChanged);
 
-	const onConfirmClicked = () => {
-		this.off('selectedPlayerChanged', onSelectedPlayerChanged);
-		this.resetSelection();
-		dashboard.resetSelection();
-		this.reply(locker, { confirm: true });
-	};
 	if (feasible) {
-		dashboard.once('confirm', onConfirmClicked);
+		dashboard.setConfirmListener(() => {
+			this.off('selectedPlayerChanged', onSelectedPlayerChanged);
+			this.resetSelection();
+			dashboard.resetSelection();
+			this.reply(locker, { confirm: true });
+		});
 	}
 	dashboard.setConfirmEnabled(feasible);
 
-	const onCancelClicked = () => {
+	dashboard.setCancelListener(() => {
 		this.off('selectedPlayerChanged', onSelectedPlayerChanged);
 		this.resetSelection();
 		dashboard.resetSelection();
 		this.reply(locker, { cancel: true });
-	};
-	dashboard.once('cancel', onCancelClicked);
+	});
 	dashboard.setCancelEnabled(true);
 
 	this.once('lockerChanged', () => {
 		this.off('selectedPlayerChanged', onSelectedPlayerChanged);
-		dashboard.off('confirm', onConfirmClicked);
-		dashboard.off('cancel', onCancelClicked);
 	});
 
 	const { candidates } = options;

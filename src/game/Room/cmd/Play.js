@@ -19,7 +19,7 @@ export default function Play(options) {
 		handArea.off('selectedCardsChanged', onSelectedCardsChanged);
 	});
 
-	dashboard.once('finish', () => {
+	dashboard.setFinishListener(() => {
 		handArea.off('selectedCardsChanged', onSelectedCardsChanged);
 		dashboard.setFinishEnabled(false);
 		client.reply(locker, null);

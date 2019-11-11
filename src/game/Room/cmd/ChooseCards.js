@@ -24,17 +24,15 @@ export default function ChooseCards(options) {
 	};
 	area.on('selectedCardsChanged', onSelectedCardsChanged);
 
-	const onConfirmClicked = () => {
+	dashboard.setConfirmListener(() => {
 		area.off('selectedCardsChanged', onSelectedCardsChanged);
 
 		const cards = area.getSelectedCards();
 		area.setSelectedCards([]);
 		client.reply(locker, cards);
-	};
-	dashboard.once('confirm', onConfirmClicked);
+	});
 
 	client.once('lockChanged', () => {
 		area.off('selectedCardsChanged', onSelectedCardsChanged);
-		dashboard.off('confirm', onConfirmClicked);
 	});
 }

@@ -7,8 +7,11 @@ class Dashboard extends EventEmitter {
 		this.uid = uid;
 		this.player = null;
 		this.confirmEnabled = false;
+		this.confirmListener = null;
 		this.cancelEnabled = false;
+		this.cancelListener = null;
 		this.finishEnabled = false;
+		this.finishListener = null;
 	}
 
 	getUid() {
@@ -70,16 +73,34 @@ class Dashboard extends EventEmitter {
 		this.setFinishEnabled(enabled);
 	}
 
+	setConfirmListener(listener) {
+		this.confirmListener = listener;
+	}
+
 	confirm() {
-		this.emit('confirm');
+		if (this.isConfirmEnabled() && this.confirmListener) {
+			this.confirmListener();
+		}
+	}
+
+	setCancelListener(listener) {
+		this.cancelListener = listener;
 	}
 
 	cancel() {
-		this.emit('cancel');
+		if (this.isCancelEnabled() && this.cancelListener) {
+			this.cancelListener();
+		}
+	}
+
+	setFinishListener(listener) {
+		this.finishListener = listener;
 	}
 
 	finish() {
-		this.emit('finish');
+		if (this.isFinishEnabled() && this.finishListener) {
+			this.finishListener();
+		}
 	}
 
 	/**
@@ -87,6 +108,9 @@ class Dashboard extends EventEmitter {
 	 */
 	resetSelection() {
 		this.setEnabled(false);
+		this.confirmListener = null;
+		this.cancelListener = null;
+		this.finishListener = null;
 		const areas = [
 			this.player.getHandArea(),
 			this.player.getEquipArea(),
