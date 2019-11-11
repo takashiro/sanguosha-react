@@ -1,16 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import cmd from '@karuta/client/cmd';
-
 import Robot from '../../ai/Robot';
 
-import GeneralSelector from '../GeneralSelector';
 import Toast from '../../component/Toast';
-
-function returnToStartScene() {
-	// TO-DO: Return to start scene
-}
 
 async function createRoom() {
 	const { client } = this.props;
@@ -32,10 +25,8 @@ async function createRoom() {
 	client.send(cmd.LoadGame, 'sanguosha');
 
 	if (client.roomId) {
-		ReactDOM.render(
-			<GeneralSelector client={client} />,
-			document.getElementById('app-container'),
-		);
+		const { onPageLoad } = this.props;
+		setTimeout(onPageLoad, 0, 'general-selector');
 	} else {
 		throw new Error('Failed to create a new room.');
 	}
@@ -52,7 +43,14 @@ class Lobby extends React.Component {
 		} catch (error) {
 			console.log(error);
 			Toast.makeToast(error);
-			returnToStartScene();
+			this.returnToStartScene();
+		}
+	}
+
+	returnToStartScene() {
+		const { onPageLoad } = this.props;
+		if (onPageLoad) {
+			setTimeout(onPageLoad, 0, 'start-scene');
 		}
 	}
 

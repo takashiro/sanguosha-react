@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import Client from '@karuta/client';
 import cmd from '@karuta/client/cmd';
@@ -7,8 +6,6 @@ import cmd from '@karuta/client/cmd';
 import './index.scss';
 
 import Toast from '../../component/Toast';
-import Lobby from '../Lobby';
-
 
 async function connectToServer(screenName) {
 	const client = new Client();
@@ -18,10 +15,7 @@ async function connectToServer(screenName) {
 	console.log(`服务器版本：${version.name} (${version.build})`);
 	const uid = await client.request(cmd.Login, { name: screenName });
 	client.uid = uid;
-	ReactDOM.render(
-		<Lobby client={client} />,
-		document.getElementById('app-container'),
-	);
+	return client;
 }
 
 async function handleLogin(e) {
@@ -41,9 +35,11 @@ async function handleLogin(e) {
 		console.log(message);
 	}
 
+	const { onPageLoad } = this.props;
 	log('连接中……');
 	try {
-		await connectToServer(screenName);
+		const client = await connectToServer(screenName);
+		setTimeout(onPageLoad, 0, 'lobby', { client });
 	} catch (error) {
 		console.error(error);
 		log('连接失败。');
@@ -51,6 +47,12 @@ async function handleLogin(e) {
 }
 
 class StartScene extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.handleLogin = handleLogin.bind(this);
+	}
+
 	componentDidMount() {
 		const screenName = localStorage.getItem('screenName');
 		if (screenName) {
@@ -58,7 +60,6 @@ class StartScene extends React.Component {
 			input.value = screenName;
 		}
 	}
-
 
 	render() {
 		return (
@@ -75,7 +76,7 @@ class StartScene extends React.Component {
 						placeholder="昵称"
 						maxLength="8"
 					/>
-					<button type="submit" onClick={handleLogin}>登录</button>
+					<button type="submit" onClick={this.handleLogin}>登录</button>
 				</div>
 			</div>
 		);

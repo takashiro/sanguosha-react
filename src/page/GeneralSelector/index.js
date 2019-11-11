@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import cmd from '../../protocol';
-import GameRoom from '../../game/Room';
+import Room from '../../game/Room';
 
-import Room from '../Room';
 import GeneralCard from './GeneralCard';
 
 import './index.scss';
@@ -23,8 +21,8 @@ class GeneralSelector extends React.Component {
 		this.handleSelection = this.handleSelection.bind(this);
 		this.handleConfirm = this.handleConfirm.bind(this);
 
-		const { client } = props;
-		this.room = new GameRoom(client);
+		const { client, onPageLoad } = props;
+		this.room = new Room(client);
 		client.bind(cmd.ChooseGeneral, (option) => {
 			this.setState({
 				num: parseInt(option.num, 10) || 1,
@@ -33,10 +31,7 @@ class GeneralSelector extends React.Component {
 			});
 		});
 		client.bind(cmd.ToBattle, () => {
-			ReactDOM.render(
-				<Room room={this.room} />,
-				document.getElementById('app-container'),
-			);
+			onPageLoad('room', { room: this.room });
 		});
 	}
 

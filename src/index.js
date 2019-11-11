@@ -2,11 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './global.scss';
-
-import StartScene from './page/StartScene';
+import App from './App';
 
 ReactDOM.render(
-	<StartScene />,
+	<App />,
 	document.getElementById('app-container'),
 );
