@@ -109,8 +109,8 @@ class Room extends EventEmitter {
 		return this.players.slice(1);
 	}
 
-	findPlayer(uid) {
-		return this.players.find((player) => player.getUid() === uid);
+	findPlayer(seat) {
+		return this.players.find((player) => player.getSeat() === seat);
 	}
 
 	findArea(info) {
