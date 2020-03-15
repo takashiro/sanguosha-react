@@ -11,7 +11,6 @@ module.exports = function config(env, argv) {
 				'react',
 				'react-dom',
 				'@karuta/client',
-				'@karuta/core',
 				'@karuta/sanguosha-core',
 				'@karuta/sanguosha-ai',
 			],
