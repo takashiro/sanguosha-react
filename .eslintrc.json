@@ -1,19 +1,19 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": [
-        "airbnb"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018
-    },
-    "rules": {
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"extends": [
+		"airbnb"
+	],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly"
+	},
+	"parserOptions": {
+		"ecmaVersion": 2018
+	},
+	"rules": {
 		"func-names": "off",
 		"linebreak-style": "off",
 		"indent": [
@@ -21,6 +21,7 @@
 			"tab"
 		],
 		"jsx-a11y/control-has-associated-label": "off",
+		"max-len": "off",
 		"no-console": "off",
 		"no-plusplus": "off",
 		"no-param-reassign": "off",
@@ -33,7 +34,10 @@
 		"react/jsx-filename-extension": [
 			"error",
 			{
-				"extensions": [".js", ".jsx"]
+				"extensions": [
+					".js",
+					".jsx"
+				]
 			}
 		],
 		"react/jsx-indent": [
@@ -45,5 +49,5 @@
 			"tab"
 		],
 		"react/prop-types": "off"
-    }
+	}
 }
