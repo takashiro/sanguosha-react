@@ -67,8 +67,10 @@ class MovableCard extends React.Component<Props, State> {
 	}
 
 	handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
-		e.preventDefault();
-		this.toggle();
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			this.toggle();
+		}
 	}
 
 	updatePos = (): void => {
