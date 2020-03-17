@@ -3,7 +3,6 @@ import { Command } from '@karuta/sanguosha-core';
 import Room from '../Room';
 import ActionConnector from '../ActionConnector';
 import AreaLocator from '../AreaLocator';
-import Card from '../../Card';
 
 interface Options {
 	area: AreaLocator;
@@ -28,13 +27,15 @@ export default class ChooseCards extends ActionConnector<Options> {
 		const client = room.getClient();
 		const locker = client.lock();
 
-		area.setSelectableCards(area.cards.map((card) => card.getId()));
+		const cards = area.getCards();
+		const selectableCards = cards.map((card) => card.getId());
+		area.setSelectableCards(selectableCards);
 		area.setEnabled(true);
 
 		const dashboard = room.getDashboard();
 		dashboard.setCancelEnabled(true);
 
-		const onSelectedCardsChanged = (cards: Card[]): void => {
+		const onSelectedCardsChanged = (cards: number[]): void => {
 			const acceptable = cards.length === options.num;
 			dashboard.setConfirmEnabled(acceptable);
 		};
