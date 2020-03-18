@@ -49,6 +49,7 @@ class HandArea extends React.Component<AreaProps, AreaState> {
 		const { area } = this.props;
 
 		area.on('enabledChanged', this.onEnabled);
+		area.on('selectableCardsChanged', this.onSelectableCardsChanged);
 		area.on('cardEntering', this.onCardEntering);
 		area.on('cardLeaving', this.onCardLeaving);
 	}
@@ -57,30 +58,27 @@ class HandArea extends React.Component<AreaProps, AreaState> {
 		const { area } = this.props;
 
 		area.off('enabledChanged', this.onEnabled);
+		area.off('selectableCardsChanged', this.onSelectableCardsChanged);
 		area.off('cardEntering', this.onCardEntering);
 		area.off('cardLeaving', this.onCardLeaving);
 	}
 
 	onEnabled = (enabled: boolean): void => {
-		const { area } = this.props;
+		this.setState({
+			selectable: enabled,
+		});
+	}
+
+	onSelectableCardsChanged = (selectableCards: number[]): void => {
 		this.setState((prev) => {
 			const { cards } = prev;
-			if (enabled) {
-				const selectableCards = area.getSelectableCards();
-				for (const card of cards) {
-					card.setSelectable(selectableCards.includes(card.getId()));
-				}
-			} else {
-				for (const card of cards) {
-					card.setSelectable(false);
+			for (const card of cards) {
+				const selectable = selectableCards.includes(card.getId());
+				card.setSelectable(selectable);
+				if (!selectable) {
 					card.setSelected(false);
 				}
-				area.setSelectedCards([]);
 			}
-			return {
-				selectable: enabled,
-				cards,
-			};
 		});
 	}
 
