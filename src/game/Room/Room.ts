@@ -38,7 +38,7 @@ class Room extends EventEmitter {
 		this.drawPile = new CardPile(CardAreaType.DrawPile);
 		this.discardPile = new CardPile(CardAreaType.DiscardPile);
 
-		this.client.on('lockerChanged', () => this.emit('lockerChanged'));
+		this.client.on('lockChanged', () => this.emit('lockChanged'));
 
 		const connectors = createConnectors();
 		for (const connector of connectors) {

@@ -27,7 +27,7 @@ export default class Play extends ActionConnector<PlayOptions> {
 
 		handArea.setSelectedCards([]);
 		const onSelectedCardsChanged = (cards: number[]): void => {
-			handArea.off('selectedCardsChanged', onSelectedCardsChanged);
+			handArea.setSelectableCards(cards);
 			client.reply(locker, { cards });
 		};
 		handArea.once('selectedCardsChanged', onSelectedCardsChanged);
