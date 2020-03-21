@@ -10,22 +10,21 @@ interface CardMeta {
 
 declare interface CardArea {
 	on(event: 'cardAdded', listener: (cards: Card[]) => void): this;
-	once(event: 'cardAdded', listener: (cards: Card[]) => void): this;
 	on(event: 'cardRemoved', listener: (cards: Card[]) => void): this;
-	once(event: 'cardRemoved', listener: (cards: Card[]) => void): this;
 	on(event: 'numChanged', listener: (num: number) => void): this;
-	once(event: 'numChanged', listener: (num: number) => void): this;
-
 	on(event: 'cardLeaving', listener: (motion: CardMotion) => void): this;
-	once(event: 'cardLeaving', listener: (motion: CardMotion) => void): this;
 	on(event: 'cardEntering', listener: (motion: CardMotion) => void): this;
-	once(event: 'cardEntering', listener: (motion: CardMotion) => void): this;
-
 	on(event: 'enabledChanged', listener: (enabled: boolean) => void): this;
-	once(event: 'enabledChanged', listener: (enabled: boolean) => void): this;
 	on(event: 'selectableCardsChanged', listener: (cards: number[]) => void): this;
-	once(event: 'selectableCardsChanged', listener: (cards: number[]) => void): this;
 	on(event: 'selectedCardsChanged', listener: (cards: number[]) => void): this;
+
+	once(event: 'cardAdded', listener: (cards: Card[]) => void): this;
+	once(event: 'cardRemoved', listener: (cards: Card[]) => void): this;
+	once(event: 'numChanged', listener: (num: number) => void): this;
+	once(event: 'cardLeaving', listener: (motion: CardMotion) => void): this;
+	once(event: 'cardEntering', listener: (motion: CardMotion) => void): this;
+	once(event: 'enabledChanged', listener: (enabled: boolean) => void): this;
+	once(event: 'selectableCardsChanged', listener: (cards: number[]) => void): this;
 	once(event: 'selectedCardsChanged', listener: (cards: number[]) => void): this;
 }
 

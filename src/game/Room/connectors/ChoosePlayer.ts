@@ -45,21 +45,21 @@ export default class ChoosePlayer extends ActionConnector<Options> {
 		});
 		dashboard.setCancelEnabled(true);
 
-		const player = dashboard.getPlayer();
-		const onCardUnselected = (cards: number[]) => {
+		const self = dashboard.getPlayer();
+		const onCardUnselected = (cards: number[]): void => {
 			if (cards.length <= 0) {
 				dashboard.cancel();
 			}
-		}
-		if (player) {
-			const handArea = player.getHandArea();
+		};
+		if (self) {
+			const handArea = self.getHandArea();
 			handArea.once('selectedCardsChanged', onCardUnselected);
 		}
 
 		room.once('lockChanged', () => {
 			room.off('selectedPlayerChanged', onSelectedPlayerChanged);
-			if (player) {
-				const handArea = player.getHandArea();
+			if (self) {
+				const handArea = self.getHandArea();
 				handArea.off('selectedCardsChanged', onCardUnselected);
 			}
 		});

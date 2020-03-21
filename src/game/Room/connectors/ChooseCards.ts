@@ -35,8 +35,8 @@ export default class ChooseCards extends ActionConnector<Options> {
 		const dashboard = room.getDashboard();
 		dashboard.setCancelEnabled(true);
 
-		const onSelectedCardsChanged = (cards: number[]): void => {
-			const acceptable = cards.length === options.num;
+		const onSelectedCardsChanged = (selected: number[]): void => {
+			const acceptable = selected.length === options.num;
 			dashboard.setConfirmEnabled(acceptable);
 		};
 		area.on('selectedCardsChanged', onSelectedCardsChanged);
@@ -44,9 +44,9 @@ export default class ChooseCards extends ActionConnector<Options> {
 		dashboard.setConfirmListener(() => {
 			area.off('selectedCardsChanged', onSelectedCardsChanged);
 
-			const cards = area.getSelectedCards();
+			const selected = area.getSelectedCards();
 			area.setSelectedCards([]);
-			client.reply(locker, cards);
+			client.reply(locker, selected);
 		});
 
 		client.once('lockChanged', () => {
