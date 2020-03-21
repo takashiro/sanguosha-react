@@ -82,19 +82,9 @@ abstract class Player extends EventEmitter {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	setProperty(prop: string, value: any): void {
-		switch (prop) {
-		case 'selectable': this.setSelectable(value); break;
-		case 'selected': this.setSelected(value); break;
-		case 'phase': this.setPhase(value); break;
-		case 'hp': this.setHp(value); break;
-		case 'maxHp': this.setMaxHp(value); break;
-		case 'seat': this.setSeat(value); break;
-		case 'name': this.setName(value); break;
-		case 'general': this.setGeneral(value); break;
-		case 'headGeneral': this.setHeadGeneral(value); break;
-		case 'deputyGeneral': this.setDeputyGeneral(value); break;
-		case 'kingdom': this.setKingdom(value); break;
-		default: break;
+		const setter = Reflect.get(this, `set${prop.charAt(0).toUpperCase()}${prop.substring(1)}`);
+		if (setter) {
+			Reflect.apply(setter, this, [value]);
 		}
 	}
 
