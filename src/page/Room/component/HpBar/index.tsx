@@ -76,8 +76,9 @@ class HpBar extends React.Component<Props, State> {
 		const { hp, maxHp } = this.state;
 		const className = `hp-bar ${this.getLevel()}`;
 
-		const magatama = new Array(hp);
-		for (let i = 0; i < hp; i++) {
+		const magatamaNum = Math.max(0, hp);
+		const magatama = new Array(magatamaNum);
+		for (let i = 0; i < magatamaNum; i++) {
 			magatama[i] = (
 				<div
 					key={i}
