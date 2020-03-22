@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "webpack",
-    "debug": "webpack -d --watch",
+    "debug": "webpack --mode=development",
+    "watch": "webpack --mode=development --watch",
     "test": "npm run lint",
     "lint": "eslint --ext ts,tsx,js,jsx ."
   },
