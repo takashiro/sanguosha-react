@@ -1,11 +1,13 @@
-import { Command } from '@karuta/sanguosha-core';
+import {
+	Command,
+	CardAreaLocator,
+} from '@karuta/sanguosha-core';
 
 import Room from '../Room';
 import ActionConnector from '../ActionConnector';
-import AreaLocator from '../AreaLocator';
 
 interface Options {
-	area: AreaLocator;
+	area: CardAreaLocator;
 	num: number;
 }
 

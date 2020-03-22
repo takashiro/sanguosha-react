@@ -1,14 +1,16 @@
-import { Command } from '@karuta/sanguosha-core';
+import {
+	Command,
+	CardAreaLocator,
+} from '@karuta/sanguosha-core';
 
 import CardMotion from '../../CardMotion';
-import AreaLocator from '../AreaLocator';
 import ActionConnector from '../ActionConnector';
 import Room from '../Room';
 import { CardProps } from '../../Card';
 
 interface CardMoveMeta {
-	from: AreaLocator;
-	to: AreaLocator;
+	from: CardAreaLocator;
+	to: CardAreaLocator;
 	cards?: CardProps[];
 	cardNum?: number;
 }

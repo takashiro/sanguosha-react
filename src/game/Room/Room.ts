@@ -1,14 +1,16 @@
 import { EventEmitter } from 'events';
 
 import { Client } from '@karuta/client';
-import { Command as cmd, CardAreaType } from '@karuta/sanguosha-core';
+import {
+	Command as cmd, CardAreaType,
+	CardAreaLocator as AreaLocator,
+} from '@karuta/sanguosha-core';
 
 import CardArea from '../CardArea';
 import CardPile from '../CardPile';
 import Player from '../Player';
 
 import Dashboard from './Dashboard';
-import AreaLocator from './AreaLocator';
 
 import createConnectors from './connectors';
 
