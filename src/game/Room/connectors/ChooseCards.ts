@@ -8,6 +8,7 @@ import ActionConnector from '../ActionConnector';
 
 interface Options {
 	area: CardAreaLocator;
+	cards: number[];
 	num: number;
 }
 
@@ -29,12 +30,15 @@ export default class ChooseCards extends ActionConnector<Options> {
 		const client = room.getClient();
 		const locker = client.lock();
 
-		const cards = area.getCards();
-		const selectableCards = cards.map((card) => card.getId());
+		const selectableCards = options.cards || area.getCards().map((card) => card.getId());
 		area.setSelectableCards(selectableCards);
 		area.setEnabled(true);
 
 		const dashboard = room.getDashboard();
+		dashboard.setCancelListener(() => {
+			client.reply(locker, []);
+			dashboard.resetSelection();
+		});
 		dashboard.setCancelEnabled(true);
 
 		const onSelectedCardsChanged = (selected: number[]): void => {
@@ -49,6 +53,7 @@ export default class ChooseCards extends ActionConnector<Options> {
 			const selected = area.getSelectedCards();
 			area.setSelectedCards([]);
 			client.reply(locker, selected);
+			dashboard.resetSelection();
 		});
 
 		client.once('lockChanged', () => {
