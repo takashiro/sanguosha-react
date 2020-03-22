@@ -17,7 +17,7 @@ export default class ChooseCards extends ActionConnector<Options> {
 		super(Command.ChooseCards);
 	}
 
-	proceed(room: Room, options: Options): void {
+	process(room: Room, options: Options): void {
 		if (!options || !options.area) {
 			return;
 		}

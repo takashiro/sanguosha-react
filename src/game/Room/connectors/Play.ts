@@ -13,7 +13,7 @@ export default class Play extends ActionConnector<PlayOptions> {
 		super(Command.Play);
 	}
 
-	proceed(room: Room, options: PlayOptions): void {
+	process(room: Room, options: PlayOptions): void {
 		const client = room.getClient();
 		const locker = client.lock();
 

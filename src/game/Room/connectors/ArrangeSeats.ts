@@ -42,7 +42,7 @@ export default class ArrangeSeats extends ActionConnector<PlayerMeta[]> {
 		super(Command.ArrangeSeats);
 	}
 
-	proceed(room: Room, metas: PlayerMeta[]): void {
+	process(room: Room, metas: PlayerMeta[]): void {
 		const dashboard = room.getDashboard();
 
 		const players: Player[] = new Array(metas.length);

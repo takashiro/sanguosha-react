@@ -15,7 +15,7 @@ export default class UpdatePlayer extends ActionConnector<PropertyUpdate> {
 		super(Command.UpdatePlayer);
 	}
 
-	proceed(room: Room, update: PropertyUpdate): void {
+	process(room: Room, update: PropertyUpdate): void {
 		const players = room.getPlayers();
 		const player = players.find((p) => p.getUid() === update.uid);
 		if (player) {

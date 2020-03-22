@@ -13,7 +13,7 @@ abstract class ActionConnector<ParamType> {
 		return this.command;
 	}
 
-	abstract proceed(room: Room, params: ParamType): void;
+	abstract process(room: Room, params: ParamType): void;
 }
 
 export default ActionConnector;

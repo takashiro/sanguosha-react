@@ -14,7 +14,7 @@ export default class ChoosePlayer extends ActionConnector<Options> {
 		super(Command.ChoosePlayer);
 	}
 
-	proceed(room: Room, options: Options): void {
+	process(room: Room, options: Options): void {
 		const client = room.getClient();
 		const locker = client.lock();
 

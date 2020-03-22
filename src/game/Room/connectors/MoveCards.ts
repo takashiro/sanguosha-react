@@ -20,7 +20,7 @@ export default class MoveCards extends ActionConnector<CardMoveMeta> {
 		super(Command.MoveCards);
 	}
 
-	proceed(room: Room, move: CardMoveMeta): void {
+	process(room: Room, move: CardMoveMeta): void {
 		const from = room.findArea(move.from);
 		const to = room.findArea(move.to);
 		if (from === to || !from || !to) {

@@ -46,7 +46,7 @@ class Room extends EventEmitter {
 		for (const connector of connectors) {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			this.client.bind(connector.getCommand(), (params: any): void => {
-				connector.proceed(this, params);
+				connector.process(this, params);
 			});
 		}
 	}
