@@ -9,7 +9,8 @@ import ActionConnector from '../ActionConnector';
 interface Options {
 	area: CardAreaLocator;
 	cards: number[];
-	num: number;
+	minNum: number;
+	maxNum: number;
 }
 
 export default class ChooseCards extends ActionConnector<Options> {
@@ -42,7 +43,7 @@ export default class ChooseCards extends ActionConnector<Options> {
 		dashboard.setCancelEnabled(true);
 
 		const onSelectedCardsChanged = (selected: number[]): void => {
-			const acceptable = selected.length === options.num;
+			const acceptable = options.minNum <= selected.length && selected.length <= options.maxNum;
 			dashboard.setConfirmEnabled(acceptable);
 		};
 		area.on('selectedCardsChanged', onSelectedCardsChanged);
