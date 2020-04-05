@@ -2,6 +2,7 @@ import {
 	Card as AbstractCard,
 	CardSuit,
 	CardType,
+	CardSubtype,
 } from '@karuta/sanguosha-core';
 
 let cardKey = 0;
@@ -33,6 +34,11 @@ export default class Card extends AbstractCard {
 	// eslint-disable-next-line class-methods-use-this
 	getType(): CardType {
 		return CardType.Invalid;
+	}
+
+	// eslint-disable-next-line class-methods-use-this
+	getSubtype(): CardSubtype {
+		return CardSubtype.None;
 	}
 
 	getKey(): string {
