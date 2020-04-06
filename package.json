@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/takashiro/sanguosha-react#readme",
   "dependencies": {
-    "@karuta/client": "^0.2.0",
+    "@karuta/client": "^0.2.1",
     "@karuta/sanguosha-ai": "0.0.1",
     "@karuta/sanguosha-core": "^0.1.1",
     "react": "^16.13.0",
