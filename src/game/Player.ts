@@ -8,6 +8,8 @@ import {
 } from '@karuta/sanguosha-core';
 
 import CardArea from './CardArea';
+import MotionPosition from './MotionPosition';
+
 
 abstract class Player extends EventEmitter {
 	protected uid: number;
@@ -190,6 +192,15 @@ abstract class Player extends EventEmitter {
 	setPhase(phase: PlayerPhase): void {
 		this.phase = phase;
 		this.emit('phaseChanged', phase);
+	}
+
+	getPosition(): MotionPosition {
+		const pos = {
+			top: 0,
+			left: 0,
+		};
+		this.emit('positionRequested', pos);
+		return pos;
 	}
 }
 

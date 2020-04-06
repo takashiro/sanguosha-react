@@ -14,6 +14,7 @@ import SeatNumber from './SeatNumber';
 import PhaseBar from '../../component/PhaseBar';
 
 import Player from '../../../../game/Player';
+import MotionPosition from '../../../../game/MotionPosition';
 
 import './index.scss';
 
@@ -34,6 +35,8 @@ interface PhotoState {
 }
 
 class Photo extends React.Component<PhotoProps, PhotoState> {
+	private node: React.RefObject<HTMLDivElement>;
+
 	constructor(props: PhotoProps) {
 		super(props);
 
@@ -49,6 +52,8 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 			selectable: false,
 			selected: false,
 		};
+
+		this.node = React.createRef();
 	}
 
 	componentDidMount(): void {
@@ -60,6 +65,7 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 		player.on('kingdomChanged', this.onKingdomChanged);
 		player.on('selectableChanged', this.onSelectableChanged);
 		player.on('selectedChanged', this.onSelectedChanged);
+		player.on('positionRequested', this.onPositionRequested);
 	}
 
 	componentWillUnmount(): void {
@@ -71,6 +77,7 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 		player.off('kingdomChanged', this.onKingdomChanged);
 		player.off('selectableChanged', this.onSelectableChanged);
 		player.off('selectedChanged', this.onSelectedChanged);
+		player.off('positionRequested', this.onPositionRequested);
 	}
 
 	onSeatChanged = (seat: number): void => this.setState({ seat });
@@ -86,6 +93,17 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 	onSelectableChanged = (selectable: boolean): void => this.setState({ selectable });
 
 	onSelectedChanged = (selected: boolean): void => this.setState({ selected });
+
+	onPositionRequested = (pos: MotionPosition): void => {
+		const { current } = this.node;
+		if (!current) {
+			return;
+		}
+
+		const rect = current.getBoundingClientRect();
+		pos.top = Math.floor((rect.top + rect.bottom) / 2);
+		pos.left = Math.floor((rect.left + rect.right) / 2);
+	};
 
 	handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
 		e.preventDefault();
@@ -124,7 +142,7 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 			}
 		}
 		return (
-			<div className={classNames.join(' ')} role="button" tabIndex={0} onClick={this.handleClick} onKeyPress={this.handleKeyPress}>
+			<div ref={this.node} className={classNames.join(' ')} role="button" tabIndex={0} onClick={this.handleClick} onKeyPress={this.handleKeyPress}>
 				<div className={`avatar-area g${generalNum}`}>
 					<PhotoAvatar
 						position="head"
