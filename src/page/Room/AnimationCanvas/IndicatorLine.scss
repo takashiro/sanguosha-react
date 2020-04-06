@@ -1,0 +1,28 @@
+.indicator-line {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	border-radius: 2px;
+	opacity: 1;
+	transition: width 500ms ease-in, opacity 600ms ease-out;
+	background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(199, 197, 117));
+	transform-origin: 2px 2px;
+
+	&.wei {
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(153, 179, 199));
+	}
+
+	&.shu {
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(246, 230, 228));
+	}
+
+	&.wu {
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(169, 221, 187));
+	}
+
+	&.qun {
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(198, 193, 190));
+	}
+}

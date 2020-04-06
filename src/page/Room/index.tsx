@@ -23,7 +23,7 @@ function Room(props: RoomProps): JSX.Element {
 			<Dashboard dashboard={room.getDashboard()} />
 			<DrawPile area={room.getDrawPile()} />
 			<DiscardPile area={room.getDiscardPile()} />
-			<AnimationCanvas />
+			<AnimationCanvas room={room} />
 		</div>
 	);
 }
