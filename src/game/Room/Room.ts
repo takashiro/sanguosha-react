@@ -13,6 +13,8 @@ import Player from '../Player';
 import Dashboard from './Dashboard';
 
 import connectorClasses from './connectors';
+import CardUse from '../CardUse';
+
 
 class Room extends EventEmitter {
 	protected id: number;
@@ -166,6 +168,10 @@ class Room extends EventEmitter {
 		default:
 			return null;
 		}
+	}
+
+	useCard(use: CardUse): void {
+		this.emit('cardUsed', use);
 	}
 }
 
