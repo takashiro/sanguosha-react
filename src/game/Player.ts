@@ -10,6 +10,31 @@ import {
 import CardArea from './CardArea';
 import MotionPosition from './MotionPosition';
 
+declare interface Player {
+	on(event: 'seatChanged', listener: (seat: number) => void): this;
+	on(event: 'headGeneralChanged', listener: (general: GeneralProfile) => void): this;
+	on(event: 'deputyGeneralChanged', listener: (general: GeneralProfile) => void): this;
+	on(event: 'nameChanged', listener: (name: string) => void): this;
+	on(event: 'kingdomChanged', listener: (kingdom: Kingdom) => void): this;
+	on(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
+	on(event: 'selectedChanged', listener: (selected: boolean) => void): this;
+	on(event: 'hpChanged', listener: (hp: number) => void): this;
+	on(event: 'maxHpChanged', listener: (maxHp: number) => void): this;
+	on(event: 'phaseChanged', listener: (phase: PlayerPhase) => void): this;
+	on(event: 'positionRequested', listener: (pos: MotionPosition) => void): this;
+
+	off(event: 'seatChanged', listener: (seat: number) => void): this;
+	off(event: 'headGeneralChanged', listener: (general: GeneralProfile) => void): this;
+	off(event: 'deputyGeneralChanged', listener: (general: GeneralProfile) => void): this;
+	off(event: 'nameChanged', listener: (name: string) => void): this;
+	off(event: 'kingdomChanged', listener: (kingdom: Kingdom) => void): this;
+	off(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
+	off(event: 'selectedChanged', listener: (selected: boolean) => void): this;
+	off(event: 'hpChanged', listener: (hp: number) => void): this;
+	off(event: 'maxHpChanged', listener: (maxHp: number) => void): this;
+	off(event: 'phaseChanged', listener: (phase: PlayerPhase) => void): this;
+	off(event: 'positionRequested', listener: (pos: MotionPosition) => void): this;
+}
 
 abstract class Player extends EventEmitter {
 	protected uid: number;
