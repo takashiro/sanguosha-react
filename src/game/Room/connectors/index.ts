@@ -8,13 +8,13 @@ import Play from './Play';
 import ChoosePlayer from './ChoosePlayer';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function createActionConnectors(): ActionConnector<any>[] {
-	return [
-		new ArrangeSeats(),
-		new UpdatePlayer(),
-		new MoveCards(),
-		new ChooseCards(),
-		new Play(),
-		new ChoosePlayer(),
-	];
-}
+export const connectors: (new() => ActionConnector<any>)[] = [
+	ArrangeSeats,
+	UpdatePlayer,
+	MoveCards,
+	ChooseCards,
+	Play,
+	ChoosePlayer,
+];
+
+export default connectors;

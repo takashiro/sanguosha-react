@@ -12,7 +12,7 @@ import Player from '../Player';
 
 import Dashboard from './Dashboard';
 
-import createConnectors from './connectors';
+import connectorClasses from './connectors';
 
 class Room extends EventEmitter {
 	protected id: number;
@@ -42,8 +42,8 @@ class Room extends EventEmitter {
 
 		this.client.on('lockChanged', () => this.emit('lockChanged'));
 
-		const connectors = createConnectors();
-		for (const connector of connectors) {
+		for (const ConnectorClass of connectorClasses) {
+			const connector = new ConnectorClass();
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			this.client.bind(connector.getCommand(), (params: any): void => {
 				connector.process(this, params);
