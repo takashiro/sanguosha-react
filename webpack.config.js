@@ -7,13 +7,6 @@ module.exports = function config(env, argv) {
 		mode,
 		entry: {
 			app: './src/index.tsx',
-			vendor: [
-				'react',
-				'react-dom',
-				'@karuta/client',
-				'@karuta/sanguosha-core',
-				'@karuta/sanguosha-ai',
-			],
 		},
 		output: {
 			filename: '[name].js',
@@ -74,6 +67,6 @@ module.exports = function config(env, argv) {
 				chunkFilename: '[id].css',
 			}),
 		],
-		devtool: mode === 'production' ? undefined : 'source-map',
+		devtool: 'source-map',
 	};
 };
