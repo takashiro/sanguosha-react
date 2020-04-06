@@ -15,6 +15,22 @@ import Dashboard from './Dashboard';
 import connectorClasses from './connectors';
 import CardUse from '../CardUse';
 
+declare interface Room {
+	on(event: 'cardUsed', listener: (use: CardUse) => void): this;
+	on(event: 'playersChanged', listener: (players: Player[]) => void): this;
+	on(event: 'selectedPlayerChanged', listener: (player: Player) => void): this;
+	on(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
+
+	once(event: 'cardUsed', listener: (use: CardUse) => void): this;
+	once(event: 'playersChanged', listener: (players: Player[]) => void): this;
+	once(event: 'selectedPlayerChanged', listener: (player: Player) => void): this;
+	once(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
+
+	off(event: 'cardUsed', listener: (use: CardUse) => void): this;
+	off(event: 'playersChanged', listener: (players: Player[]) => void): this;
+	off(event: 'selectedPlayerChanged', listener: (player: Player) => void): this;
+	off(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
+}
 
 class Room extends EventEmitter {
 	protected id: number;
@@ -41,8 +57,6 @@ class Room extends EventEmitter {
 		this.players = [];
 		this.drawPile = new CardPile(CardAreaType.DrawPile);
 		this.discardPile = new CardPile(CardAreaType.DiscardPile);
-
-		this.client.on('lockChanged', () => this.emit('lockChanged'));
 
 		for (const ConnectorClass of connectorClasses) {
 			const connector = new ConnectorClass();

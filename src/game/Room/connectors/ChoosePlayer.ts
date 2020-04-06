@@ -56,7 +56,7 @@ export default class ChoosePlayer extends ActionConnector<Options> {
 			handArea.once('selectedCardsChanged', onCardUnselected);
 		}
 
-		room.once('lockChanged', () => {
+		client.once('lockChanged', () => {
 			room.off('selectedPlayerChanged', onSelectedPlayerChanged);
 			if (self) {
 				const handArea = self.getHandArea();
