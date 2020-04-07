@@ -8,36 +8,83 @@ interface Props {
 	height: number;
 	frame: number;
 	name: string;
+	onEnd?: () => void;
+}
+
+function waitForImage(img: HTMLImageElement): Promise<void> {
+	return new Promise((resolve) => {
+		if (img.tagName !== 'IMG' || img.complete) {
+			setTimeout(resolve, 0);
+		} else {
+			img.addEventListener('load', () => {
+				resolve();
+			}, { once: true });
+		}
+	});
 }
 
 class Animation extends React.Component<Props, {}> {
-	async run(div: HTMLDivElement): Promise<void> {
-		let current = 0;
-		const { frame } = this.props;
-		const rate = 48;
-		function next(): void {
-			div.children[current].classList.remove('current');
-			current++;
-			div.children[current].classList.add('current');
+	private node: React.RefObject<HTMLDivElement>;
 
-			if (current < frame) {
-				setTimeout(next, rate);
-			} else {
-				setTimeout(function () {
-					div.children[current].classList.remove('current');
-				}, rate);
+	private startTime?: number;
+
+	private currentFrame?: number;
+
+	constructor(props: Props) {
+		super(props);
+
+		this.node = React.createRef();
+	}
+
+	componentDidMount(): void {
+		setTimeout(() => {
+			this.run();
+		}, 0);
+	}
+
+	next = (time: number): void => {
+		const frequency = 50;
+
+		if (this.startTime) {
+			if (time - this.startTime < frequency) {
+				window.requestAnimationFrame(this.next);
+				return;
 			}
+		} else {
+			this.startTime = time;
 		}
 
-		await Promise.all(Array.prototype.map.call(div.children, (img) => new Promise((resolve) => {
-			if (img.tagName !== 'IMG' || img.loaded) {
-				setTimeout(resolve, 0);
-			} else {
-				img.addEventListener('load', resolve, { once: true });
-			}
-		})));
+		const div = this.node.current;
+		if (!div) {
+			return;
+		}
 
-		next();
+		if (this.currentFrame !== undefined) {
+			div.children[this.currentFrame].classList.remove('current');
+		}
+
+		const { frame } = this.props;
+		const current = Math.floor((time - this.startTime) / frequency);
+		if (current < frame) {
+			div.children[current].classList.add('current');
+			this.currentFrame = current;
+			window.requestAnimationFrame(this.next);
+		} else {
+			const { onEnd } = this.props;
+			if (onEnd) {
+				setTimeout(onEnd, 0);
+			}
+		}
+	};
+
+	async run(): Promise<void> {
+		const div = this.node.current;
+		if (!div) {
+			return;
+		}
+
+		await Promise.all(Array.prototype.map.call(div.children, waitForImage));
+		window.requestAnimationFrame(this.next);
 	}
 
 	render(): JSX.Element {
@@ -53,14 +100,13 @@ class Animation extends React.Component<Props, {}> {
 			height: `${height}px`,
 		};
 
-		const frames = new Array(frame + 1);
+		const frames = new Array(frame);
 		for (let i = 0; i < frames.length; i++) {
-			frames[i] = <img key={i} src={`style/animation/${name}/${i}.png`} alt="" />;
+			frames[i] = i;
 		}
-
 		return (
-			<div className="animation" style={style} ref={(div: HTMLDivElement): Promise<void> => this.run(div)}>
-				{frames}
+			<div ref={this.node} className="animation" style={style}>
+				{frames.map((i) => <img key={i} src={`style/animation/${name}/${i}.png`} alt="" />)}
 			</div>
 		);
 	}
