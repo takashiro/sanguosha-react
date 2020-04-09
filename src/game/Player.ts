@@ -8,6 +8,7 @@ import {
 } from '@karuta/sanguosha-core';
 
 import CardArea from './CardArea';
+import CardExpense from './CardExpense';
 import CardUse from './CardUse';
 import MotionPosition from './MotionPosition';
 
@@ -24,6 +25,7 @@ declare interface Player {
 	on(event: 'phaseChanged', listener: (phase: PlayerPhase) => void): this;
 	on(event: 'positionRequested', listener: (pos: MotionPosition) => void): this;
 	on(event: 'cardUsed', listener: (use: CardUse) => void): this;
+	on(event: 'cardExpended', listener: (expense: CardExpense) => void): this;
 
 	off(event: 'seatChanged', listener: (seat: number) => void): this;
 	off(event: 'headGeneralChanged', listener: (general: GeneralProfile) => void): this;
@@ -37,6 +39,7 @@ declare interface Player {
 	off(event: 'phaseChanged', listener: (phase: PlayerPhase) => void): this;
 	off(event: 'positionRequested', listener: (pos: MotionPosition) => void): this;
 	off(event: 'cardUsed', listener: (use: CardUse) => void): this;
+	off(event: 'cardExpended', listener: (expense: CardExpense) => void): this;
 }
 
 abstract class Player extends EventEmitter {
@@ -233,6 +236,10 @@ abstract class Player extends EventEmitter {
 
 	useCard(use: CardUse): void {
 		this.emit('cardUsed', use);
+	}
+
+	expendCard(expense: CardExpense): void {
+		this.emit('cardExpended', expense);
 	}
 }
 

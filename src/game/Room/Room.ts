@@ -13,19 +13,23 @@ import Player from '../Player';
 import Dashboard from './Dashboard';
 
 import connectorClasses from './connectors';
+import CardExpense from '../CardExpense';
 import CardUse from '../CardUse';
 
 declare interface Room {
+	on(event: 'cardExpended', listener: (use: CardExpense) => void): this;
 	on(event: 'cardUsed', listener: (use: CardUse) => void): this;
 	on(event: 'playersChanged', listener: (players: Player[]) => void): this;
 	on(event: 'selectedPlayerChanged', listener: (player: Player) => void): this;
 	on(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
 
+	once(event: 'cardExpended', listener: (use: CardExpense) => void): this;
 	once(event: 'cardUsed', listener: (use: CardUse) => void): this;
 	once(event: 'playersChanged', listener: (players: Player[]) => void): this;
 	once(event: 'selectedPlayerChanged', listener: (player: Player) => void): this;
 	once(event: 'selectableChanged', listener: (selectable: boolean) => void): this;
 
+	off(event: 'cardExpended', listener: (use: CardExpense) => void): this;
 	off(event: 'cardUsed', listener: (use: CardUse) => void): this;
 	off(event: 'playersChanged', listener: (players: Player[]) => void): this;
 	off(event: 'selectedPlayerChanged', listener: (player: Player) => void): this;
@@ -186,6 +190,10 @@ class Room extends EventEmitter {
 
 	useCard(use: CardUse): void {
 		this.emit('cardUsed', use);
+	}
+
+	expendCard(expense: CardExpense): void {
+		this.emit('cardExpended', expense);
 	}
 }
 
