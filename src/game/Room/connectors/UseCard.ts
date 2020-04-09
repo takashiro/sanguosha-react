@@ -34,5 +34,6 @@ export default class UseCard extends ActionConnector<CardUseStruct> {
 		}
 
 		room.useCard(use);
+		from.useCard(use);
 	}
 }
