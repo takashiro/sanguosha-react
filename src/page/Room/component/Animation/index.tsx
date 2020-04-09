@@ -1,14 +1,14 @@
 
 import React from 'react';
 
+import Meta from '../../../../game/Animation';
+
 import './index.scss';
 
 interface Props {
-	width: number;
-	height: number;
-	frame: number;
-	name: string;
-	onEnd?: () => void;
+	meta: Meta;
+	id?: number;
+	onEnd?: (id: number) => void;
 }
 
 function waitForImage(img: HTMLImageElement): Promise<void> {
@@ -63,16 +63,17 @@ class Animation extends React.Component<Props, {}> {
 			div.children[this.currentFrame].classList.remove('current');
 		}
 
-		const { frame } = this.props;
+		const { meta } = this.props;
+		const { frame } = meta;
 		const current = Math.floor((time - this.startTime) / frequency);
 		if (current < frame) {
 			div.children[current].classList.add('current');
 			this.currentFrame = current;
 			window.requestAnimationFrame(this.next);
 		} else {
-			const { onEnd } = this.props;
+			const { id, onEnd } = this.props;
 			if (onEnd) {
-				setTimeout(onEnd, 0);
+				setTimeout(onEnd, 0, id);
 			}
 		}
 	};
@@ -88,12 +89,13 @@ class Animation extends React.Component<Props, {}> {
 	}
 
 	render(): JSX.Element {
+		const { meta } = this.props;
 		const {
 			width,
 			height,
 			frame,
 			name,
-		} = this.props;
+		} = meta;
 
 		const style = {
 			width: `${width}px`,

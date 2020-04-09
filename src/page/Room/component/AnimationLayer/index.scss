@@ -1,0 +1,10 @@
+.animation-layer {
+	position: relative;
+
+	.animation {
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translateX(-50%);
+	}
+}
