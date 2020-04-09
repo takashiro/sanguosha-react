@@ -6,6 +6,8 @@ import HandArea from './HandArea';
 import ButtonArea from './ButtonArea';
 import AvatarArea from './AvatarArea';
 import HpArea from './HpArea';
+
+import AnimationLayer from '../component/AnimationLayer';
 import PhaseBar from '../component/PhaseBar';
 
 import GameDashboard from '../../../game/Room/Dashboard';
@@ -102,6 +104,7 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
 				<ButtonArea dashboard={dashboard} />
 				<AvatarArea player={player} />
 				<HpArea player={player} />
+				<AnimationLayer player={player} />
 			</div>
 		);
 	}
