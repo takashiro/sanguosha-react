@@ -6,18 +6,19 @@ import {
 	Kingdom,
 } from '@karuta/sanguosha-core';
 
-import KingdomIcon from '../../component/KingdomIcon';
-import HpBar from '../../component/HpBar';
-import PhotoAvatar from './Avatar';
-import HandArea from './HandArea';
-import SeatNumber from './SeatNumber';
-import PhaseBar from '../../component/PhaseBar';
-
 import Player from '../../../../game/Player';
 import MotionPosition from '../../../../game/MotionPosition';
 
-import './index.scss';
+import AnimationLayer from '../../component/AnimationLayer';
+import HpBar from '../../component/HpBar';
+import KingdomIcon from '../../component/KingdomIcon';
+import PhaseBar from '../../component/PhaseBar';
 
+import HandArea from './HandArea';
+import PhotoAvatar from './Avatar';
+import SeatNumber from './SeatNumber';
+
+import './index.scss';
 
 interface PhotoProps {
 	player: Player;
@@ -162,6 +163,7 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 				<SeatNumber number={seat} />
 				<PhaseBar player={player} />
 				<HandArea area={player.getHandArea()} />
+				<AnimationLayer player={player} />
 			</div>
 		);
 	}
