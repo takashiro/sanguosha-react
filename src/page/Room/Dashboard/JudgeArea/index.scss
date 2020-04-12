@@ -1,0 +1,16 @@
+.dashboard .judge-area {
+	position: absolute;
+	top: -18px;
+	left: 150px;
+
+	.card-icon {
+		display: inline-block;
+	}
+
+	.movable {
+		position: absolute;
+		translate: transform(-50%, -50%);
+		top: 0;
+		left: 0;
+	}
+}
