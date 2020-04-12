@@ -1,0 +1,20 @@
+.suit {
+	width: 21px;
+	height: 17px;
+
+	&.spade {
+		background-image: url(../style/card/suit/spade.png);
+	}
+
+	&.heart {
+		background-image: url(../style/card/suit/heart.png);
+	}
+
+	&.club {
+		background-image: url(../style/card/suit/club.png);
+	}
+
+	&.diamond {
+		background-image: url(../style/card/suit/diamond.png);
+	}
+}

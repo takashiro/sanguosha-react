@@ -12,7 +12,7 @@ export default function CardIcon(props: IconProps): JSX.Element {
 	const { card } = props;
 	return (
 		<div className="card-icon">
-			<img src={`style/card/icon/${card.getName()}.png`} />
+			<img src={`style/card/icon/${card.getName()}.png`} alt={card.getName()} />
 		</div>
 	);
 }

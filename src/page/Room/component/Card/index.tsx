@@ -1,8 +1,10 @@
 
 import React from 'react';
-import { CardColor, CardSuit } from '@karuta/sanguosha-core';
 
 import GameCard from '../../../../game/Card';
+
+import CardSuit from '../CardSuit';
+import CardNumber from '../CardNumber';
 
 import './index.scss';
 
@@ -20,13 +22,8 @@ function Card(props: Props): JSX.Element {
 		};
 		return (
 			<div className={classNames.join(' ')} style={style}>
-				<div className={`suit ${CardSuit[card.getSuit()].toLowerCase()}`} />
-				<div
-					className="number"
-					style={{
-						backgroundImage: `url(style/card/number/${CardColor[card.getColor()].toLowerCase()}/${card.getNumber()}.png)`,
-					}}
-				/>
+				<CardSuit suit={card.getSuit()} />
+				<CardNumber color={card.getColor()} number={card.getNumber()} />
 			</div>
 		);
 	}
