@@ -7,7 +7,14 @@
 		{
 			"type": "chrome",
 			"request": "launch",
-			"name": "Launch Chrome",
+			"name": "Launch (http)",
+			"url": "http://localhost:8526",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch (file)",
 			"url": "file:///${workspaceFolder}/dist/index.html",
 			"webRoot": "${workspaceFolder}"
 		}

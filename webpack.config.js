@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
@@ -9,8 +10,8 @@ module.exports = function config(env, argv) {
 			app: './src/index.tsx',
 		},
 		output: {
-			filename: '[name].js',
-			path: path.resolve(__dirname, 'dist/static'),
+			filename: 'static/[name].js',
+			path: path.resolve(__dirname, 'dist'),
 		},
 		optimization: {
 			splitChunks: {
@@ -31,6 +32,9 @@ module.exports = function config(env, argv) {
 				'.js',
 				'.jsx',
 			],
+			modules: [
+				path.resolve(__dirname, 'node_modules'),
+			],
 		},
 		module: {
 			rules: [
@@ -43,7 +47,13 @@ module.exports = function config(env, argv) {
 					test: /\.scss$/,
 					exclude: /node_modules/,
 					use: [
-						MiniCssExtractPlugin.loader,
+						{
+							loader: MiniCssExtractPlugin.loader,
+							options: {
+								hmr: mode === 'development',
+								reloadAll: true,
+							},
+						},
 						{
 							loader: 'css-loader',
 							options: {
@@ -63,10 +73,19 @@ module.exports = function config(env, argv) {
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
-				filename: '[name].css',
-				chunkFilename: '[id].css',
+				filename: 'static/[name].css',
+				chunkFilename: 'static/[id].css',
+			}),
+			new HtmlWebpackPlugin({
+				template: './src/index.html',
 			}),
 		],
 		devtool: 'source-map',
+		devServer: {
+			contentBase: path.join(__dirname, 'dist'),
+			compress: true,
+			port: 8526,
+			hot: true,
+		},
 	};
 };

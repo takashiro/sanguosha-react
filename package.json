@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "start": "webpack-dev-server --mode=development",
     "build": "webpack",
     "debug": "webpack --mode=development",
     "watch": "webpack --mode=development --watch",
@@ -48,12 +49,14 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "html-webpack-plugin": "^4.2.0",
     "mini-css-extract-plugin": "^0.8.2",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
