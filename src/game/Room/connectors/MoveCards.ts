@@ -1,26 +1,18 @@
 import {
 	Command,
-	CardAreaLocator,
+	CardMoveStruct,
 } from '@karuta/sanguosha-core';
 
 import CardMotion from '../../CardMotion';
 import ActionConnector from '../ActionConnector';
 import Room from '../Room';
-import { CardProps } from '../../Card';
 
-interface CardMoveMeta {
-	from: CardAreaLocator;
-	to: CardAreaLocator;
-	cards?: CardProps[];
-	cardNum?: number;
-}
-
-export default class MoveCards extends ActionConnector<CardMoveMeta> {
+export default class MoveCards extends ActionConnector<CardMoveStruct> {
 	constructor() {
 		super(Command.MoveCards);
 	}
 
-	process(room: Room, move: CardMoveMeta): void {
+	process(room: Room, move: CardMoveStruct): void {
 		const from = room.findArea(move.from);
 		const to = room.findArea(move.to);
 		if (from === to || !from || !to) {
