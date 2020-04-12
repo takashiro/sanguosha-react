@@ -15,6 +15,7 @@ import KingdomIcon from '../../component/KingdomIcon';
 import PhaseBar from '../../component/PhaseBar';
 
 import HandArea from './HandArea';
+import JudgeArea from './JudgeArea';
 import PhotoAvatar from './Avatar';
 import SeatNumber from './SeatNumber';
 
@@ -163,6 +164,7 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 				<SeatNumber number={seat} />
 				<PhaseBar player={player} />
 				<HandArea area={player.getHandArea()} />
+				<JudgeArea area={player.getJudgeArea()} />
 				<AnimationLayer player={player} />
 			</div>
 		);
