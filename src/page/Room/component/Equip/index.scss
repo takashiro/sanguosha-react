@@ -1,0 +1,52 @@
+.equip {
+	position: relative;
+	box-sizing: border-box;
+	width: 140px;
+	height: 17px;
+	border-radius: 2px;
+	line-height: 15px;
+	background: rgba(224, 224, 224, 0.75);
+	border: rgba(0, 0, 0, 0.85) 1px solid;
+	border-left: 0 solid;
+	font-family: '隶书';
+	font-size: 10pt;
+	text-shadow: 0 0 1px black, 0 0 2px white, 1px 1px 2px white, 0 0 3px rgb(255, 255, 77), 0 0 3px rgb(255, 255, 98);
+	cursor: default;
+	padding-left: 1.5em;
+
+	i.icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: inline-block;
+		width: 13px;
+		height: 13px;
+		margin-right: 0.4em;
+	}
+
+	.attack-range {
+		margin-right: 0.4em;
+	}
+
+	.name {
+		margin-right: 0.2em;
+	}
+
+	.number {
+		position: absolute;
+		top: 1px;
+		right: 16px;
+		width: 13px;
+		height: 14px;
+		background-size: 150%;
+	}
+
+	.suit {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 19px;
+		height: 15px;
+		background-size: 100%;
+	}
+}
