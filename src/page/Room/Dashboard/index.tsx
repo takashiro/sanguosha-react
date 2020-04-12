@@ -100,7 +100,7 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
 		return (
 			<div className="dashboard" ref={this.node}>
 				<PhaseBar player={player} />
-				<EquipArea />
+				<EquipArea area={player.getEquipArea()} />
 				<HandArea area={player.getHandArea()} />
 				<ButtonArea dashboard={dashboard} />
 				<AvatarArea player={player} />
