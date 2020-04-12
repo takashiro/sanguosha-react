@@ -15,6 +15,7 @@ import KingdomIcon from '../../component/KingdomIcon';
 import PhaseBar from '../../component/PhaseBar';
 
 import HandArea from './HandArea';
+import EquipArea from './EquipArea';
 import JudgeArea from './JudgeArea';
 import PhotoAvatar from './Avatar';
 import SeatNumber from './SeatNumber';
@@ -159,6 +160,7 @@ class Photo extends React.Component<PhotoProps, PhotoState> {
 				</div>
 				{generalNum === 2 ? <div className="frame" /> : null}
 				<div className="screen-name">{screenName}</div>
+				<EquipArea area={player.getEquipArea()} />
 				<KingdomIcon kingdom={kingdom} />
 				<HpBar size={18} player={player} />
 				<SeatNumber number={seat} />

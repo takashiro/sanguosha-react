@@ -96,7 +96,7 @@
 		.card-num {
 			position: absolute;
 			left: -89px;
-			top: 20px;
+			top: 9px;
 			width: 28px;
 			height: 15px;
 			background: url(../style/handcard/unknown.png) no-repeat;
@@ -114,6 +114,14 @@
 			top: 0;
 			left: 0;
 		}
+	}
+
+	.equip-area {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 137px;
+		min-height: 68px;
 	}
 
 	.judge-area {
