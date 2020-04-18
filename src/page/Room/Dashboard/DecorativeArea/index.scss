@@ -1,0 +1,25 @@
+.dashboard {
+	.decorative-area {
+		background: url('../style/dashboard/decorative-area.png') no-repeat;
+		background-size: 58px 149px;
+		background-position: right bottom;
+		width: 102px;
+		height: 149px;
+		position: relative;
+
+		i.kingdom {
+			position: absolute;
+			top: 1px;
+			left: 60px;
+			width: 36px;
+			height: 36px;
+		}
+
+		i.seat-number {
+			position: absolute;
+			left: 63px;
+			top: 117px;
+			border-radius: 15px;
+		}
+	}
+}

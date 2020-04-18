@@ -3,7 +3,7 @@ import React from 'react';
 
 import EquipArea from './EquipArea';
 import HandArea from './HandArea';
-import ButtonArea from './ButtonArea';
+import DecorativeArea from './DecorativeArea';
 import AvatarArea from './AvatarArea';
 import HpArea from './HpArea';
 import JudgeArea from './JudgeArea';
@@ -102,7 +102,7 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
 				<PhaseBar player={player} />
 				<EquipArea area={player.getEquipArea()} />
 				<HandArea area={player.getHandArea()} />
-				<ButtonArea dashboard={dashboard} />
+				<DecorativeArea dashboard={dashboard} />
 				<AvatarArea player={player} />
 				<HpArea player={player} />
 				<JudgeArea area={player.getJudgeArea()} />
