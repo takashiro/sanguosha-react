@@ -1,7 +1,7 @@
 import { CardAreaType } from '@karuta/sanguosha-core';
 
-import Player from '../Player';
-import CardArea from '../CardArea';
+import Player from '../../Player';
+import CardArea from '../../CardArea';
 
 export default class DashboardPlayer extends Player {
 	protected handArea: CardArea;

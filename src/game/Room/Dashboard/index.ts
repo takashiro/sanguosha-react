@@ -1,8 +1,8 @@
 import { EventEmitter } from 'events';
 
-import CardArea from '../CardArea';
+import CardArea from '../../CardArea';
 
-import Player from './DashboardPlayer';
+import Player from './Player';
 
 type Listener = () => void;
 
