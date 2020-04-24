@@ -4,6 +4,7 @@ import React from 'react';
 import EquipArea from './EquipArea';
 import HandArea from './HandArea';
 import DecorativeArea from './DecorativeArea';
+import ButtonArea from './ButtonArea';
 import AvatarArea from './AvatarArea';
 import HpArea from './HpArea';
 import JudgeArea from './JudgeArea';
@@ -11,8 +12,8 @@ import JudgeArea from './JudgeArea';
 import AnimationLayer from '../component/AnimationLayer';
 import PhaseBar from '../component/PhaseBar';
 
-import GameDashboard from '../../../game/Room/Dashboard';
-import DashboardPlayer from '../../../game/Room/DashboardPlayer';
+import GameDashboard from '../../../game/Room/Dashboard/index';
+import DashboardPlayer from '../../../game/Room/Dashboard/Player';
 import MotionPosition from '../../../game/MotionPosition';
 
 import './index.scss';
@@ -103,6 +104,7 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
 				<EquipArea area={player.getEquipArea()} />
 				<HandArea area={player.getHandArea()} />
 				<DecorativeArea dashboard={dashboard} />
+				<ButtonArea dashboard={dashboard} />
 				<AvatarArea player={player} />
 				<HpArea player={player} />
 				<JudgeArea area={player.getJudgeArea()} />

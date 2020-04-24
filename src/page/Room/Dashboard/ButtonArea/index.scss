@@ -1,28 +1,40 @@
-.dashboard {
-	.button-area {
-		background: url('../style/dashboard/button-area.png') no-repeat;
-		width: 102px;
-		height: 149px;
-		position: relative;
+.dashboard .button-area button.enabled {
+	&:hover {
+		color: #fdfca9;
+		text-shadow: #535323 0 0 5px, #535323 0 0 3px;
+	}
 
-		button {
-			position: absolute;
+	&:active {
+		box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.2), inset 1px 1px 2px rgba(0, 0, 0, 0.8);
+	}
 
-			&:focus {
-				outline: 0;
-			}
+	&.confirm {
+		background: radial-gradient(ellipse at bottom, #f4963c 0, #be3837 65%, #7d3d34 100%);
+		color: #3d0700;
+
+		&:hover {
+			color: #fff167;
+			text-shadow: #fff167 0 0 4px, #fff167 0 0 2px;
 		}
+	}
 
-		i.kingdom {
-			position: absolute;
-			top: 3px;
-			left: 70px;
+	&.cancel {
+		background: radial-gradient(ellipse at bottom, #aae034, #2c6b38);
+		color: #004600;
+
+		&:hover {
+			color: #cdff91;
+			text-shadow: #416422 0 0 5px, #416422 0 0 3px;
 		}
+	}
 
-		i.seat-number {
-			position: absolute;
-			left: 71px;
-			top: 117px;
+	&.finish {
+		background: radial-gradient(ellipse at bottom, #7dd6e6, #3f5177);
+		color: #001342;
+
+		&:hover {
+			color: #b0eaf6;
+			text-shadow: #2a6b93 0 0 5px, #2a6b93 0 0 3px;
 		}
 	}
 }

@@ -22,3 +22,24 @@ i.logo {
 	height: 256px;
 	background: url(../style/logo.png) no-repeat;
 }
+
+button.retro {
+	padding: 0.2em 0.8em;
+	margin: 0 1em;
+	font-family: '隶书';
+	font-size: 15pt;
+	background: radial-gradient(ellipse at bottom, #f4963c 0, #be3837 65%, #7d3d34 100%);
+	color: #3d0700;
+	border-radius: 4px;
+	border: 0 solid;
+	box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.2), inset -1px -1px 2px rgba(0, 0, 0, 0.8);
+
+	&:hover {
+		color: #fff167;
+		text-shadow: #fff167 0 0 4px, #fff167 0 0 2px;
+	}
+
+	&.disabled {
+		filter: grayscale(1.0);
+	}
+}

@@ -30,6 +30,13 @@
 		position: relative;
 	}
 
+	.button-area {
+		position: absolute;
+		top: -55px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
 	.avatar-area {
 		height: 149px;
 	}

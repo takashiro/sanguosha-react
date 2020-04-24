@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Kingdom } from '@karuta/sanguosha-core';
 
@@ -67,16 +66,15 @@ class DecorativeArea extends React.Component<AreaProps, AreaState> {
 	}
 
 	render(): JSX.Element {
-		const { dashboard } = this.props;
-		const player = dashboard.getPlayer();
-
 		const {
 			kingdom,
+			seat,
 		} = this.state;
+
 		return (
 			<div className="decorative-area">
 				<KingdomIcon kingdom={kingdom} />
-				<SeatNumber number={player ? player.getSeat() : 0} />
+				<SeatNumber number={seat} />
 			</div>
 		);
 	}
