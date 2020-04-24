@@ -4,7 +4,7 @@ import ActionConnector from '../ActionConnector';
 
 import Room from '../Room';
 import Player from '../../Player';
-import DashboardPlayer from '../DashboardPlayer';
+import DashboardPlayer from '../Dashboard/Player';
 import RoomPlayer from '../RoomPlayer';
 
 function sortPlayerSeat(players: Player[], dashboardUid: number): void {

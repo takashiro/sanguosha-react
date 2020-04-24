@@ -3,37 +3,30 @@ import { EventEmitter } from 'events';
 import CardArea from '../../CardArea';
 
 import Player from './Player';
+import Option from './Option';
 
-type Listener = () => void;
+interface Dashboard {
+	on(event: 'playerChanged', listener: (player: Player) => void): this;
+	on(event: 'optionsChanged', listener: (options: Option[]) => void): this;
+
+	once(event: 'playerChanged', listener: (player: Player) => void): this;
+	once(event: 'optionsChanged', listener: (options: Option[]) => void): this;
+
+	off(event: 'playerChanged', listener: (player: Player) => void): this;
+	off(event: 'optionsChanged', listener: (options: Option[]) => void): this;
+}
 
 class Dashboard extends EventEmitter {
-	uid: number;
+	protected uid: number;
 
-	player?: Player;
+	protected player?: Player;
 
-	confirmEnabled: boolean;
-
-	confirmListener: Listener | null;
-
-	cancelEnabled: boolean;
-
-	cancelListener: Listener | null;
-
-	finishEnabled: boolean;
-
-	finishListener: Listener | null;
+	protected options?: Option[];
 
 	constructor(uid: number) {
 		super();
 
 		this.uid = uid;
-
-		this.confirmListener = null;
-		this.confirmEnabled = false;
-		this.cancelListener = null;
-		this.cancelEnabled = false;
-		this.finishEnabled = false;
-		this.finishListener = null;
 	}
 
 	getUid(): number {
@@ -66,77 +59,17 @@ class Dashboard extends EventEmitter {
 		return cards;
 	}
 
-	isConfirmEnabled(): boolean {
-		return this.confirmEnabled;
-	}
-
-	setConfirmEnabled(enabled: boolean): void {
-		this.confirmEnabled = enabled;
-		this.emit('confirmEnabledChanged', enabled);
-	}
-
-	isCancelEnabled(): boolean {
-		return this.cancelEnabled;
-	}
-
-	setCancelEnabled(enabled: boolean): void {
-		this.cancelEnabled = enabled;
-		this.emit('cancelEnabledChanged', enabled);
-	}
-
-	isFinishEnabled(): boolean {
-		return this.finishEnabled;
-	}
-
-	setFinishEnabled(enabled: boolean): void {
-		this.finishEnabled = enabled;
-		this.emit('finishEnabledChanged', enabled);
-	}
-
-	setEnabled(enabled: boolean): void {
-		this.setConfirmEnabled(enabled);
-		this.setCancelEnabled(enabled);
-		this.setFinishEnabled(enabled);
-	}
-
-	setConfirmListener(listener: Listener): void {
-		this.confirmListener = listener;
-	}
-
-	confirm(): void {
-		if (this.isConfirmEnabled() && this.confirmListener) {
-			this.confirmListener();
-		}
-	}
-
-	setCancelListener(listener: Listener): void {
-		this.cancelListener = listener;
-	}
-
-	cancel(): void {
-		if (this.isCancelEnabled() && this.cancelListener) {
-			this.cancelListener();
-		}
-	}
-
-	setFinishListener(listener: Listener): void {
-		this.finishListener = listener;
-	}
-
-	finish(): void {
-		if (this.isFinishEnabled() && this.finishListener) {
-			this.finishListener();
-		}
+	showOptions(options: Option[]): void {
+		this.options = options;
+		this.emit('optionsChanged', options);
 	}
 
 	/**
 	 * Reset selectable cards, selected cards and disable all buttons.
 	 */
 	resetSelection(): void {
-		this.setEnabled(false);
-		this.confirmListener = null;
-		this.cancelListener = null;
-		this.finishListener = null;
+		delete this.options;
+		this.emit('optionsChanged', []);
 
 		if (this.player) {
 			const areas: CardArea[] = [

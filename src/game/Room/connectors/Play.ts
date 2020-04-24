@@ -1,7 +1,10 @@
 import { Command } from '@karuta/sanguosha-core';
-import ActionConnector from '../ActionConnector';
 
+import ActionConnector from '../ActionConnector';
 import Room from '../Room';
+import ConfirmOption from '../Dashboard/ConfirmOption';
+import CancelOption from '../Dashboard/CancelOption';
+import FinishOption from '../Dashboard/FinishOption';
 
 interface PlayOptions {
 	cards: number[];
@@ -36,13 +39,20 @@ export default class Play extends ActionConnector<PlayOptions> {
 			handArea.off('selectedCardsChanged', onSelectedCardsChanged);
 		});
 
-		dashboard.setFinishListener(() => {
+		const confirm = new ConfirmOption(false);
+		const cancel = new CancelOption(false);
+		const finish = new FinishOption(true);
+		dashboard.showOptions([
+			confirm,
+			cancel,
+			finish,
+		]);
+
+		finish.once('clicked', () => {
 			handArea.off('selectedCardsChanged', onSelectedCardsChanged);
-			dashboard.setFinishEnabled(false);
 			client.reply(locker, null);
 		});
 
-		dashboard.setFinishEnabled(true);
 		handArea.setSelectableCards(options.cards);
 		handArea.setEnabled(true);
 	}

@@ -3,6 +3,9 @@ import { Command } from '@karuta/sanguosha-core';
 import ActionConnector from '../ActionConnector';
 import Room from '../Room';
 import Player from '../../Player';
+import ConfirmOption from '../Dashboard/ConfirmOption';
+import CancelOption from '../Dashboard/CancelOption';
+import FinishOption from '../Dashboard/FinishOption';
 
 interface Options {
 	feasible: boolean;
@@ -27,28 +30,36 @@ export default class ChoosePlayer extends ActionConnector<Options> {
 		};
 		room.once('selectedPlayerChanged', onSelectedPlayerChanged);
 
-		if (feasible) {
-			dashboard.setConfirmListener(() => {
-				room.off('selectedPlayerChanged', onSelectedPlayerChanged);
-				room.resetSelection();
-				dashboard.resetSelection();
-				client.reply(locker, { confirm: true });
-			});
-		}
-		dashboard.setConfirmEnabled(feasible);
+		const confirm = new ConfirmOption(false);
+		confirm.once('clicked', () => {
+			client.reply(locker, { confirm: true });
 
-		dashboard.setCancelListener(() => {
 			room.off('selectedPlayerChanged', onSelectedPlayerChanged);
 			room.resetSelection();
 			dashboard.resetSelection();
-			client.reply(locker, { cancel: true });
 		});
-		dashboard.setCancelEnabled(true);
+		confirm.setEnabled(feasible);
+
+		const cancel = new CancelOption(true);
+		cancel.once('clicked', () => {
+			client.reply(locker, { cancel: true });
+
+			room.off('selectedPlayerChanged', onSelectedPlayerChanged);
+			room.resetSelection();
+			dashboard.resetSelection();
+		});
+
+		const finish = new FinishOption(false);
+		dashboard.showOptions([
+			confirm,
+			cancel,
+			finish,
+		]);
 
 		const self = dashboard.getPlayer();
 		const onCardUnselected = (cards: number[]): void => {
 			if (cards.length <= 0) {
-				dashboard.cancel();
+				cancel.click();
 			}
 		};
 		if (self) {

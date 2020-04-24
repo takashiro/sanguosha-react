@@ -1,64 +1,97 @@
 import {
 	Command,
-	CardAreaLocator,
+	CardOptionStruct,
 } from '@karuta/sanguosha-core';
 
 import Room from '../Room';
 import ActionConnector from '../ActionConnector';
+import CardArea from '../../CardArea';
+import ConfirmOption from '../Dashboard/ConfirmOption';
+import CancelOption from '../Dashboard/CancelOption';
 
-interface Options {
-	area: CardAreaLocator;
-	cards: number[];
-	minNum: number;
-	maxNum: number;
-}
-
-export default class ChooseCards extends ActionConnector<Options> {
+export default class ChooseCards extends ActionConnector<CardOptionStruct> {
 	constructor() {
 		super(Command.ChooseCards);
 	}
 
-	process(room: Room, options: Options): void {
-		if (!options || !options.area) {
+	process(room: Room, option: CardOptionStruct): void {
+		if (!option || !option.areas || option.areas.length <= 0) {
 			return;
 		}
 
-		const area = room.findArea(options.area);
-		if (!area) {
+		const areas: CardArea[] = [];
+		for (const locator of option.areas) {
+			const area = room.findArea(locator);
+			if (area) {
+				areas.push(area);
+			}
+		}
+		if (areas.length <= 0) {
 			return;
 		}
 
 		const client = room.getClient();
 		const locker = client.lock();
 
-		const selectableCards = options.cards || area.getCards().map((card) => card.getId());
-		area.setSelectableCards(selectableCards);
-		area.setEnabled(true);
+		if (option.cards) {
+			const allowedCards = new Set(option.cards);
+			for (const area of areas) {
+				const selectableCards = area.getCards().map((card) => card.getId());
+				area.setSelectableCards(selectableCards.filter((cardId) => allowedCards.has(cardId)));
+				area.setEnabled(true);
+			}
+		} else {
+			for (const area of areas) {
+				const selectableCards = area.getCards().map((card) => card.getId());
+				area.setSelectableCards(selectableCards);
+				area.setEnabled(true);
+			}
+		}
 
 		const dashboard = room.getDashboard();
-		dashboard.setCancelListener(() => {
+
+		const confirm = new ConfirmOption(false);
+
+		const onSelectedCardsChanged = (): void => {
+			const selected: number[] = [];
+			for (const area of areas) {
+				selected.push(...area.getSelectedCards());
+			}
+			const acceptable = selected.length > 0 && option.minNum <= selected.length && selected.length <= option.maxNum;
+			confirm.setEnabled(acceptable);
+		};
+
+		confirm.once('clicked', () => {
+			const selected: number[] = [];
+			for (const area of areas) {
+				area.off('selectedCardsChanged', onSelectedCardsChanged);
+				selected.push(...area.getSelectedCards());
+			}
+			client.reply(locker, selected);
+
+			for (const area of areas) {
+				area.setSelectedCards([]);
+			}
+			dashboard.resetSelection();
+		});
+
+		const cancel = new CancelOption(true);
+		cancel.once('clicked', () => {
 			client.reply(locker, []);
 			dashboard.resetSelection();
 		});
-		dashboard.setCancelEnabled(true);
 
-		const onSelectedCardsChanged = (selected: number[]): void => {
-			const acceptable = options.minNum <= selected.length && selected.length <= options.maxNum;
-			dashboard.setConfirmEnabled(acceptable);
-		};
-		area.on('selectedCardsChanged', onSelectedCardsChanged);
+		dashboard.showOptions([confirm, cancel]);
 
-		dashboard.setConfirmListener(() => {
-			area.off('selectedCardsChanged', onSelectedCardsChanged);
-
-			const selected = area.getSelectedCards();
-			area.setSelectedCards([]);
-			client.reply(locker, selected);
-			dashboard.resetSelection();
-		});
+		for (const area of areas) {
+			area.on('selectedCardsChanged', onSelectedCardsChanged);
+		}
 
 		client.once('lockChanged', () => {
-			area.off('selectedCardsChanged', onSelectedCardsChanged);
+			for (const area of areas) {
+				area.setEnabled(false);
+			}
+			dashboard.resetSelection();
 		});
 	}
 }
