@@ -39,11 +39,13 @@ class CardArea extends EventEmitter {
 
 	protected selectedCards: number[];
 
+	protected seat?: number;
+
 	/**
 	 * Create a card area
 	 * @param type
 	 */
-	constructor(type: CardAreaType) {
+	constructor(type: CardAreaType, seat?: number) {
 		super();
 
 		this.type = type;
@@ -51,6 +53,11 @@ class CardArea extends EventEmitter {
 		this.enabled = false;
 		this.selectableCards = [];
 		this.selectedCards = [];
+		this.seat = seat;
+	}
+
+	getSeat(): number | undefined {
+		return this.seat;
 	}
 
 	getType(): CardAreaType {

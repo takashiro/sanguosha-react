@@ -7,8 +7,8 @@ import Card, { CardProps } from './Card';
 class CardPile extends CardArea {
 	protected cardNum: number;
 
-	constructor(type: CardAreaType) {
-		super(type);
+	constructor(type: CardAreaType, seat?: number) {
+		super(type, seat);
 		this.cardNum = 0;
 	}
 

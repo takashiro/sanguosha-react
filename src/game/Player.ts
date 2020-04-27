@@ -90,9 +90,9 @@ abstract class Player extends EventEmitter {
 
 		this.phase = 0;
 
-		this.equipArea = new CardArea(CardAreaType.Equip);
-		this.judgeArea = new CardArea(CardAreaType.Judge);
-		this.processArea = new CardArea(CardAreaType.Process);
+		this.equipArea = new CardArea(CardAreaType.Equip, seat);
+		this.judgeArea = new CardArea(CardAreaType.Judge, seat);
+		this.processArea = new CardArea(CardAreaType.Process, seat);
 	}
 
 	getUid(): number {

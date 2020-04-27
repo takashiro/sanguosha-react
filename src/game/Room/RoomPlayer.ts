@@ -9,7 +9,7 @@ export default class RoomPlayer extends Player {
 	constructor(uid: number, seat: number, name: string) {
 		super(uid, seat, name);
 
-		this.handArea = new CardPile(CardAreaType.Hand);
+		this.handArea = new CardPile(CardAreaType.Hand, seat);
 	}
 
 	getHandArea(): CardPile {

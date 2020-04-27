@@ -9,7 +9,7 @@ export default class DashboardPlayer extends Player {
 	constructor(uid: number, seat: number, name: string) {
 		super(uid, seat, name);
 
-		this.handArea = new CardArea(CardAreaType.Hand);
+		this.handArea = new CardArea(CardAreaType.Hand, seat);
 	}
 
 	getHandArea(): CardArea {
