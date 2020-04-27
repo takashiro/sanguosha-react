@@ -5,6 +5,7 @@ import MotionState from '../../../../game/MotionState';
 import './index.scss';
 
 interface Props {
+	className?: string;
 	from: MotionState;
 	to: MotionState;
 	onEnd?: () => void;
@@ -82,9 +83,13 @@ class Movable extends React.Component<Props, MotionState> {
 			opacity,
 		};
 
-		const { children } = this.props;
+		const { className, children } = this.props;
+		const classNames = ['movable'];
+		if (className) {
+			classNames.push(className);
+		}
 		return (
-			<div className="movable" style={style} onTransitionEnd={this.handleTransitionEnd}>
+			<div className={classNames.join(' ')} style={style} onTransitionEnd={this.handleTransitionEnd}>
 				{children}
 			</div>
 		);

@@ -51,6 +51,8 @@ class Room extends EventEmitter {
 
 	protected discardPile: CardPile;
 
+	protected wuguArea: CardArea;
+
 	constructor(id: number, uid: number, client: Client) {
 		super();
 
@@ -61,6 +63,7 @@ class Room extends EventEmitter {
 		this.players = [];
 		this.drawPile = new CardPile(CardAreaType.DrawPile);
 		this.discardPile = new CardPile(CardAreaType.DiscardPile);
+		this.wuguArea = new CardArea(CardAreaType.Wugu);
 
 		for (const ConnectorClass of connectorClasses) {
 			const connector = new ConnectorClass();
@@ -97,6 +100,10 @@ class Room extends EventEmitter {
 
 	getDiscardPile(): CardPile {
 		return this.discardPile;
+	}
+
+	getWuguArea(): CardArea {
+		return this.wuguArea;
 	}
 
 	isSelectable(): boolean {
@@ -183,6 +190,8 @@ class Room extends EventEmitter {
 			return this.drawPile;
 		case CardAreaType.DiscardPile:
 			return this.discardPile;
+		case CardAreaType.Wugu:
+			return this.wuguArea;
 		default:
 			return null;
 		}

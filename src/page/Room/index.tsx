@@ -7,6 +7,7 @@ import MainArea from './MainArea';
 import Dashboard from './Dashboard';
 import DrawPile from './DrawPile';
 import DiscardPile from './DiscardPile';
+import WuguArea from './WuguArea';
 import AnimationCanvas from './AnimationCanvas';
 
 import GameRoom from '../../game/Room';
@@ -23,6 +24,7 @@ function Room(props: RoomProps): JSX.Element {
 			<Dashboard dashboard={room.getDashboard()} />
 			<DrawPile area={room.getDrawPile()} />
 			<DiscardPile area={room.getDiscardPile()} />
+			<WuguArea area={room.getWuguArea()} />
 			<AnimationCanvas room={room} />
 		</div>
 	);

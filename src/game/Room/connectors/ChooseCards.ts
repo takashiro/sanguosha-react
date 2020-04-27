@@ -49,6 +49,8 @@ export default class ChooseCards extends ActionConnector<CardOptionStruct> {
 		}
 
 		const dashboard = room.getDashboard();
+		const me = dashboard.getPlayer();
+		const singleSelection = (!me || areas.every((area) => area.getSeat() !== me.getSeat())) && option.maxNum === 1;
 
 		const confirm = new ConfirmOption(false);
 
@@ -59,6 +61,9 @@ export default class ChooseCards extends ActionConnector<CardOptionStruct> {
 			}
 			const acceptable = selected.length > 0 && option.minNum <= selected.length && selected.length <= option.maxNum;
 			confirm.setEnabled(acceptable);
+			if (singleSelection) {
+				confirm.click();
+			}
 		};
 
 		confirm.once('clicked', () => {
@@ -81,7 +86,9 @@ export default class ChooseCards extends ActionConnector<CardOptionStruct> {
 			dashboard.resetSelection();
 		});
 
-		dashboard.showOptions([confirm, cancel]);
+		if (!singleSelection) {
+			dashboard.showOptions([confirm, cancel]);
+		}
 
 		for (const area of areas) {
 			area.on('selectedCardsChanged', onSelectedCardsChanged);

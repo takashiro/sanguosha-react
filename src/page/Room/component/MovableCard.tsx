@@ -33,8 +33,8 @@ class MovableCard extends React.Component<Props, State> {
 		this.state = {
 			from: card.getStartState() || defaultState,
 			to: card.getEndState() || defaultState,
-			selectable: false,
-			selected: false,
+			selectable: card.isSelectable(),
+			selected: card.isSelected(),
 		};
 	}
 
@@ -118,7 +118,7 @@ class MovableCard extends React.Component<Props, State> {
 		const onKeyDown = selectable ? this.handleKeyDown : undefined;
 
 		return (
-			<Movable from={from} to={to} onEnd={onEnd}>
+			<Movable className="card-wrapper" from={from} to={to} onEnd={onEnd}>
 				<div role="button" tabIndex={0} className={classNames && classNames.join(' ')} onClick={onClick} onKeyDown={onKeyDown}>
 					<Card card={card.instance()} />
 				</div>
