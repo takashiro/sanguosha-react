@@ -4,6 +4,7 @@ import Card from '../../game/MovableCard';
 import CardArea from '../../game/CardArea';
 import CardMotion from '../../game/CardMotion';
 
+import FloatBox from './component/FloatBox';
 import MovableCard from './component/MovableCard';
 import locateCenterPos from '../util/locateCenterPos';
 
@@ -126,9 +127,9 @@ export default class WuguArea extends React.Component<AreaProps, AreaState> {
 		};
 
 		return (
-			<div className="wugu-area">
+			<FloatBox className="wugu-area">
 				<h4>五谷丰登</h4>
-				<div className="card-list" style={style} ref={this.node}>
+				<div className="content card-list" style={style} ref={this.node}>
 					{cards.map((card) => (
 						<MovableCard
 							key={card.getSerial()}
@@ -138,7 +139,7 @@ export default class WuguArea extends React.Component<AreaProps, AreaState> {
 						/>
 					))}
 				</div>
-			</div>
+			</FloatBox>
 		);
 	}
 }

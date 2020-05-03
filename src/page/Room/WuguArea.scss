@@ -5,18 +5,6 @@
 	transform: translate(-50%, -50%);
 	min-width: 140px;
 	min-height: 103px;
-	background: rgba(0, 0, 0, 0.88);
-	box-shadow: black 2px 2px 5px;
-	border: rgb(166, 150, 122) 1px solid;
-	border-radius: 6px;
-
-	h4 {
-		color: rgb(228, 213, 160);
-		text-align: center;
-		font-family: 'Microsoft YaHei';
-		margin: 0.4em 0 0 0;
-		font-size: 11pt;
-	}
 
 	.movable.card-wrapper {
 		position: static;
