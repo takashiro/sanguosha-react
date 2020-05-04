@@ -2,6 +2,7 @@
 import React from 'react';
 
 import PhotoLayout from './PhotoLayout';
+import MultiAreaSelector from './MultiAreaSelector';
 
 import Room from '../../../game/Room';
 
@@ -25,6 +26,7 @@ class MainArea extends React.Component<MainAreaProps, {}> {
 		return (
 			<div ref={this.node} className="main-area">
 				<PhotoLayout room={room} />
+				<MultiAreaSelector room={room} />
 			</div>
 		);
 	}
