@@ -113,6 +113,14 @@ abstract class Player extends EventEmitter {
 		return this.processArea;
 	}
 
+	getCardAreas(): CardArea[] {
+		return [
+			this.getHandArea(),
+			this.getEquipArea(),
+			this.getJudgeArea(),
+		];
+	}
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	setProperty(prop: string, value: any): void {
 		const setter = Reflect.get(this, `set${prop.charAt(0).toUpperCase()}${prop.substring(1)}`);
