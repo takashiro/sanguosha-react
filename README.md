@@ -37,9 +37,17 @@ Running Environment
 
 Build and Run
 -------------
-1. Clone karuta-node-server and sanguosha-server in the same parent directory.
-1. Create a symlink karuta-node-server/extension/sanguosha <----> sanguosha-server
-1. Start server application via `npm start` in karuta-node-server. Or click "Launch Program" in sanguosha-server with Visual Studio Code.
-1. Run `npm install` and `npm run build` in sanguosha-react.
-1. Start client application via ./dist/index.html. Or click "Launch Chrome" in Visual Studio Code.
+1. You'll need 3 repositories to debug the project, including [karuta-node-server](https://github.com/takashiro/karuta-node-server), [sanguosha-server](https://github.com/takashiro/sanguosha-server) and `sanguosha-react` (this repository). The 3 repositories should be in the same folder.
+1. Clone [karuta-node-server](https://github.com/takashiro/karuta-node-server).
+1. Enter `karuta-node-server`.
+1. Run `npm i` and `npm run build`
+1. Clone [sanguosha-server](https://github.com/takashiro/sanguosha-server).
+1. Enter `sanguosha-server`.
+1. Run `npm i` and `npm run build`
+1. Create a symlink `karuta-node-server/extension/sanguosha` <----> `sanguosha-server/dist`
+1. Open `sanguosha-server` with Visual Studio Code.
+1. Click `Launch` to start the server.
+1. Open `sanguosha-react` with Visual Studio Code.
+1. Run `npm start` to start webpack.
+1. Click `Launch (http)`.
 1. Now you are ready! Type your nickname and start a new game.
