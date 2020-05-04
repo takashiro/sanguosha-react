@@ -1,4 +1,3 @@
-
 import { EventEmitter } from 'events';
 
 import MovableCard from './MovableCard';
@@ -22,7 +21,6 @@ class CardMotion extends EventEmitter {
 	 */
 	constructor(cards: Card[]) {
 		super();
-
 
 		this.cards = cards ? cards.map((card) => new MovableCard(card)) : [];
 	}

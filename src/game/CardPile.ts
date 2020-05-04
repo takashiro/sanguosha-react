@@ -19,6 +19,14 @@ class CardPile extends CardArea {
 		return this.cardNum;
 	}
 
+	getCards(): Card[] {
+		const cards: Card[] = new Array(this.cardNum);
+		for (let i = 0; i < this.cardNum; i++) {
+			cards[i] = new Card();
+		}
+		return cards;
+	}
+
 	/**
 	 * Add cards into this area
 	 * @param cards

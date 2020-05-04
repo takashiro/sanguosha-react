@@ -17,7 +17,7 @@ export interface CardProps {
 export default class Card extends AbstractCard {
 	protected key: number;
 
-	constructor(props: CardProps) {
+	constructor(props?: CardProps) {
 		if (props) {
 			super(props.name, props.suit, props.number);
 			this.id = props.id;
