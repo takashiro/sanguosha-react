@@ -9,13 +9,13 @@ import CardNumber from '../CardNumber';
 import './index.scss';
 
 interface Props {
-	card: GameCard;
+	card?: GameCard;
 }
 
 function Card(props: Props): JSX.Element {
 	const { card } = props;
 
-	if (card.getId()) {
+	if (card && card.getId()) {
 		const classNames = ['card', card.getColor()];
 		const style = {
 			backgroundImage: `url(style/card/${card.getName()}.png)`,
