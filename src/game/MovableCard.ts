@@ -96,10 +96,7 @@ export default class MovableCard extends EventEmitter {
 	 * @param state
 	 */
 	setStartState(state: MotionState): void {
-		this.startState = {
-			opacity: 1,
-			...state,
-		};
+		this.startState = { ...state };
 	}
 
 	/**
@@ -114,10 +111,7 @@ export default class MovableCard extends EventEmitter {
 	 * @param state
 	 */
 	setEndState(state: MotionState): void {
-		this.endState = {
-			opacity: 1,
-			...state,
-		};
+		this.endState = { ...state };
 	}
 
 	/**
