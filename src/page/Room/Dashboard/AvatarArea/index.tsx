@@ -2,11 +2,12 @@
 import React from 'react';
 import { GeneralProfile } from '@karuta/sanguosha-core';
 
-import './index.scss';
+import Player from '../../../../game/Player';
 
 import GeneralAvatar from './GeneralAvatar';
+import SkillList from './SkillList';
 
-import Player from '../../../../game/Player';
+import './index.scss';
 
 interface Props {
 	player: Player;
@@ -45,6 +46,7 @@ class AvatarArea extends React.Component<Props, State> {
 	onDeputyGeneralChange = (deputyGeneral: GeneralProfile): void => this.setState({ deputyGeneral });
 
 	render(): JSX.Element {
+		const { player } = this.props;
 		const {
 			headGeneral,
 			deputyGeneral,
@@ -57,14 +59,18 @@ class AvatarArea extends React.Component<Props, State> {
 						<GeneralAvatar
 							position="head"
 							general={headGeneral}
-						/>
+						>
+							<SkillList position="head" area={player.getHeadSkillArea()} />
+						</GeneralAvatar>
 					)}
 				{deputyGeneral
 					&& (
 						<GeneralAvatar
 							position="deputy"
 							general={deputyGeneral}
-						/>
+						>
+							<SkillList position="deputy" area={player.getDeputySkillArea()} />
+						</GeneralAvatar>
 					)}
 			</div>
 		);

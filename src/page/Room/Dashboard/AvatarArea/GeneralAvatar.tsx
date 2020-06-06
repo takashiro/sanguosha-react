@@ -3,8 +3,6 @@ import React from 'react';
 
 import { GeneralProfile, Kingdom } from '@karuta/sanguosha-core';
 
-import './index.scss';
-
 interface Props {
 	general: GeneralProfile;
 	position: 'head' | 'deputy';
@@ -30,7 +28,10 @@ class GeneralAvatar extends React.Component<Props, State> {
 	}
 
 	render(): JSX.Element {
-		const { position } = this.props;
+		const {
+			position,
+			children,
+		} = this.props;
 		const {
 			kingdom,
 			avatar,
@@ -43,6 +44,7 @@ class GeneralAvatar extends React.Component<Props, State> {
 				<img className="avatar" src={`style/general/fullphoto/${avatar}.png`} alt="" />
 				<div className="frame" />
 				<div className="name">{name}</div>
+				{children}
 			</div>
 		);
 	}

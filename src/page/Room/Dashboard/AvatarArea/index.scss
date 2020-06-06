@@ -5,4 +5,13 @@
 		flex-direction: row;
 		background: url('../style/dashboard/base.png') no-repeat;
 	}
+
+	.skill-list {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
+
+	@import './GeneralAvatar.scss';
+	@import './SkillList.scss';
 }
