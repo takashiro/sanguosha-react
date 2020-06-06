@@ -5,12 +5,14 @@ import {
 	PlayerPhase,
 	CardAreaType,
 	Kingdom,
+	SkillAreaType,
 } from '@karuta/sanguosha-core';
 
 import CardArea from './CardArea';
 import CardExpense from './CardExpense';
 import CardUse from './CardUse';
 import MotionPosition from './MotionPosition';
+import SkillArea from './SkillArea';
 
 declare interface Player {
 	on(event: 'seatChanged', listener: (seat: number) => void): this;
@@ -71,6 +73,10 @@ abstract class Player extends EventEmitter {
 
 	protected processArea: CardArea;
 
+	protected headSkillArea: SkillArea;
+
+	protected deputySkillArea: SkillArea;
+
 	constructor(uid: number, seat: number, name: string) {
 		super();
 
@@ -93,6 +99,9 @@ abstract class Player extends EventEmitter {
 		this.equipArea = new CardArea(CardAreaType.Equip, seat);
 		this.judgeArea = new CardArea(CardAreaType.Judge, seat);
 		this.processArea = new CardArea(CardAreaType.Process, seat);
+
+		this.headSkillArea = new SkillArea(SkillAreaType.Head);
+		this.deputySkillArea = new SkillArea(SkillAreaType.Deputy);
 	}
 
 	getUid(): number {
@@ -119,6 +128,33 @@ abstract class Player extends EventEmitter {
 			this.getEquipArea(),
 			this.getJudgeArea(),
 		];
+	}
+
+	getSkillArea(): SkillArea {
+		return this.headSkillArea;
+	}
+
+	getHeadSkillArea(): SkillArea {
+		return this.headSkillArea;
+	}
+
+	getDeputySkillArea(): SkillArea {
+		return this.deputySkillArea;
+	}
+
+	findSkillArea(type: SkillAreaType): SkillArea {
+		switch (type) {
+		case SkillAreaType.Head:
+			return this.getHeadSkillArea();
+		case SkillAreaType.Deputy:
+			return this.getDeputySkillArea();
+		case SkillAreaType.HeadAcquired:
+			return this.getHeadSkillArea();
+		case SkillAreaType.DeputyAcquired:
+			return this.getDeputySkillArea();
+		default:
+			return this.getHeadSkillArea();
+		}
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
