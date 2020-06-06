@@ -1,0 +1,47 @@
+.skill-button {
+	display: inline-block;
+	border: 0 solid;
+	box-sizing: border-box;
+	width: 59px;
+	padding: 0 0 0 14px;
+	height: 26px;
+	line-height: 26px;
+	color: white;
+	font-family: '楷体';
+	font-weight: bolder;
+	font-size: 13px;
+	text-align: center;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	background: url(../style/skill/normal/2-disabled.png) no-repeat;
+	margin: 0.5px 1px;
+
+	&.enabled {
+		background-image: url(../style/skill/normal/2-enabled.png);
+
+		&:hover {
+			background-image: url(../style/skill/normal/2-hover.png);
+		}
+
+		&.active {
+			background-image: url(../style/skill/normal/2-active.png);
+		}
+	}
+}
+
+&.odd > .skill-button:last-child {
+	letter-spacing: 0.8em;
+	width: 120px;
+	background-image: url(../style/skill/normal/1-disabled.png);
+
+	&.enabled {
+		background-image: url(../style/skill/normal/1-enabled.png);
+
+		&:hover {
+			background-image: url(../style/skill/normal/1-hover.png);
+		}
+
+		&.active {
+			background-image: url(../style/skill/normal/1-active.png);
+		}
+	}
+}
