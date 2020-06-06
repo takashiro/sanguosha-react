@@ -1,5 +1,6 @@
 import ActionConnector from '../ActionConnector';
 
+import AddSkill from './AddSkill';
 import ArrangeSeats from './ArrangeSeats';
 import ChooseCards from './ChooseCards';
 import ChoosePlayer from './ChoosePlayer';
@@ -11,6 +12,7 @@ import UseCard from './UseCard';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const connectors: (new() => ActionConnector<any>)[] = [
+	AddSkill,
 	ArrangeSeats,
 	ChooseCards,
 	ChoosePlayer,
