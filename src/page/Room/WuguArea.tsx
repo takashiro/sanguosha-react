@@ -6,7 +6,8 @@ import CardMotion from '../../game/CardMotion';
 
 import FloatBox from './component/FloatBox';
 import MovableCard from './component/MovableCard';
-import locateCenterPos from '../util/locateCenterPos';
+
+import locateCenterPos from '../../util/locateCenterPos';
 
 import './WuguArea.scss';
 
