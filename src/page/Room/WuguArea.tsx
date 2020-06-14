@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Card from '../../game/MovableCard';
 import CardArea from '../../game/CardArea';
@@ -129,7 +130,7 @@ export default class WuguArea extends React.Component<AreaProps, AreaState> {
 
 		return (
 			<FloatBox className="wugu-area">
-				<h4>五谷丰登</h4>
+				<h4><FormattedMessage id="card.harvest" /></h4>
 				<div className="content card-list" style={style} ref={this.node}>
 					{cards.map((card) => (
 						<MovableCard

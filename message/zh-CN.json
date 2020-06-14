@@ -1,0 +1,124 @@
+[
+	{
+		"id": "confirm",
+		"message": "确认"
+	},
+	{
+		"id": "cancel",
+		"message": "取消"
+	},
+	{
+		"id": "finish",
+		"message": "结束出牌"
+	},
+	{
+		"id": "nickname",
+		"message": "昵称"
+	},
+	{
+		"id": "login",
+		"message": "登录"
+	},
+	{
+		"id": "please-enter-your-nickname",
+		"message": "请输入昵称"
+	},
+	{
+		"id": "connecting...",
+		"message": "连接中……"
+	},
+	{
+		"id": "connection-failed",
+		"message": "连接失败"
+	},
+	{
+		"id": "room-number",
+		"message": "房间号"
+	},
+	{
+		"id": "failed-to-create-room",
+		"message": "创建房间失败。"
+	},
+	{
+		"id": "create-room",
+		"defaultMessage": "Create Room",
+		"message": "创建房间"
+	},
+	{
+		"id": "enter-room",
+		"defaultMessage": "Enter Room",
+		"message": "进入房间"
+	},
+	{
+		"id": "zero",
+		"message": "零"
+	},
+	{
+		"id": "one",
+		"message": "一"
+	},
+	{
+		"id": "two",
+		"message": "二"
+	},
+	{
+		"id": "three",
+		"message": "三"
+	},
+	{
+		"id": "four",
+		"message": "四"
+	},
+	{
+		"id": "five",
+		"message": "五"
+	},
+	{
+		"id": "six",
+		"message": "六"
+	},
+	{
+		"id": "seven",
+		"message": "七"
+	},
+	{
+		"id": "eight",
+		"message": "八"
+	},
+	{
+		"id": "nine",
+		"message": "九"
+	},
+	{
+		"id": "ten",
+		"message": "十"
+	},
+	{
+		"id": "eleven",
+		"message": "十一"
+	},
+	{
+		"id": "twelve",
+		"message": "十二"
+	},
+	{
+		"id": "hand-area",
+		"message": "手牌区"
+	},
+	{
+		"id": "equip-area",
+		"message": "装备区"
+	},
+	{
+		"id": "judge-area",
+		"message": "判定区"
+	},
+	{
+		"id": "other",
+		"message": "其他"
+	},
+	{
+		"id": "card.harvest",
+		"message": "五谷丰登"
+	}
+]

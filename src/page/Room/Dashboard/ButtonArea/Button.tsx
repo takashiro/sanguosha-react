@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Option from '../../../../game/Room/Dashboard/Option';
 
@@ -50,12 +51,12 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
 		const { enabled } = this.state;
 		const classNames = [
 			'retro',
-			option.getClassName(),
+			option.getClassName() || option.getText(),
 			enabled ? 'enabled' : 'disabled',
 		];
 		return (
 			<button type="button" className={classNames.join(' ')} onClick={this.handleClick}>
-				{option.getText()}
+				<FormattedMessage id={option.getText()} />
 			</button>
 		);
 	}

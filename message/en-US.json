@@ -1,0 +1,124 @@
+[
+	{
+		"id": "confirm",
+		"message": "Confirm"
+	},
+	{
+		"id": "cancel",
+		"message": "Cancel"
+	},
+	{
+		"id": "finish",
+		"message": "Finish"
+	},
+	{
+		"id": "nickname",
+		"message": "Nickname"
+	},
+	{
+		"id": "login",
+		"message": "Login"
+	},
+	{
+		"id": "please-enter-your-nickname",
+		"message": "Please enter your nickname."
+	},
+	{
+		"id": "connecting...",
+		"message": "Connecting..."
+	},
+	{
+		"id": "connection-failed",
+		"message": "Connection failed."
+	},
+	{
+		"id": "room-number",
+		"message": "Room Number"
+	},
+	{
+		"id": "failed-to-create-room",
+		"message": "Failed to create a new room."
+	},
+	{
+		"id": "create-room",
+		"defaultMessage": "Create Room",
+		"message": "Create Room"
+	},
+	{
+		"id": "enter-room",
+		"defaultMessage": "Enter Room",
+		"message": "Enter Room"
+	},
+	{
+		"id": "zero",
+		"message": "0"
+	},
+	{
+		"id": "one",
+		"message": "Ⅰ"
+	},
+	{
+		"id": "two",
+		"message": "Ⅱ"
+	},
+	{
+		"id": "three",
+		"message": "Ⅲ"
+	},
+	{
+		"id": "four",
+		"message": "Ⅳ"
+	},
+	{
+		"id": "five",
+		"message": "Ⅴ"
+	},
+	{
+		"id": "six",
+		"message": "Ⅵ"
+	},
+	{
+		"id": "seven",
+		"message": "Ⅶ"
+	},
+	{
+		"id": "eight",
+		"message": "Ⅷ"
+	},
+	{
+		"id": "nine",
+		"message": "Ⅸ"
+	},
+	{
+		"id": "ten",
+		"message": "Ⅹ"
+	},
+	{
+		"id": "eleven",
+		"message": "Ⅺ"
+	},
+	{
+		"id": "twelve",
+		"message": "Ⅻ"
+	},
+	{
+		"id": "hand-area",
+		"message": "Hand Area"
+	},
+	{
+		"id": "equip-area",
+		"message": "Equip Area"
+	},
+	{
+		"id": "judge-area",
+		"message": "Judge Area"
+	},
+	{
+		"id": "other",
+		"message": "Other"
+	},
+	{
+		"id": "card.harvest",
+		"message": "Harvest"
+	}
+]

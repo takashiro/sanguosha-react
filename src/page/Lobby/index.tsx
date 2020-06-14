@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+	FormattedMessage,
+	IntlShape,
+	injectIntl,
+	defineMessages,
+} from 'react-intl';
 
 import {
 	Command as cmd,
@@ -12,9 +18,15 @@ import Toast from '../../component/Toast';
 
 import './index.scss';
 
+const desc = defineMessages({
+	roomNumber: { id: 'room-number' },
+	failedToCreateRoom: { id: 'failed-to-create-room' },
+});
+
 interface Props {
 	client: Client;
 	onPageLoad: (loader: PageLoader) => void;
+	intl: IntlShape;
 }
 
 class Lobby extends React.Component<Props, {}> {
@@ -43,7 +55,8 @@ class Lobby extends React.Component<Props, {}> {
 					roomId,
 				});
 			} else {
-				throw new Error('Failed to create a new room.');
+				const { intl } = this.props;
+				throw new Error(intl.formatMessage(desc.failedToCreateRoom));
 			}
 		} catch (error) {
 			console.log(error);
@@ -62,25 +75,30 @@ class Lobby extends React.Component<Props, {}> {
 	}
 
 	render(): JSX.Element {
+		const { intl } = this.props;
 		return (
 			<div className="lobby">
 				<div className="info-panel">
 					<i className="logo" />
 				</div>
 				<div className="entrance-form">
-					<button type="submit" onClick={this.createRoom}>创建房间</button>
+					<button type="submit" onClick={this.createRoom}>
+						<FormattedMessage id="create-room" defaultMessage="Create Room" />
+					</button>
 					<input
 						id="room-number-input"
 						type="number"
 						className="room-number"
-						placeholder="房间号"
+						placeholder={intl.formatMessage(desc.roomNumber)}
 						maxLength={8}
 					/>
-					<button type="submit">进入房间</button>
+					<button type="submit">
+						<FormattedMessage id="enter-room" defaultMessage="Enter Room" />
+					</button>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Lobby;
+export default injectIntl(Lobby);

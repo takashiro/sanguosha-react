@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { Client } from '@karuta/client';
 import {
@@ -149,7 +150,7 @@ class GeneralSelector extends React.Component<Props, State> {
 					{cards}
 				</ul>
 				<div className="button-area">
-					{feasible ? <button type="button" className="retro enabled confirm" onClick={this.handleConfirm}>确定</button> : null}
+					{feasible ? <button type="button" className="retro enabled confirm" onClick={this.handleConfirm}><FormattedMessage id="confirm" /></button> : null}
 				</div>
 			</div>
 		);
