@@ -43,11 +43,15 @@ class GeneralAvatar extends React.Component<Props, State> {
 		} = this.state;
 
 		const className = `general-avatar ${Kingdom[kingdom].toLowerCase()} ${position}`;
+		const generalName = intl.formatMessage({ id: `general.${name}` });
 		return (
 			<div className={className}>
 				<img className="avatar" src={`style/general/fullphoto/${avatar}.png`} alt="" />
 				<div className="frame" />
-				<div className="name">{intl.formatMessage({ id: `general.${name}` })}</div>
+				<div className="name-label">
+					<i className="icon" />
+					<div className={`name l${generalName.length}`}>{generalName}</div>
+				</div>
 				{children}
 			</div>
 		);

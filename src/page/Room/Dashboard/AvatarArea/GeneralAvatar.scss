@@ -1,60 +1,8 @@
 
-%position-icon {
-	background-repeat: no-repeat;
-	background-size: 21px 18px;
-	width: 21px;
-	height: 18px;
-	padding-left: 21px;
-}
-
 .general-avatar {
 	position: relative;
 	width: 128px;
 	height: 149px;
-
-	&.head {
-		.name::first-letter {
-			@extend %position-icon;
-			background-image: url(../style/dashboard/head.png);
-		}
-	}
-
-	&.deputy {
-		.name::first-letter {
-			@extend %position-icon;
-			background-image: url(../style/dashboard/deputy.png);
-		}
-	}
-
-	&.shu {
-		.name {
-			background-image: url(../style/dashboard/title/shu.png);
-		}
-	}
-
-	&.wu {
-		.name {
-			background-image: url(../style/dashboard/title/wu.png);
-		}
-	}
-
-	&.wei {
-		.name {
-			background-image: url(../style/dashboard/title/wei.png);
-		}
-	}
-
-	&.qun {
-		.name {
-			background-image: url(../style/dashboard/title/qun.png);
-		}
-	}
-
-	&.unknown {
-		.name {
-			background-image: none;
-		}
-	}
 
 	img.avatar {
 		width: 128px;
@@ -74,18 +22,84 @@
 		left: 0;
 	}
 
-	.name {
-		width: 87px;
+	.name-label {
+		width: 75px;
+		padding-left: 12px;
 		height: 18px;
-		line-height: 18px;
+		line-height: 16px;
 		background: url(../style/dashboard/title/god.png) no-repeat;
 		display: block;
 		position: absolute;
 		top: 2px;
 		left: 2px;
 		font-family: 'LiSu', 'Arial';
-		font-size: 18px;
+		font-size: 17px;
 		color: white;
 		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		text-align: center;
+
+		i.icon {
+			display: block;
+			background-repeat: no-repeat;
+			background-size: 21px 18px;
+			width: 21px;
+			height: 18px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.name {
+			&.l2 {
+				letter-spacing: 0.3em;
+			}
+
+			&.l4 {
+				transform-origin: top center;
+				transform: scaleX(0.8);
+			}
+		}
+	}
+
+	&.head {
+		.name-label i.icon {
+			background-image: url(../style/dashboard/head.png);
+		}
+	}
+
+	&.deputy {
+		.name-label i.icon {
+			background-image: url(../style/dashboard/deputy.png);
+		}
+	}
+
+	&.shu {
+		.name-label {
+			background-image: url(../style/dashboard/title/shu.png);
+		}
+	}
+
+	&.wu {
+		.name-label {
+			background-image: url(../style/dashboard/title/wu.png);
+		}
+	}
+
+	&.wei {
+		.name-label {
+			background-image: url(../style/dashboard/title/wei.png);
+		}
+	}
+
+	&.qun {
+		.name-label {
+			background-image: url(../style/dashboard/title/qun.png);
+		}
+	}
+
+	&.unknown {
+		.name-label {
+			background-image: none;
+		}
 	}
 }
