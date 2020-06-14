@@ -120,5 +120,265 @@
 	{
 		"id": "card.harvest",
 		"message": "五谷丰登"
+	},
+	{
+		"id": "general.huatuo",
+		"message": "华佗"
+	},
+	{
+		"id": "skill.qingnang",
+		"message": "青囊"
+	},
+	{
+		"id": "skill.jijiu",
+		"message": "急救"
+	},
+	{
+		"id": "general.lvbu",
+		"message": "吕布"
+	},
+	{
+		"id": "skill.wushuang",
+		"message": "无双"
+	},
+	{
+		"id": "general.diaochan",
+		"message": "貂蝉"
+	},
+	{
+		"id": "skill.lijian",
+		"message": "离间"
+	},
+	{
+		"id": "skill.biyue",
+		"message": "闭月"
+	},
+	{
+		"id": "general.liubei",
+		"message": "刘备"
+	},
+	{
+		"id": "skill.rende",
+		"message": "仁德"
+	},
+	{
+		"id": "skill.jijiang",
+		"message": "激将"
+	},
+	{
+		"id": "general.guanyu",
+		"message": "关羽"
+	},
+	{
+		"id": "skill.wusheng",
+		"message": "武圣"
+	},
+	{
+		"id": "general.zhangfei",
+		"message": "张飞"
+	},
+	{
+		"id": "skill.paoxiao",
+		"message": "咆哮"
+	},
+	{
+		"id": "general.zhugeliang",
+		"message": "诸葛亮"
+	},
+	{
+		"id": "skill.guanxing",
+		"message": "观星"
+	},
+	{
+		"id": "skill.kongcheng",
+		"message": "空城"
+	},
+	{
+		"id": "general.zhaoyun",
+		"message": "赵云"
+	},
+	{
+		"id": "skill.longdan",
+		"message": "龙胆"
+	},
+	{
+		"id": "general.machao",
+		"message": "马超"
+	},
+	{
+		"id": "skill.tieqi",
+		"message": "铁骑"
+	},
+	{
+		"id": "skill.mashu",
+		"message": "马术"
+	},
+	{
+		"id": "general.huangyueying",
+		"message": "黄月英"
+	},
+	{
+		"id": "skill.jizhi",
+		"message": "集智"
+	},
+	{
+		"id": "skill.qicai",
+		"message": "奇才"
+	},
+	{
+		"id": "general.caocao",
+		"message": "曹操"
+	},
+	{
+		"id": "skill.jianxiong",
+		"message": "奸雄"
+	},
+	{
+		"id": "skill.hujia",
+		"message": "护驾"
+	},
+	{
+		"id": "general.simayi",
+		"message": "司马懿"
+	},
+	{
+		"id": "skill.guicai",
+		"message": "鬼才"
+	},
+	{
+		"id": "skill.fankui",
+		"message": "反馈"
+	},
+	{
+		"id": "general.xiahoudun",
+		"message": "夏侯惇"
+	},
+	{
+		"id": "skill.ganglie",
+		"message": "刚烈"
+	},
+	{
+		"id": "general.zhangliao",
+		"message": "张辽"
+	},
+	{
+		"id": "skill.tuxi",
+		"message": "突袭"
+	},
+	{
+		"id": "general.xuchu",
+		"message": "许褚"
+	},
+	{
+		"id": "skill.luoyi",
+		"message": "裸衣"
+	},
+	{
+		"id": "general.guojia",
+		"message": "郭嘉"
+	},
+	{
+		"id": "skill.yiji",
+		"message": "遗计"
+	},
+	{
+		"id": "skill.tiandu",
+		"message": "天妒"
+	},
+	{
+		"id": "general.zhenji",
+		"message": "甄姬"
+	},
+	{
+		"id": "skill.luoshen",
+		"message": "洛神"
+	},
+	{
+		"id": "skill.qingguo",
+		"message": "倾国"
+	},
+	{
+		"id": "general.sunquan",
+		"message": "孙权"
+	},
+	{
+		"id": "skill.zhiheng",
+		"message": "制衡"
+	},
+	{
+		"id": "skill.jiuyuan",
+		"message": "救援"
+	},
+	{
+		"id": "general.ganning",
+		"message": "甘宁"
+	},
+	{
+		"id": "skill.qixi",
+		"message": "奇袭"
+	},
+	{
+		"id": "general.lvmeng",
+		"message": "吕蒙"
+	},
+	{
+		"id": "skill.keji",
+		"message": "克己"
+	},
+	{
+		"id": "general.huanggai",
+		"message": "黄盖"
+	},
+	{
+		"id": "skill.kurou",
+		"message": "苦肉"
+	},
+	{
+		"id": "general.zhouyu",
+		"message": "周瑜"
+	},
+	{
+		"id": "skill.yingzi",
+		"message": "英姿"
+	},
+	{
+		"id": "skill.fanjian",
+		"message": "反间"
+	},
+	{
+		"id": "general.daqiao",
+		"message": "大乔"
+	},
+	{
+		"id": "skill.guose",
+		"message": "国色"
+	},
+	{
+		"id": "skill.liuli",
+		"message": "流离"
+	},
+	{
+		"id": "general.luxun",
+		"message": "陆逊"
+	},
+	{
+		"id": "skill.lianying",
+		"message": "连营"
+	},
+	{
+		"id": "skill.qianxun",
+		"message": "谦逊"
+	},
+	{
+		"id": "general.sunshangxiang",
+		"message": "孙尚香"
+	},
+	{
+		"id": "skill.xiaoji",
+		"message": "枭姬"
+	},
+	{
+		"id": "skill.jieyin",
+		"message": "结姻"
 	}
 ]

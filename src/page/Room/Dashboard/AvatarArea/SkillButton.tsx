@@ -1,9 +1,11 @@
 import React from 'react';
+import { IntlShape, injectIntl } from 'react-intl';
 
 import Skill from '../../../../game/Skill';
 
 interface ButtonProps {
 	skill: Skill;
+	intl: IntlShape;
 }
 
 interface ButtonState {
@@ -11,7 +13,7 @@ interface ButtonState {
 	active: boolean;
 }
 
-export default class SkillButton extends React.Component<ButtonProps, ButtonState> {
+class SkillButton extends React.Component<ButtonProps, ButtonState> {
 	constructor(props: ButtonProps) {
 		super(props);
 
@@ -58,9 +60,14 @@ export default class SkillButton extends React.Component<ButtonProps, ButtonStat
 	}
 
 	render(): JSX.Element {
-		const { skill } = this.props;
-		const { enabled } = this.state;
-		const { active } = this.state;
+		const {
+			skill,
+			intl,
+		} = this.props;
+		const {
+			enabled,
+			active,
+		} = this.state;
 		return (
 			<button
 				className={`skill-button ${enabled ? 'enabled' : 'disabled'} ${active ? 'active' : ''}`}
@@ -68,8 +75,10 @@ export default class SkillButton extends React.Component<ButtonProps, ButtonStat
 				onClick={enabled ? this.handleClick : undefined}
 				onKeyDown={enabled ? this.handleKeyDown : undefined}
 			>
-				{skill.getName()}
+				{intl.formatMessage({ id: `skill.${skill.getName()}` })}
 			</button>
 		);
 	}
 }
+
+export default injectIntl(SkillButton);

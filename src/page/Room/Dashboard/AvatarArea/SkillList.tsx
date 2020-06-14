@@ -61,7 +61,7 @@ export default class SkillList extends React.Component<ListProps, ListState> {
 		const { skills } = this.state;
 		return (
 			<div className={`skill-list ${(skills.length % 2) === 1 ? 'odd' : 'even'}`}>
-				{skills.map((skill) => <SkillButton skill={skill} />)}
+				{skills.map((skill) => <SkillButton key={skill.getName()} skill={skill} />)}
 			</div>
 		);
 	}

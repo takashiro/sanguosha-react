@@ -120,5 +120,200 @@
 	{
 		"id": "card.harvest",
 		"message": "Harvest"
+	},
+	{
+		"id": "general.huatuo"
+	},
+	{
+		"id": "skill.qingnang"
+	},
+	{
+		"id": "skill.jijiu"
+	},
+	{
+		"id": "general.lvbu"
+	},
+	{
+		"id": "skill.wushuang"
+	},
+	{
+		"id": "general.diaochan"
+	},
+	{
+		"id": "skill.lijian"
+	},
+	{
+		"id": "skill.biyue"
+	},
+	{
+		"id": "general.liubei"
+	},
+	{
+		"id": "skill.rende"
+	},
+	{
+		"id": "skill.jijiang"
+	},
+	{
+		"id": "general.guanyu"
+	},
+	{
+		"id": "skill.wusheng"
+	},
+	{
+		"id": "general.zhangfei"
+	},
+	{
+		"id": "skill.paoxiao"
+	},
+	{
+		"id": "general.zhugeliang"
+	},
+	{
+		"id": "skill.guanxing"
+	},
+	{
+		"id": "skill.kongcheng"
+	},
+	{
+		"id": "general.zhaoyun"
+	},
+	{
+		"id": "skill.longdan"
+	},
+	{
+		"id": "general.machao"
+	},
+	{
+		"id": "skill.tieqi"
+	},
+	{
+		"id": "skill.mashu"
+	},
+	{
+		"id": "general.huangyueying"
+	},
+	{
+		"id": "skill.jizhi"
+	},
+	{
+		"id": "skill.qicai"
+	},
+	{
+		"id": "general.caocao"
+	},
+	{
+		"id": "skill.jianxiong"
+	},
+	{
+		"id": "skill.hujia"
+	},
+	{
+		"id": "general.simayi"
+	},
+	{
+		"id": "skill.guicai"
+	},
+	{
+		"id": "skill.fankui"
+	},
+	{
+		"id": "general.xiahoudun"
+	},
+	{
+		"id": "skill.ganglie"
+	},
+	{
+		"id": "general.zhangliao"
+	},
+	{
+		"id": "skill.tuxi"
+	},
+	{
+		"id": "general.xuchu"
+	},
+	{
+		"id": "skill.luoyi"
+	},
+	{
+		"id": "general.guojia"
+	},
+	{
+		"id": "skill.yiji"
+	},
+	{
+		"id": "skill.tiandu"
+	},
+	{
+		"id": "general.zhenji"
+	},
+	{
+		"id": "skill.luoshen"
+	},
+	{
+		"id": "skill.qingguo"
+	},
+	{
+		"id": "general.sunquan"
+	},
+	{
+		"id": "skill.zhiheng"
+	},
+	{
+		"id": "skill.jiuyuan"
+	},
+	{
+		"id": "general.ganning"
+	},
+	{
+		"id": "skill.qixi"
+	},
+	{
+		"id": "general.lvmeng"
+	},
+	{
+		"id": "skill.keji"
+	},
+	{
+		"id": "general.huanggai"
+	},
+	{
+		"id": "skill.kurou"
+	},
+	{
+		"id": "general.zhouyu"
+	},
+	{
+		"id": "skill.yingzi"
+	},
+	{
+		"id": "skill.fanjian"
+	},
+	{
+		"id": "general.daqiao"
+	},
+	{
+		"id": "skill.guose"
+	},
+	{
+		"id": "skill.liuli"
+	},
+	{
+		"id": "general.luxun"
+	},
+	{
+		"id": "skill.lianying"
+	},
+	{
+		"id": "skill.qianxun"
+	},
+	{
+		"id": "general.sunshangxiang"
+	},
+	{
+		"id": "skill.xiaoji"
+	},
+	{
+		"id": "skill.jieyin"
 	}
 ]

@@ -1,11 +1,14 @@
 
 import React from 'react';
+import { IntlShape, injectIntl } from 'react-intl';
 
 import { GeneralProfile, Kingdom } from '@karuta/sanguosha-core';
 
 interface Props {
 	general: GeneralProfile;
 	position: 'head' | 'deputy';
+	children?: React.ReactNode;
+	intl: IntlShape;
 }
 
 interface State {
@@ -21,7 +24,7 @@ class GeneralAvatar extends React.Component<Props, State> {
 		const { general } = props;
 
 		this.state = {
-			name: '', // TODO: translate
+			name: general ? general.name : '',
 			kingdom: (general && general.kingdom as Kingdom) || Kingdom.Unknown,
 			avatar: (general && general.name) || 'unknown',
 		};
@@ -31,6 +34,7 @@ class GeneralAvatar extends React.Component<Props, State> {
 		const {
 			position,
 			children,
+			intl,
 		} = this.props;
 		const {
 			kingdom,
@@ -43,11 +47,11 @@ class GeneralAvatar extends React.Component<Props, State> {
 			<div className={className}>
 				<img className="avatar" src={`style/general/fullphoto/${avatar}.png`} alt="" />
 				<div className="frame" />
-				<div className="name">{name}</div>
+				<div className="name">{intl.formatMessage({ id: `general.${name}` })}</div>
 				{children}
 			</div>
 		);
 	}
 }
 
-export default GeneralAvatar;
+export default injectIntl(GeneralAvatar);
