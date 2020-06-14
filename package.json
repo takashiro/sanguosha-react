@@ -34,9 +34,11 @@
     "@karuta/sanguosha-ai": "0.0.1",
     "@karuta/sanguosha-core": "^0.1.4",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-intl": "^4.6.9"
   },
   "devDependencies": {
+    "@karuta/react-linguist": "^0.1.1",
     "@types/node": "^12.12.44",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
