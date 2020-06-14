@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Card from '../../../../game/Card';
 
@@ -46,7 +47,9 @@ export default class Equip extends React.Component<EquipProps, EquipState> {
 			<div className={classNames.join(' ')}>
 				<i className="icon sword" />
 				<span className="attack-range" />
-				<span className="name">{card.getName()}</span>
+				<span className="name">
+					<FormattedMessage id={`card.${card.getName()}`} />
+				</span>
 				<CardSuit suit={card.getSuit()} />
 				<CardNumber color={card.getColor()} number={card.getNumber()} />
 			</div>

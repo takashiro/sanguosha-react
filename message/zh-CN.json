@@ -380,5 +380,73 @@
 	{
 		"id": "skill.jieyin",
 		"message": "结姻"
+	},
+	{
+		"id": "card.axe",
+		"message": "贯石斧"
+	},
+	{
+		"id": "card.crossbow",
+		"message": "诸葛连弩"
+	},
+	{
+		"id": "card.eight-diagram",
+		"message": "八卦阵"
+	},
+	{
+		"id": "card.frost-sword",
+		"message": "寒冰剑"
+	},
+	{
+		"id": "card.green-dragon-crescent-blade",
+		"message": "青龙偃月刀"
+	},
+	{
+		"id": "card.halberd",
+		"message": "方天画戟"
+	},
+	{
+		"id": "card.kylin-bow",
+		"message": "麒麟弓"
+	},
+	{
+		"id": "card.qinggang-sword",
+		"message": "青釭剑"
+	},
+	{
+		"id": "card.renwang-shield",
+		"message": "仁王盾"
+	},
+	{
+		"id": "card.serpent-spear",
+		"message": "丈八蛇矛"
+	},
+	{
+		"id": "card.yinyang-sword",
+		"message": "雌雄双股剑"
+	},
+	{
+		"id": "card.shadow-runner",
+		"message": "绝影"
+	},
+	{
+		"id": "card.hex-mark",
+		"message": "的卢"
+	},
+	{
+		"id": "card.yellow-flash",
+		"message": "爪黄飞电"
+	},
+	{
+		"id": "card.red-hare",
+		"message": "赤兔"
+	},
+	{
+		"id": "card.ferghana",
+		"message": "大宛"
+	},
+	{
+		"id": "card.violet",
+		"message": "紫骍"
 	}
 ]

@@ -315,5 +315,56 @@
 	},
 	{
 		"id": "skill.jieyin"
+	},
+	{
+		"id": "card.axe"
+	},
+	{
+		"id": "card.crossbow"
+	},
+	{
+		"id": "card.eight-diagram"
+	},
+	{
+		"id": "card.frost-sword"
+	},
+	{
+		"id": "card.green-dragon-crescent-blade"
+	},
+	{
+		"id": "card.halberd"
+	},
+	{
+		"id": "card.kylin-bow"
+	},
+	{
+		"id": "card.qinggang-sword"
+	},
+	{
+		"id": "card.renwang-shield"
+	},
+	{
+		"id": "card.serpent-spear"
+	},
+	{
+		"id": "card.yinyang-sword"
+	},
+	{
+		"id": "card.shadow-runner"
+	},
+	{
+		"id": "card.hex-mark"
+	},
+	{
+		"id": "card.yellow-flash"
+	},
+	{
+		"id": "card.red-hare"
+	},
+	{
+		"id": "card.ferghana"
+	},
+	{
+		"id": "card.violet"
 	}
 ]
