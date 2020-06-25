@@ -46,7 +46,7 @@ class Lobby extends React.Component<Props, {}> {
 			}
 			await Promise.all(robots.map((robot) => robot.connect(client.getUrl())));
 			// Load Game
-			client.send(cmd.LoadGame, 'sanguosha');
+			client.send(cmd.LoadGame, '@karuta/sanguosha');
 
 			if (roomId) {
 				const { onPageLoad } = this.props;
