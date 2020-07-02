@@ -7,12 +7,15 @@ import Option from './Option';
 
 interface Dashboard {
 	on(event: 'playerChanged', listener: (player: Player) => void): this;
+	on(event: 'promptChanged', listener: (message: string, values?: Record<string, string>) => void): this;
 	on(event: 'optionsChanged', listener: (options: Option[]) => void): this;
 
 	once(event: 'playerChanged', listener: (player: Player) => void): this;
+	once(event: 'promptChanged', listener: (message: string, values?: Record<string, string>) => void): this;
 	once(event: 'optionsChanged', listener: (options: Option[]) => void): this;
 
 	off(event: 'playerChanged', listener: (player: Player) => void): this;
+	off(event: 'promptChanged', listener: (message: string, values?: Record<string, string>) => void): this;
 	off(event: 'optionsChanged', listener: (options: Option[]) => void): this;
 }
 
@@ -59,6 +62,10 @@ class Dashboard extends EventEmitter {
 		return cards;
 	}
 
+	showPrompt(message: string, values?: Record<string, string>): void {
+		this.emit('promptChanged', message, values);
+	}
+
 	showOptions(options: Option[]): void {
 		this.options = options;
 		this.emit('optionsChanged', options);
@@ -69,6 +76,7 @@ class Dashboard extends EventEmitter {
 	 */
 	resetSelection(): void {
 		delete this.options;
+		this.emit('promptChanged', '');
 		this.emit('optionsChanged', []);
 
 		if (this.player) {
