@@ -366,5 +366,9 @@
 	},
 	{
 		"id": "card.violet"
+	},
+	{
+		"id": "prompt.choose-to-invoke-skill",
+		"defaultMessage": "Do you want to invoke {skill}?"
 	}
 ]

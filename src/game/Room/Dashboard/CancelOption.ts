@@ -3,7 +3,7 @@ import Option from './Option';
 
 defineMessage({ id: 'cancel' });
 
-export default class Cancel extends Option {
+export default class CancelOption extends Option {
 	constructor(enabled: boolean) {
 		super('cancel', enabled);
 	}

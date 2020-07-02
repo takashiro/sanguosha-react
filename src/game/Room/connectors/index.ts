@@ -5,6 +5,7 @@ import ArrangeSeats from './ArrangeSeats';
 import ChooseCards from './ChooseCards';
 import ChoosePlayer from './ChoosePlayer';
 import ExpendCard from './ExpendCard';
+import InvokeSkill from './InvokeSkill';
 import MoveCards from './MoveCards';
 import Play from './Play';
 import UpdatePlayer from './UpdatePlayer';
@@ -17,6 +18,7 @@ export const connectors: (new() => ActionConnector<any>)[] = [
 	ChooseCards,
 	ChoosePlayer,
 	ExpendCard,
+	InvokeSkill,
 	MoveCards,
 	Play,
 	UpdatePlayer,

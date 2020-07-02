@@ -3,7 +3,7 @@ import Option from './Option';
 
 defineMessage({ id: 'confirm' });
 
-export default class Confirm extends Option {
+export default class ConfirmOption extends Option {
 	constructor(enabled: boolean) {
 		super('confirm', enabled);
 	}

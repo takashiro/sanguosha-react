@@ -448,5 +448,10 @@
 	{
 		"id": "card.violet",
 		"message": "紫骍"
+	},
+	{
+		"id": "prompt.choose-to-invoke-skill",
+		"defaultMessage": "Do you want to invoke {skill}?",
+		"message": "你想要发动【{skill}】吗？"
 	}
 ]
