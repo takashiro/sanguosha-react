@@ -26,6 +26,8 @@ class Dashboard extends EventEmitter {
 
 	protected options?: Option[];
 
+	protected prompt?: string;
+
 	constructor(uid: number) {
 		super();
 
@@ -63,12 +65,25 @@ class Dashboard extends EventEmitter {
 	}
 
 	showPrompt(message: string, values?: Record<string, string>): void {
+		this.prompt = message;
 		this.emit('promptChanged', message, values);
+	}
+
+	hidePrompt() {
+		delete this.prompt;
+		this.emit('promptChanged', '');
 	}
 
 	showOptions(options: Option[]): void {
 		this.options = options;
 		this.emit('optionsChanged', options);
+		if (this.prompt) {
+			for (const option of options) {
+				option.once('clicked', () => {
+					this.hidePrompt();
+				});
+			}
+		}
 	}
 
 	/**
