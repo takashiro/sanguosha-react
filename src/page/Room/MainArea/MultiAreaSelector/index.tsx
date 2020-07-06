@@ -18,7 +18,7 @@ interface SelectorState {
 
 type AreaListener = (enabled: boolean) => void;
 
-export default class CardSelector extends React.Component<SelectorProps, SelectorState> {
+export default class MultiAreaSelector extends React.Component<SelectorProps, SelectorState> {
 	private areas: Area[];
 
 	private areaListeners: AreaListener[];
@@ -92,7 +92,7 @@ export default class CardSelector extends React.Component<SelectorProps, Selecto
 
 		return (
 			<FloatBox className="multi-area-selector">
-				{areas.map((area) => <InlineCardArea area={area} />)}
+				{areas.map((area) => <InlineCardArea key={`area-${area.getSeat()}-${area.getType()}`} area={area} />)}
 			</FloatBox>
 		);
 	}
