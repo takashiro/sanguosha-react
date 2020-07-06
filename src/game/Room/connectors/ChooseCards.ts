@@ -76,6 +76,7 @@ export default class ChooseCards extends ActionConnector<CardOptionStruct> {
 
 			for (const area of areas) {
 				area.setSelectedCards([]);
+				area.setEnabled(false);
 			}
 			dashboard.resetSelection();
 		});
