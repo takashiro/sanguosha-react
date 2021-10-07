@@ -7,7 +7,7 @@ interface ToastProps {
 	message: string;
 }
 
-export default class Toast extends React.Component<ToastProps, {}> {
+export default class Toast extends React.Component<ToastProps, unknown> {
 	static makeToast(message: string): void {
 		ReactDOM.render(
 			<Toast message={message} />,

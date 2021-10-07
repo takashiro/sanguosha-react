@@ -29,7 +29,7 @@ interface Props {
 	intl: IntlShape;
 }
 
-class Lobby extends React.Component<Props, {}> {
+class Lobby extends React.Component<Props, unknown> {
 	createRoom = async (): Promise<void> => {
 		try {
 			const { client } = this.props;

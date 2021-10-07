@@ -22,7 +22,7 @@ function waitForImage(img: HTMLImageElement): Promise<void> {
 	});
 }
 
-class Animation extends React.Component<Props, {}> {
+class Animation extends React.Component<Props, unknown> {
 	private node: React.RefObject<HTMLDivElement>;
 
 	private startTime?: number;

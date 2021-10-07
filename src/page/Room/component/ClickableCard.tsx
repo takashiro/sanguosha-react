@@ -8,7 +8,7 @@ interface CardProps {
 	onClick?: (card: Card) => void;
 }
 
-export default class ClickableCard extends React.Component<CardProps, {}> {
+export default class ClickableCard extends React.Component<CardProps, unknown> {
 	handleClick = (): void => {
 		const { onClick } = this.props;
 		if (onClick) {

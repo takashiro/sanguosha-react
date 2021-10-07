@@ -69,7 +69,7 @@ class Dashboard extends EventEmitter {
 		this.emit('promptChanged', message, values);
 	}
 
-	hidePrompt() {
+	hidePrompt(): void {
 		delete this.prompt;
 		this.emit('promptChanged', '');
 	}

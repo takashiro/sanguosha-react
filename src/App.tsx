@@ -10,8 +10,8 @@ import PageLoader from './PageLoader';
 
 import './global.scss';
 
-export default class App extends React.Component<{}, PageLoader> {
-	constructor(props: {}) {
+export default class App extends React.Component<unknown, PageLoader> {
+	constructor(props: unknown) {
 		super(props);
 
 		this.state = {

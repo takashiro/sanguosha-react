@@ -11,24 +11,14 @@ interface MainAreaProps {
 	room: Room;
 }
 
-class MainArea extends React.Component<MainAreaProps, {}> {
-	private node: React.RefObject<HTMLDivElement>;
-
-	constructor(props: MainAreaProps) {
-		super(props);
-
-		this.node = React.createRef();
-	}
-
-	render(): JSX.Element {
-		const { room } = this.props;
-		return (
-			<div ref={this.node} className="main-area">
-				<PhotoLayout room={room} />
-				<MultiAreaSelector room={room} />
-			</div>
-		);
-	}
+function MainArea(props: MainAreaProps): JSX.Element {
+	const { room } = props;
+	return (
+		<div className="main-area">
+			<PhotoLayout room={room} />
+			<MultiAreaSelector room={room} />
+		</div>
+	);
 }
 
 export default MainArea;

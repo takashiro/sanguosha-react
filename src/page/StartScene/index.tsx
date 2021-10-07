@@ -30,7 +30,7 @@ interface Props {
 	intl: IntlShape;
 }
 
-class StartScene extends React.Component<Props, {}> {
+class StartScene extends React.Component<Props, unknown> {
 	private uid?: number;
 
 	private client?: Client;

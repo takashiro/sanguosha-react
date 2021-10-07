@@ -1,4 +1,3 @@
-
 import { EventEmitter } from 'events';
 import {
 	GeneralProfile,
@@ -157,8 +156,7 @@ abstract class Player extends EventEmitter {
 		}
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	setProperty(prop: string, value: any): void {
+	setProperty(prop: string, value: unknown): void {
 		const setter = Reflect.get(this, `set${prop.charAt(0).toUpperCase()}${prop.substring(1)}`);
 		if (setter) {
 			Reflect.apply(setter, this, [value]);

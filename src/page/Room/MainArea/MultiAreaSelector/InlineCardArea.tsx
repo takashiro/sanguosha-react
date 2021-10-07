@@ -1,9 +1,8 @@
 import React from 'react';
 import {
 	MessageDescriptor,
-	IntlShape,
-	injectIntl,
 	defineMessages,
+	useIntl,
 } from 'react-intl';
 import { CardAreaType } from '@karuta/sanguosha-core';
 
@@ -34,26 +33,23 @@ function tr(area: CardAreaType): MessageDescriptor {
 
 interface AreaProps {
 	area: CardArea;
-	intl: IntlShape;
 }
 
-class InlineCardArea extends React.Component<AreaProps, {}> {
-	handleClick = (card: Card): void => {
-		const { area } = this.props;
+function InlineCardArea(props: AreaProps): JSX.Element {
+	const { area } = props;
+	const intl = useIntl();
+
+	const handleClick = React.useCallback((card: Card): void => {
 		area.setSelectedCards([card.getId()]);
-	}
+	}, [area]);
 
-	render(): JSX.Element {
-		const { area } = this.props;
-		const { intl } = this.props;
-		const cards = area.getCards();
-		return (
-			<div className="inline-card-area">
-				<h4>{intl.formatMessage(tr(area.getType()))}</h4>
-				<CardList cards={cards} onClick={this.handleClick} />
-			</div>
-		);
-	}
+	const cards = area.getCards();
+	return (
+		<div className="inline-card-area">
+			<h4>{intl.formatMessage(tr(area.getType()))}</h4>
+			<CardList cards={cards} onClick={handleClick} />
+		</div>
+	);
 }
 
-export default injectIntl(InlineCardArea);
+export default InlineCardArea;
