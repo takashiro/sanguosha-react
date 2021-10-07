@@ -1,13 +1,13 @@
 {
 	"compilerOptions": {
-		"jsx": "react",
-		"module": "ES6",
 		"outDir": "dist",
 		"target": "ES2019",
-		"sourceMap": true,
+		"module": "ES2020",
 		"moduleResolution": "node",
 		"esModuleInterop": true,
-		"strict": true
+		"jsx": "react",
+		"strict": true,
+		"sourceMap": true
 	},
 	"include": [
 		"src/**/*.ts",

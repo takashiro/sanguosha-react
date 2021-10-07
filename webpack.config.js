@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+/**
+ * Webpack Configuration
+ * @return {import('webpack').Configuration}
+ */
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
 	return {
@@ -47,13 +52,7 @@ module.exports = function config(env, argv) {
 					test: /\.scss$/,
 					exclude: /node_modules/,
 					use: [
-						{
-							loader: MiniCssExtractPlugin.loader,
-							options: {
-								hmr: mode === 'development',
-								reloadAll: true,
-							},
-						},
+						MiniCssExtractPlugin.loader,
 						{
 							loader: 'css-loader',
 							options: {

@@ -60,7 +60,7 @@ class Lobby extends React.Component<Props, {}> {
 			}
 		} catch (error) {
 			console.log(error);
-			Toast.makeToast(error);
+			Toast.makeToast(String(error));
 			this.returnToStartScene();
 		}
 	}
