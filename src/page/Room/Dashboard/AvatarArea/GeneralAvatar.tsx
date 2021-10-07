@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { IntlShape, injectIntl } from 'react-intl';
 

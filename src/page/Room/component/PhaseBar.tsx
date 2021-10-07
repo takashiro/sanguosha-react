@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import { PlayerPhase as Phase } from '@karuta/sanguosha-core';

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import HpBar from '../../component/HpBar';

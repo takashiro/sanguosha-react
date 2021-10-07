@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GeneralProfile } from '@karuta/sanguosha-core';
 

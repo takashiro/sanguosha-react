@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import { Kingdom } from '@karuta/sanguosha-core';

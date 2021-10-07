@@ -153,7 +153,6 @@ class CardArea extends EventEmitter {
 		this.emit('enabledChanged', enabled);
 	}
 
-
 	/**
 	 * Get selectable card ids.
 	 * It changes when a request comes.

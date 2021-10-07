@@ -1,4 +1,3 @@
-
 import { CardAreaType } from '@karuta/sanguosha-core';
 
 import CardArea from './CardArea';

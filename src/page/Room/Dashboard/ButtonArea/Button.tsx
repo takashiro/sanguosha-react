@@ -12,7 +12,6 @@ interface ButtonState {
 	enabled: boolean;
 }
 
-
 export default class Button extends React.Component<ButtonProps, ButtonState> {
 	constructor(props: ButtonProps) {
 		super(props);

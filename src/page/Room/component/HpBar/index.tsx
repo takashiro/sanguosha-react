@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import Player from '../../../../game/Player';
